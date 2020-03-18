@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useRef } from 'react';
 import './registration.css';
 import { Link } from 'react-router-dom';
@@ -7,12 +6,8 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Typography from '@material-ui/core/Typography';
@@ -31,13 +26,15 @@ export default function Registration() {
   const classes = useStyles();
 
   const [visibility, setVisibility] = useState({
-    showPassword: false
+    showPassword: false,
+    showRepeatPassword: false,
   });
 
   const [values, setValues] = useState({
     username: '',
     email: '',
     password: '',
+    repeatPassword: '',
   });
 
   const handleChange = (prop) => (event) => {
@@ -45,15 +42,23 @@ export default function Registration() {
   };
 
   const handleClickShowPassword = () => {
-    console.log(visibility);
     setVisibility(
       { 
         ...visibility, 
         showPassword: !visibility.showPassword,
-        showConfirmPassword: !visibility.showConfirmPassword,
       },
     );
   };
+
+  const handleClickShowRepeatPassword = () => {
+    setVisibility(
+        {
+          ...visibility,
+          showRepeatPassword: !visibility.showRepeatPassword,
+        },
+    );
+  };
+
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -61,14 +66,30 @@ export default function Registration() {
 
   const submitDataForm = () => {
     const test = values;
-    // eslint-disable-next-line no-console
     console.log(test);
   };
 
   const inputRef = useRef(null);
 
   React.useEffect(() => {
+
+    ValidatorForm.addValidationRule('isPasswordProtected', (value) => {
+      const regexp = /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/;
+      if (!regexp.test(value)) {
+        return false;
+      }
+      return true;
+    });
+
+    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+      if (value !== values.password) {
+        return false;
+      }
+      return true;
+    });
+
     ValidatorForm.addValidationRule('isUsernameMatch', (value) => value.length > 4);
+
   });
 
   return (
@@ -78,7 +99,6 @@ export default function Registration() {
           className="rigistration-form"
           ref={inputRef}
           onSubmit={submitDataForm}
-          // eslint-disable-next-line no-console
           onError={(errors) => console.log('Error message:', errors)}
         >
           <div className="registration-form-input">
@@ -95,7 +115,7 @@ export default function Registration() {
               multiline
               variant="outlined"
               validators={['isUsernameMatch', 'required']}
-              errorMessages={['username must be longer', 'this field is required']}
+              errorMessages={['username must be longer ', 'this field is required']}
             />
           </div>
           <div className="registration-form-input">
@@ -111,52 +131,58 @@ export default function Registration() {
             />
           </div>
           <div className="registration-form-input">
-            <FormControl fullWidth className={clsx(classes.margin, classes.textField)} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
-              <OutlinedInput
-                type={visibility.showPassword ? 'text' : 'password'}
-                value={values.password}
-                autoComplete="false"
+            <TextValidator
+                fullWidth
+                label="Password*"
                 onChange={handleChange('password')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                labelWidth={70}
-              />
-            </FormControl>
+                autoComplete="false"
+                type={visibility.showPassword ? 'text' : 'password'}
+                validators={['isPasswordProtected', 'required']}
+                variant="outlined"
+                errorMessages={[ 'passport must be longer and contain a number', 'this field is required']}
+                value={values.password}
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                          {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                  )
+                }}
+            />
           </div>
           <div className="registration-form-input">
-            <FormControl fullWidth className={clsx(classes.margin, classes.textField)} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Сonfirm password*</InputLabel>
-              <OutlinedInput
-                type={visibility.showConfirmPassword ? 'text' : 'password'}
-                value={values.confirmPassword}
+            <TextValidator
+                fullWidth
+                label="Repeat password*"
+                onChange={handleChange('repeatPassword')}
                 autoComplete="false"
-                onChange={handleChange('confirmPassword')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {visibility.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                labelWidth={70}
-              />
-            </FormControl>
+                type={visibility.showRepeatPassword ? 'text' : 'password'}
+                variant="outlined"
+                value={values.repeatPassword}
+                validators={['isPasswordMatch', 'required']}
+                errorMessages={['password mismatch', 'this field is required']}
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowRepeatPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                          {visibility.showRepeatPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                  )
+                }}
+            />
           </div>
           <CardActions>
             <Button
