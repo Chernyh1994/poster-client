@@ -37,7 +37,7 @@ export default function Registration() {
   const [values, setValues] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleChange = (prop) => (event) => {
@@ -45,7 +45,14 @@ export default function Registration() {
   };
 
   const handleClickShowPassword = () => {
-    setVisibility({ ...visibility, showPassword: !visibility.showPassword });
+    console.log(visibility);
+    setVisibility(
+      { 
+        ...visibility, 
+        showPassword: !visibility.showPassword,
+        showConfirmPassword: !visibility.showConfirmPassword,
+      },
+    );
   };
 
   const handleMouseDownPassword = (event) => {
@@ -120,6 +127,30 @@ export default function Registration() {
                       edge="end"
                     >
                       {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                labelWidth={70}
+              />
+            </FormControl>
+          </div>
+          <div className="registration-form-input">
+            <FormControl fullWidth className={clsx(classes.margin, classes.textField)} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Сonfirm password*</InputLabel>
+              <OutlinedInput
+                type={visibility.showConfirmPassword ? 'text' : 'password'}
+                value={values.confirmPassword}
+                autoComplete="false"
+                onChange={handleChange('confirmPassword')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {visibility.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }

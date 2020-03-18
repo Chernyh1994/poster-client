@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Home from './home';
 // eslint-disable-next-line import/no-named-as-default
-import Registration from './registration';
+import Registration from './auth/registration';
 import ErrorPage from './error';
 
 const Pages = () => (
