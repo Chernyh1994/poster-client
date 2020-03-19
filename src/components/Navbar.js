@@ -33,13 +33,15 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Twitter Test Project
           </Typography>
-          <Button color="inherit">
-            Sing in
-          </Button>
-          <Link to='/regist' className="link">
+          <Link to='/login' className="link">
+            <Button style={{ color: 'white' }}>
+              Sing in
+            </Button>
+          </Link>
+          <Link to='/register' className="link">
             <Button variant="outlined" style={{ color: 'white' }}>
               Sing up
-          </Button>
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

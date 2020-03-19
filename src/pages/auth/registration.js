@@ -13,7 +13,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Typography from '@material-ui/core/Typography';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const useStyles = makeStyles({
@@ -66,6 +65,14 @@ export default function Registration() {
 
   const submitDataForm = () => {
     const test = values;
+    fetch(`http://localhost:8000/register`,{
+      method:'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(test)
+    })
+
     console.log(test);
   };
 
