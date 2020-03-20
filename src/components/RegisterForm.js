@@ -155,14 +155,7 @@ export default function RegisterForm() {
                 <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Sing Up
                 </Button>
-            </TemplateBlock>
-
-            <TemplateBlock>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<HomeIcon fontSize="small" />}
-                >
+                <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
                     Cancel
                 </Button>
             </TemplateBlock>
