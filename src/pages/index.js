@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import Home from './home';
 import Login from './auth/login'
-import Registration from './auth/registration';
+import Register from './auth/register';
 import ErrorPage from './error';
 import Navbar from "../components/Navbar";
 
@@ -15,7 +15,7 @@ const Pages = () => (
 
       <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/register" component={Registration} />
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route component={ErrorPage} />
       </Switch>
