@@ -9,7 +9,7 @@ export default function Register() {
       <StylesProvider injectFirst>
         <TemplateForm>
           <CardForm>
-            <Headline> REGISTER </Headline>
+            <Headline> REGISTRATION </Headline>
             <RegisterForm/>
           </CardForm>
         </TemplateForm>

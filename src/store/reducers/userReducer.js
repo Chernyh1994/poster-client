@@ -1,26 +1,24 @@
-import { ADD_USER } from '../actions/usersAction';
-
 const initialState = {
-  users: []
+  users:[]
 };
 
-function userReducer(state = initialState, action) {
+const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER:
+    case 'ADD_USER':
       return {
         users: [
           ...state.users,
           {
-            username: action.username,
+            userName: action.userName,
             email: action.email,
-            password: action.password
+            password: action.password,
+            repeatPassword: action.repeatPassword
           }
         ]
       };
-
     default:
       return state;
   }
-}
+};
 
-export default userReducer;
+export default usersReducer;

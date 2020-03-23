@@ -7,14 +7,14 @@ import Home from './home';
 import Login from './auth/login'
 import Register from './auth/register';
 import ErrorPage from './error';
-import Navbar from "../components/Headers";
+import Headers from "../components/Headers";
 
 export default function Pages() {
 
     return (
           <BrowserRouter>
 
-              <Navbar/>
+              <Headers/>
 
               <Switch>
                   <Route path="/" component={Home} exact />
