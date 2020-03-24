@@ -1,17 +1,17 @@
-import reducers from './reducers';
+import { rootReduser } from './reducers';
 import {createStore, applyMiddleware, compose} from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import hellSagas from './sagas/sagas'
+import  {sagaWatcher}  from './sagas/saga'
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-    reducers,
+    rootReduser,
     compose(
         applyMiddleware(sagaMiddleware),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
-sagaMiddleware.run(hellSagas)
+sagaMiddleware.run(sagaWatcher)
 
 export default store;

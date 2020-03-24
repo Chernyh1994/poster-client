@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../store/actions/usersAction';
+import { createUser } from '../store/actions/usersAction';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -48,14 +48,14 @@ const RegisterForm = ({dispatch}) => {
 
     const register = useFormik({
         initialValues: {
-            userName: '',
+            name: '',
             email: '',
             password: '',
             repeatPassword: '',
         },
 
         validationSchema: Yup.object({
-            userName: Yup.string()
+            name: Yup.string()
                 .min(4, 'User Name must be longer')
                 .required('Required'),
             email: Yup.string()
@@ -70,8 +70,8 @@ const RegisterForm = ({dispatch}) => {
         }),
 
         onSubmit: values => {
-            console.log(values);
-            dispatch(addUser(values));
+            const data = {...values, device_name:Math.random() + ''}
+            dispatch(createUser(data));
         },
     });
 
@@ -84,9 +84,9 @@ const RegisterForm = ({dispatch}) => {
                     label="Name*"
                     name="Lary"
                     variant="outlined"
-                    {...register.getFieldProps('userName')}
-                    error={!!register.touched.userName && !!register.errors.userName }
-                    helperText={register.touched.userName && register.errors.userName ? register.errors.userName: null}
+                    {...register.getFieldProps('name')}
+                    error={!!register.touched.name && !!register.errors.name }
+                    helperText={register.touched.name && register.errors.name ? register.errors.name: null}
                 />
             </TemplateBlock>
 
