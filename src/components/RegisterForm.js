@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { createUser } from '../store/actions/usersAction';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +14,11 @@ import * as Yup from 'yup';
 import {TemplateBlock} from "./styledComponent/Templates";
 import HomeIcon from "@material-ui/icons/Home";
 
-const RegisterForm = ({dispatch}) => {
+import { useDispatch } from 'react-redux';
+import {  registerUser } from '../store/actions/registerAction';
+
+const RegisterForm = () => {
+    const dispatch = useDispatch();
 
     const [visibility, setVisibility] = useState({
         showPassword: false,
@@ -71,7 +73,8 @@ const RegisterForm = ({dispatch}) => {
 
         onSubmit: values => {
             const data = {...values, device_name:Math.random() + ''}
-            dispatch(createUser(data));
+            console.log(data)
+            dispatch(registerUser(data));
         },
     });
 
@@ -167,5 +170,5 @@ const RegisterForm = ({dispatch}) => {
     );
 };
 
-export default connect()(RegisterForm)
+export default RegisterForm
 

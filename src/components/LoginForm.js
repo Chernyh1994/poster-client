@@ -13,7 +13,11 @@ import * as Yup from 'yup';
 
 import {TemplateBlock} from "./styledComponent/Templates";
 
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../store/actions/registerAction';
+
 export default function LoginForm() {
+    const dispatch = useDispatch();
 
     const [visibility, setVisibility] = useState({
         showPassword: false,
@@ -48,7 +52,7 @@ export default function LoginForm() {
         }),
 
         onSubmit: values => {
-            console.log(JSON.stringify(values, null, 2));
+            dispatch(loginUser(values));
         },
     });
 

@@ -1,17 +1,39 @@
-import { rootReduser } from './reducers';
-import {createStore, applyMiddleware, compose} from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import  {sagaWatcher}  from './sagas/saga'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { all } from 'redux-saga/effects';
+import axios from 'axios';
+import { handleRequests } from 'redux-saga-requests';
+import { createDriver } from 'redux-saga-requests-axios';
+axios.defaults.withCredentials = true;
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-    rootReduser,
-    compose(
-        applyMiddleware(sagaMiddleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
+export const configureStore = () => {
+  const { requestsReducer, requestsSagas } = handleRequests({
+    driver: createDriver(
+      axios.create({
+        baseURL: 'http://localhost:8000',
+      }),
+    ),
+  });
 
-sagaMiddleware.run(sagaWatcher)
+  const reducers = combineReducers({
+    requests: requestsReducer,
+  });
 
-export default store;
+  const sagaMiddleware = createSagaMiddleware();
+  const composeEnhancers =
+    (typeof window !== 'undefined' &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    compose;
+
+  const store = createStore(
+    reducers,
+    composeEnhancers(applyMiddleware(sagaMiddleware)),
+  );
+
+  function* rootSaga() {
+    yield all(requestsSagas);
+  }
+
+  sagaMiddleware.run(rootSaga);
+  return store;
+};
