@@ -4,9 +4,9 @@ import {
   REGISTER_USER, 
 } from '../types';
 
-export const csrfRequest = (user) => ({
+export const csrfRequest = () => ({
   type: CSRF_COOKIE,
-  request: [{ url: `/sanctum/csrf-cookie`  }, {  url: `/api/sanctum/token`, user }]
+  request: [{ url: `/sanctum/csrf-cookie`  }]
 });
 
 export const loginUser = (user) => ({
@@ -20,6 +20,13 @@ export const loginUser = (user) => ({
       data: user,
     }
   ],
+  meta: {
+    getData: 
+      data => {
+        window.localStorage.setItem('token', data[1].token)
+        return data
+      }
+  }
 })
 
 export const registerUser = (user) => ({
@@ -33,4 +40,12 @@ export const registerUser = (user) => ({
       data: user,
     }
   ],
+  meta: {
+    getData: 
+      data => {
+        window.localStorage.setItem('token', data[1].token)
+        return data
+      }
+  }
 })
+
