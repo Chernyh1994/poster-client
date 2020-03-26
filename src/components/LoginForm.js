@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 import {TemplateBlock} from "./styledComponent/Templates";
 
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../store/actions/registerAction';
+import { loginUser } from '../store/actions/authAction';
 
 export default function LoginForm() {
     const dispatch = useDispatch();

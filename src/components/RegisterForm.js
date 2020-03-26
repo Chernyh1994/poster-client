@@ -15,7 +15,7 @@ import {TemplateBlock} from "./styledComponent/Templates";
 import HomeIcon from "@material-ui/icons/Home";
 
 import { useDispatch } from 'react-redux';
-import {  registerUser } from '../store/actions/registerAction';
+import {  registerUser } from '../store/actions/authAction';
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
