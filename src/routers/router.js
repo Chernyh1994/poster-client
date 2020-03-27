@@ -1,15 +1,15 @@
-import Home from '../pages/home/';
+import Home from '../pages/home';
 import Login from '../pages/auth/login'
 import Register from '../pages/auth/register';
 import ErrorPage from '../pages/error';
 import Headers from "../components/Headers";
 
-const routes = [
+export const routes = [
     {
         component: Headers,
         routes: [
             {
-                path: "/register",
+                path: "/",
                 exact: true,
                 component: Home
             },
@@ -29,5 +29,3 @@ const routes = [
         ]
     }
 ];
-
-export default routes;

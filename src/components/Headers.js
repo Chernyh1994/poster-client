@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { renderRoutes } from "react-router-config";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Headers() {
+export default function Headers({ route }) {
   const classes = useStyles();
 
   return (
@@ -45,6 +47,7 @@ export default function Headers() {
           </Link>
         </Toolbar>
       </AppBar>
+      {renderRoutes(route.routes)}
     </div>
   );
 }
