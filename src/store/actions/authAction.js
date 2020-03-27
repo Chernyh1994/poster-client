@@ -1,6 +1,7 @@
 import {  
   LOGIN_USER, 
-  REGISTER_USER, 
+  REGISTER_USER,
+  LOGOUT 
 } from '../constants';
 
 export const loginUser = (user) => ({
@@ -23,3 +24,11 @@ export const registerUser = (user) => ({
     },
 })
 
+export const logout = () => ({
+  type: LOGOUT,
+  request: 
+    { 
+      url: `/api/sanctum/logout`, 
+      method: 'post',
+    },
+})

@@ -15,7 +15,7 @@ import {TemplateBlock} from "./styledComponent/Templates";
 import HomeIcon from "@material-ui/icons/Home";
 
 import { useDispatch } from 'react-redux';
-import {  registerUser } from '../store/actions/authAction';
+import { registerUser } from '../store/actions/authAction';
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -72,9 +72,8 @@ const RegisterForm = () => {
         }),
 
         onSubmit: values => {
-            const data = {...values, device_name:Math.random() + ''}
-            console.log(data)
-            dispatch(registerUser(data));
+            console.log(values)
+            dispatch(registerUser(values));
         },
     });
 
