@@ -26,9 +26,4 @@ export const registerUser = (user) => ({
 
 export const logout = () => ({
   type: LOGOUT,
-  request: 
-    { 
-      url: `/api/sanctum/logout`, 
-      method: 'post',
-    },
 })

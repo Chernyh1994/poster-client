@@ -5,8 +5,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
 import Menu from './Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../store/actions/authAction';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +25,17 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Navbar(props) {
-  const classes = useStyles();
-  
-  const {userName, isAuthenticat} = props.auth
+function Navbar() {
 
-  console.log(userName, isAuthenticat)
+  const dispatch = useDispatch();
+
+  const classes = useStyles();
+
+  const { isAuthenticat, userName } = useSelector(state => state.authReducer);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  }
 
   return (
     <div className={classes.root}>
@@ -39,7 +45,7 @@ function Navbar(props) {
           <Typography variant="h6" className={classes.title}>
               Twitter Test Project
           </Typography>
-          { !isAuthenticat ?
+          { !window.localStorage.getItem('token') && !isAuthenticat ?
           <div>
             <Link to='/login' className="link">
               <Button style={{ color: 'white' }}>
@@ -55,10 +61,10 @@ function Navbar(props) {
           :
           <div className={classes.authTitle}>
             <h4>
-              Hello {userName}
+              {userName}
             </h4>
             
-            <Button style={{ color: 'white' }}>
+            <Button onClick={handleLogout} style={{ color: 'white' }}>
               Logout
             </Button>
           </div>}
@@ -68,8 +74,4 @@ function Navbar(props) {
   );
 }
 
-const mapStateToProps = state =>({
-  auth: state.authReducer
-})
-
-export default connect(mapStateToProps)(Navbar)
+export default Navbar;

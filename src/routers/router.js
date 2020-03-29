@@ -4,6 +4,9 @@ import Register from '../pages/auth/register';
 import ErrorPage from '../pages/error';
 import Header from '../pages/header';
 import Test from '../pages/main/test';
+import { privateRoute } from './privateRoute';
+import React from 'react';
+import { Redirect } from 'react-router';
 
 export const routes = [
     {
@@ -16,8 +19,9 @@ export const routes = [
             },
             {
                 path: "/test",
-                exact: true,
-                component: Test
+                render: (props) => {
+                    return privateRoute() ? <Test/> : <Redirect to="/login"/>;
+               },
             },
             {
                 path: "/register",

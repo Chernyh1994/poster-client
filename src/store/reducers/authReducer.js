@@ -3,7 +3,7 @@ import {
   LOGIN_USER_ERROR,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
-  LOGOUT_SUCCESS, 
+  LOGOUT, 
 } from '../constants';
 
 const initialState = {
@@ -26,14 +26,18 @@ export const authReducer = (state = initialState, action) => {
       };
     case LOGIN_USER_ERROR:
     case REGISTER_USER_ERROR:
-    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticat: false,
+        error: action.error.message,
+      };
+    case LOGOUT:
       window.localStorage.removeItem('token');
       return {
         ...state,
         token: null,
         userName: null,
         isAuthenticat: false,
-        error: action.error.message,
       };
     default: return state;
   }
