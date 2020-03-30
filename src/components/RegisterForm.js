@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-
+//
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../store/actions/authAction';
+//
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -7,17 +10,30 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-
+import HomeIcon from "@material-ui/icons/Home";
+//
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+//
 import {TemplateBlock} from "./styledComponent/Templates";
-import HomeIcon from "@material-ui/icons/Home";
 
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../store/actions/authAction';
+const validator = Yup.object({
+    name: Yup.string()
+        .min(4, 'User Name must be longer')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Required'),
+    password: Yup.string()
+        .min(6, 'Password must be longer')
+        .required('Required'),
+    repeatPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Required'),
+});
 
 const RegisterForm = () => {
+
     const dispatch = useDispatch();
 
     const [visibility, setVisibility] = useState({
@@ -43,11 +59,6 @@ const RegisterForm = () => {
         );
     };
 
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
     const register = useFormik({
         initialValues: {
             name: '',
@@ -56,24 +67,10 @@ const RegisterForm = () => {
             repeatPassword: '',
         },
 
-        validationSchema: Yup.object({
-            name: Yup.string()
-                .min(4, 'User Name must be longer')
-                .required('Required'),
-            email: Yup.string()
-                .email('Invalid email address')
-                .required('Required'),
-            password: Yup.string()
-                .min(6, 'Password must be longer')
-                .required('Required'),
-            repeatPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                .required('Required'),
-        }),
+        validationSchema: validator,
 
-        onSubmit: values => {
-            console.log(values)
-            dispatch(registerUser(values));
+        onSubmit: (name, email, password) => {
+            dispatch(registerUser(name, email, password));
         },
     });
 
@@ -119,7 +116,6 @@ const RegisterForm = () => {
                                 <IconButton
                                     aria-label="toggle password visibility"
                                     onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                 >
                                     {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
@@ -145,7 +141,6 @@ const RegisterForm = () => {
                                 <IconButton
                                     aria-label="toggle password visibility"
                                     onClick={handleClickShowRepeatPassword}
-                                    onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                 >
                                     {visibility.showRepeatPassword ? <Visibility /> : <VisibilityOff />}
@@ -169,5 +164,5 @@ const RegisterForm = () => {
     );
 };
 
-export default RegisterForm
+export default RegisterForm;
 

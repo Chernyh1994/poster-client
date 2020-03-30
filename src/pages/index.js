@@ -2,14 +2,15 @@ import React from 'react';
 import { renderRoutes } from "react-router-config";
 import { Switch, BrowserRouter } from 'react-router-dom';
 // 
+import { Redirect } from 'react-router';
+import { useSelector } from 'react-redux';
+//
 import Home from './main/home';
 import Login from './auth/login'
 import Register from './auth/register';
 import ErrorPage from './error';
 import Header from './header';
 import Test from './main/test';
-import { Redirect } from 'react-router';
-import { useSelector } from 'react-redux';
 
 export default function Pages() {
 
@@ -44,7 +45,6 @@ export default function Pages() {
             ]
         }
     ];
-    
     
     return (
         <BrowserRouter>

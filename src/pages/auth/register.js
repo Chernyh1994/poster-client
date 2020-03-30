@@ -6,13 +6,13 @@ import RegisterForm from "../../components/RegisterForm";
 export default function Register() {
 
   return (
-      <StylesProvider injectFirst>
-        <TemplateForm>
-          <CardForm>
-            <Headline> REGISTRATION </Headline>
-            <RegisterForm/>
-          </CardForm>
-        </TemplateForm>
-      </StylesProvider>
+    <StylesProvider injectFirst>
+      <TemplateForm>
+        <CardForm>
+          <Headline> REGISTRATION </Headline>
+          <RegisterForm/>
+        </CardForm>
+      </TemplateForm>
+    </StylesProvider>
   );
 }
