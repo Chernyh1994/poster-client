@@ -1,29 +1,14 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { all } from 'redux-saga/effects';
-import axios from 'axios';
-import { handleRequests } from 'redux-saga-requests';
-import { createDriver } from 'redux-saga-requests-axios';
-import { authReducer } from './reducers/authReducer';
+//
+import { reducers } from './reducers';
 import { localStorageMiddleware } from './middlewares/middleware';
-
-axios.defaults.withCredentials = true;
+import { rootSaga } from './sagas/saga';
 
 export const configureStore = () => {
-  const { requestsReducer, requestsSagas } = handleRequests({
-    driver: createDriver(
-      axios.create({
-        baseURL: 'http://localhost:8000',
-      }),
-    ),
-  });
-
-  const reducers = combineReducers({
-    requests: requestsReducer,
-    authReducer: authReducer
-  });
 
   const sagaMiddleware = createSagaMiddleware();
+
   const composeEnhancers =
     (typeof window !== 'undefined' &&
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
@@ -33,10 +18,6 @@ export const configureStore = () => {
     reducers,
     composeEnhancers(applyMiddleware(sagaMiddleware, localStorageMiddleware)),
   );
-
-  function* rootSaga() {
-    yield all(requestsSagas);
-  }
 
   sagaMiddleware.run(rootSaga);
   return store;
