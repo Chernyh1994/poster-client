@@ -5,6 +5,7 @@ import axios from 'axios';
 import { handleRequests } from 'redux-saga-requests';
 import { createDriver } from 'redux-saga-requests-axios';
 import { authReducer } from './reducers/authReducer';
+import { localStorageMiddleware } from './middlewares/middleware';
 
 axios.defaults.withCredentials = true;
 
@@ -30,7 +31,7 @@ export const configureStore = () => {
 
   const store = createStore(
     reducers,
-    composeEnhancers(applyMiddleware(sagaMiddleware)),
+    composeEnhancers(applyMiddleware(sagaMiddleware, localStorageMiddleware)),
   );
 
   function* rootSaga() {

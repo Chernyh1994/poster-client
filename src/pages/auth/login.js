@@ -1,6 +1,6 @@
 import React from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
-import {TemplateForm, Headline, CardForm} from "../../components/styledComponent/Templates";
+import {TemplateForm, Headline, CustomCard} from "../../components/styledComponent/Templates";
 import LoginForm from "../../components/LoginForm";
 
 export default function Login() {
@@ -8,10 +8,10 @@ export default function Login() {
     return (
         <StylesProvider injectFirst>
             <TemplateForm>
-                <CardForm>
+                <CustomCard>
                     <Headline> LOGIN </Headline>
                     <LoginForm/>
-                </CardForm>
+                </CustomCard>
             </TemplateForm>
         </StylesProvider>
     );

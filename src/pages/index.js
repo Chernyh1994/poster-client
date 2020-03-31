@@ -8,15 +8,15 @@ import { useSelector } from 'react-redux';
 import Home from './main/home';
 import Login from './auth/login'
 import Register from './auth/register';
-import ErrorPage from './error';
+import Error404 from './error';
 import Header from './header';
 import Test from './main/test';
 
 export default function Pages() {
 
-    const isAuthenticat = useSelector(state => state.authReducer);
+    const token = useSelector(state => state.authReducer);
 
-    const privateRoute = !window.localStorage.getItem('token') || !isAuthenticat
+    const privateRoute = !window.localStorage.getItem('token') || !token
 
     const routes = [
         {
@@ -40,7 +40,7 @@ export default function Pages() {
                     render: (props) => privateRoute ? <Login/> : <Redirect to="/"/>,
                 },
                 {
-                    component: ErrorPage
+                    component: Error404
                 },
             ]
         }

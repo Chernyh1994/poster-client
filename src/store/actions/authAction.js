@@ -4,23 +4,23 @@ import {
   LOGOUT 
 } from '../constants';
 
-export const loginUser = (user) => ({
+export const loginUser = (email, password) => ({
   type: LOGIN_USER,
   request:
     { 
       url: `/api/sanctum/token`, 
       method: 'post',
-      data: user,
+      data: email, password,
     },
 })
 
-export const registerUser = (user) => ({
+export const registerUser = (name, email, password) => ({
   type: REGISTER_USER,
   request: 
     { 
       url: `/api/sanctum/register`, 
       method: 'post',
-      data: user,
+      data: name, email, password,
     },
 })
 

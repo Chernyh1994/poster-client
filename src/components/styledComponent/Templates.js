@@ -24,7 +24,7 @@ export const Headline = styled.h2`
     text-align: center;
 `;
 
-export const CardForm = styled(Card)`
+export const CustomCard = styled(Card)`
    min-width: 375px;
 `;
 
