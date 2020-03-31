@@ -8,7 +8,7 @@ export const loginUser = (email, password) => ({
   type: LOGIN_USER,
   request:
     { 
-      url: `/api/sanctum/token`, 
+      url: process.env.REACT_APP_LOGIN_USER, 
       method: 'post',
       data: email, password,
     },
@@ -18,7 +18,7 @@ export const registerUser = (name, email, password) => ({
   type: REGISTER_USER,
   request: 
     { 
-      url: `/api/sanctum/register`, 
+      url: process.env.REACT_APP_REGISTERs_USER, 
       method: 'post',
       data: name, email, password,
     },
