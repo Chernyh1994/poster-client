@@ -1,15 +1,17 @@
 import React from 'react';
-//
-import './App.css';
+import { StylesProvider } from '@material-ui/core/styles';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Pages from './pages';
 
-function App() {
-
+const App = () => {
   return (
-    <div className='App'>
+    <StylesProvider injectFirst>
+      <ToastContainer />
       <Pages/>
-    </div>
+    </StylesProvider>
   );
-}
+};
 
 export default App;

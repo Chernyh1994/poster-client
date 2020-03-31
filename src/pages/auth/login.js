@@ -1,18 +1,23 @@
 import React from 'react';
-import { StylesProvider } from '@material-ui/core/styles';
-import {TemplateForm, Headline, CustomCard} from "../../components/styledComponent/Templates";
-import LoginForm from "../../components/LoginForm";
 
-export default function Login() {
+import { 
+  CustomForm, 
+  CustomCard, 
+  CustomHeadlineForm, 
+} from '../../components/styledComponent/Templates';
+import LoginForm from '../../components/LoginForm';
 
-    return (
-        <StylesProvider injectFirst>
-            <TemplateForm>
-                <CustomCard>
-                    <Headline> LOGIN </Headline>
-                    <LoginForm/>
-                </CustomCard>
-            </TemplateForm>
-        </StylesProvider>
-    );
-}
+const Login = () => {
+  return (
+    <CustomForm>
+      <CustomCard>
+        <CustomHeadlineForm> 
+          LOGIN 
+        </CustomHeadlineForm>
+        <LoginForm/>
+      </CustomCard>
+    </CustomForm>
+  );
+};
+
+export default Login;

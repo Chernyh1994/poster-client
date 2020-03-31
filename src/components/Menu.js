@@ -1,7 +1,4 @@
 import React from 'react';
-import { LinkMenu } from './styledComponent/Link';
-//
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,19 +9,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  toolbar: theme.mixins.toolbar,
-}));
+import { CustomLinkMenu } from './styledComponent/Link';
+import { useStyles } from './styledComponent/DrawerStyled';
 
 const Menu = () => {
   const classes = useStyles();
@@ -40,19 +26,19 @@ const Menu = () => {
       <div className={classes.toolbar} />
       <List>
 
-        <LinkMenu to='/'>
+        <CustomLinkMenu to='/'>
           <ListItem button>
             <ListItemIcon><HomeIcon/></ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItem>
-        </LinkMenu>
+        </CustomLinkMenu>
 
-        <LinkMenu to='/profile'>
+        <CustomLinkMenu to='/profile'>
           <ListItem button>
             <ListItemIcon><AccountCircleIcon/></ListItemIcon>
             <ListItemText primary={'Profile'} />
           </ListItem>
-        </LinkMenu>
+        </CustomLinkMenu>
 
         <ListItem >
           <Button color="primary" startIcon={<PostAddIcon fontSize="small" />} >
@@ -63,6 +49,6 @@ const Menu = () => {
       </List>
     </Drawer>
   );
-}
+};
 
 export default Menu;

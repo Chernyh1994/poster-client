@@ -1,34 +1,22 @@
 import React from 'react';
 import { renderRoutes } from "react-router-config";
 import { useSelector } from 'react-redux';
-//
-import { makeStyles } from '@material-ui/core/styles';
-//
+
 import Menu from '../../components/Menu';
 import Navbar from '../../components/Navbar';
-
-const useStyles = makeStyles((theme) => ({ 
-    root: {
-        display: 'flex',
-      }, 
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-    toolbar: theme.mixins.toolbar,
-}));
+import { useStyles } from '../../components/styledComponent/HeaderStyled';
 
 const Header = ({route}) => {
     const classes = useStyles();
     const { isAuthenticat } = useSelector(state => state.authReducer);
 
-    return(
-        <>{
-            !window.localStorage.getItem('token') && !isAuthenticat ?
-            <>
+    return( 
+        <div>
+           { !window.localStorage.getItem('token') && !isAuthenticat ?
+            <div>
                 <Navbar/>
                 {renderRoutes(route.routes) }
-            </>
+            </div>
             :
             <div className={classes.root}>
                 <Menu/>
@@ -39,8 +27,8 @@ const Header = ({route}) => {
                         {renderRoutes(route.routes)}
                     </main>
                 </div>
-            </div>
-        }</>     
+            </div> } 
+        </div>
     )
 };
 

@@ -1,12 +1,14 @@
 import React from 'react';
+
 import Post from '../../components/Post';
 
-export default function Home() {
+const Home = () => {
 
     return(
         <React.Fragment>
             <Post/>
         </React.Fragment>
     )
-}
+};
 
+export default Home;

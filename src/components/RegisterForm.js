@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-//
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../store/actions/authAction';
-//
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -11,11 +8,11 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import HomeIcon from "@material-ui/icons/Home";
-//
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-//
-import {TemplateBlock} from "./styledComponent/Templates";
+
+import { registerUser } from '../store/actions/authAction';
+import {CustomBlock} from './styledComponent/Templates';
 
 const validator = Yup.object({
     name: Yup.string()
@@ -25,7 +22,7 @@ const validator = Yup.object({
         .email('Invalid email address')
         .required('Required'),
     password: Yup.string()
-        .min(6, 'Password must be longer')
+        .min(8, 'Password must be longer')
         .required('Required'),
     repeatPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -77,7 +74,7 @@ const RegisterForm = () => {
     return (
         <form onSubmit={register.handleSubmit}>
 
-            <TemplateBlock>
+            <CustomBlock>
                 <TextField
                     fullWidth
                     label="Name*"
@@ -87,9 +84,9 @@ const RegisterForm = () => {
                     error={!!register.touched.name && !!register.errors.name }
                     helperText={register.touched.name && register.errors.name ? register.errors.name: null}
                 />
-            </TemplateBlock>
+            </CustomBlock>
 
-            <TemplateBlock>
+            <CustomBlock>
                 <TextField
                     fullWidth
                     label="Email*"
@@ -99,9 +96,9 @@ const RegisterForm = () => {
                     error={!!register.touched.email && !!register.errors.email }
                     helperText={register.touched.email && register.errors.email ? register.errors.email: null}
                 />
-            </TemplateBlock>
+            </CustomBlock>
 
-            <TemplateBlock>
+            <CustomBlock>
                 <TextField
                     fullWidth
                     label="Password*"
@@ -124,9 +121,9 @@ const RegisterForm = () => {
                         )
                     }}
                 />
-            </TemplateBlock>
+            </CustomBlock>
 
-            <TemplateBlock>
+            <CustomBlock>
                 <TextField
                     fullWidth
                     label="Repeat Password*"
@@ -149,16 +146,16 @@ const RegisterForm = () => {
                         )
                     }}
                 />
-            </TemplateBlock>
+            </CustomBlock>
 
-            <TemplateBlock>
+            <CustomBlock>
                 <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Sing Up
                 </Button>
                 <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
                     Cancel
                 </Button>
-            </TemplateBlock>
+            </CustomBlock>
 
         </form>
     );

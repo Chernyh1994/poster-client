@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 
-export const TemplateForm = styled.div`
+export const CustomForm = styled.div`
     height: auto;
     padding: 7em 0 7em 0 ;
     display: flex;
@@ -10,11 +10,15 @@ export const TemplateForm = styled.div`
     justify-content: center
 `;
 
-export const TemplateBlock = styled.div`
+export const CustomCard = styled(Card)`
+    min-width: 375px;
+`;
+
+export const CustomBlock = styled.div`
     padding: 15px;
 `;
 
-export const Headline = styled.h2`
+export const CustomHeadlineForm = styled.h3`
     font-size: 1.5rem;
     font-family: "Helvetica", "Arial", sans-serif;
     font-weight: 400;
@@ -24,16 +28,13 @@ export const Headline = styled.h2`
     text-align: center;
 `;
 
-export const CustomCard = styled(Card)`
-   min-width: 375px;
-`;
-
 export const CustomAppBar = styled(AppBar)`
-   z-index: 1201;
-   flex-grow: 1;
-   position: fixed;
+    z-index: 1201;
+    flex-grow: 1;
+    position: fixed;
 `;
 
 export const CustomHeadline = styled.h3`
-   flex-grow: 1;
+    font-family: "Helvetica", "Arial", sans-serif;
+    flex-grow: 1;
 `;

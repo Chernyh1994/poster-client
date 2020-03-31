@@ -1,4 +1,4 @@
-import { LOGIN_USER_SUCCESS, REGISTER_USER_SUCCESS, LOGOUT } from '../constants';
+import { LOGIN_USER_SUCCESS, REGISTER_USER_SUCCESS, LOGOUT } from '../store/constants';
 
 export const localStorageMiddleware = (store) => (next) => (action) => {
     switch (action.type) {
@@ -12,4 +12,4 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
         default: 
             return next(action);
     }
-}
+};
