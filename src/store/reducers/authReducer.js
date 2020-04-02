@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     token: null,
+    user: null,
     error: null,
   };
   
@@ -18,6 +19,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.response.data.token,
+        user: action.response.data.user,
       };
     case LOGIN_USER_ERROR:
     case REGISTER_USER_ERROR:
@@ -29,6 +31,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
+        user: null,
       };
     default: return state;
   }

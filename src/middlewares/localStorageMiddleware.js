@@ -6,7 +6,7 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
         case REGISTER_USER_SUCCESS:
             localStorage.setItem('token', action.response.data.token);
             return next(action);
-        case LOGOUT :
+        case LOGOUT:
             localStorage.removeItem('token');
             return next(action);
         default: 

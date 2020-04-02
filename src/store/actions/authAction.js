@@ -18,7 +18,7 @@ export const registerUser = (name, email, password) => ({
   type: REGISTER_USER,
   request: 
     { 
-      url: process.env.REACT_APP_REGISTERs_USER, 
+      url: process.env.REACT_APP_REGISTER_USER, 
       method: 'post',
       data: name, email, password,
     },
