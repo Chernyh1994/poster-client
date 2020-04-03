@@ -16,23 +16,21 @@ export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
     case REGISTER_USER_SUCCESS:
+      const { token, user } = action.response.data;
       return {
         ...state,
-        token: action.response.data.token,
-        user: action.response.data.user,
+        token,
+        user,
       };
     case LOGIN_USER_ERROR:
     case REGISTER_USER_ERROR:
+      const { error } = action.error.message;
       return {
         ...state,
-        error: action.error.message,
+        error,
       };
     case LOGOUT:
-      return {
-        ...state,
-        token: null,
-        user: null,
-      };
+      return initialState;
     default: return state;
   }
 };

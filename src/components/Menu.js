@@ -9,11 +9,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 
-import { CustomLinkMenu } from './styledComponent/Link';
-import { useStyles } from './styledComponent/DrawerStyled';
+import { LinkMenu } from './styledComponent/Link';
+import { DrawerStyled } from './styledComponent/DrawerStyled';
 
 const Menu = () => {
-  const classes = useStyles();
+  const classes = DrawerStyled();
 
   return (
     <Drawer
@@ -26,19 +26,19 @@ const Menu = () => {
       <div className={classes.toolbar} />
       <List>
 
-        <CustomLinkMenu to='/'>
+        <LinkMenu to='/'>
           <ListItem button>
             <ListItemIcon><HomeIcon/></ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItem>
-        </CustomLinkMenu>
+        </LinkMenu>
 
-        <CustomLinkMenu to='/profile'>
+        <LinkMenu to='/profile'>
           <ListItem button>
             <ListItemIcon><AccountCircleIcon/></ListItemIcon>
             <ListItemText primary={'Profile'} />
           </ListItem>
-        </CustomLinkMenu>
+        </LinkMenu>
 
         <ListItem >
           <Button color="primary" startIcon={<PostAddIcon fontSize="small" />} >

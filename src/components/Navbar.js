@@ -4,8 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 import { logout } from '../store/actions/authAction';
-import { CustomLinkNavbar } from './styledComponent/Link';
-import { CustomAppBar, CustomHeadline } from './styledComponent/Templates';
+import { LinkNavbar } from './styledComponent/Link';
+import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
 
 const Navbar = () => {
 
@@ -19,22 +19,22 @@ const Navbar = () => {
   return (
     <CustomAppBar>
       <Toolbar>
-        <CustomHeadline>
+        <HeaderTitle>
             Twitter Test Project
-        </CustomHeadline>
+        </HeaderTitle>
         { 
-          !window.localStorage.getItem('token') && !token ?
+          !token ?
           <div>
-            <CustomLinkNavbar to='/login'>
+            <LinkNavbar to='/login'>
               <Button style={{ color: 'white' }}>
-                Sing in
+                Log in
               </Button>
-            </CustomLinkNavbar>
-            <CustomLinkNavbar to='/register'>
+            </LinkNavbar>
+            <LinkNavbar to='/register'>
               <Button variant="outlined" style={{ color: 'white' }}>
                 Sing up
               </Button>
-            </CustomLinkNavbar>
+            </LinkNavbar>
           </div> 
           :
           <Button onClick={handleLogout} style={{ color: 'white' }}>

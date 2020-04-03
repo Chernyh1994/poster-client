@@ -24,19 +24,12 @@ const validator = Yup.object({
 
 const LoginForm = () => {
 
-    const [visibility, setVisibility] = useState({
-        showPassword: false,
-    });
+    const [showPassword, setShow] = useState(false);
     
     const dispatch = useDispatch();
 
     const handleClickShowPassword = () => {
-        setVisibility(
-            {
-                ...visibility,
-                showPassword: !visibility.showPassword,
-            },
-        );
+        setShow(!showPassword);
     };
 
     const login = useFormik({
@@ -68,7 +61,7 @@ const LoginForm = () => {
                 <TextField
                     fullWidth
                     label="Password*"
-                    type={visibility.showPassword ? 'text' : 'password'}
+                    type={showPassword ? 'text' : 'password'}
                     variant="outlined"
                     {...login.getFieldProps('password')}
                     error={!!login.touched.password && !!login.errors.password }
@@ -81,7 +74,7 @@ const LoginForm = () => {
                                     onClick={handleClickShowPassword}
                                     edge="end"
                                 >
-                                    {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         )
@@ -90,8 +83,8 @@ const LoginForm = () => {
             </CustomBlock>
 
             <CustomBlock>
-                <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
-                    Sing Up
+                <Button color="primary" fullWidth type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
+                    Log in
                 </Button>
             </CustomBlock>
 

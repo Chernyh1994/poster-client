@@ -1,22 +1,22 @@
 import React from 'react';
 
 import { 
-  CustomForm, 
-  CustomCard, 
-  CustomHeadlineForm,
+  FormTemplate, 
+  FormCard, 
+  FormTitle,
 } from '../../components/styledComponent/Templates';
 import RegisterForm from "../../components/RegisterForm";
 
 const Register = () => {
   return (
-    <CustomForm>
-      <CustomCard>
-        <CustomHeadlineForm>
+    <FormTemplate>
+      <FormCard>
+        <FormTitle>
           REGISTRATION
-        </CustomHeadlineForm>
+        </FormTitle>
         <RegisterForm/>
-      </CustomCard>
-    </CustomForm>
+      </FormCard>
+    </FormTemplate>
   );
 };
 

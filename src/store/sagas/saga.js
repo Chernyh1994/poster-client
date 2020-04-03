@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true;
 const { requestsSagas } = handleRequests({
     driver: createDriver(
         axios.create({
-            baseURL: process.env.REACT_APP_DOMAIN,
+            baseURL: process.env.REACT_APP_API_URL,
         }),
     ),
 });
