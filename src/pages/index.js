@@ -9,13 +9,13 @@ import Login from './auth/login'
 import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
-import Test from './main/test';
+import CreatrPost from './main/createPost';
 
 const Pages = () => {
 
-    const token = useSelector(state => state.authReducer);
+    const {token} = useSelector(state => state.authReducer);
 
-    const privateRoute = !window.localStorage.getItem('token') || !token
+    const privateRoute = !!token
 
     const routes = [
         {
@@ -27,16 +27,16 @@ const Pages = () => {
                     component: Home
                 },
                 {
-                    path: "/test",
-                    render: (props) => privateRoute ? <Redirect to="/login"/> : <Test/> ,
+                    path: "/create",
+                    render: (props) => privateRoute ? <CreatrPost/> : <Redirect to="/login"/> ,
                 },
                 {
                     path: "/register",
-                    render: (props) => privateRoute ? <Register/> : <Redirect to="/"/>,
+                    render: (props) => privateRoute ? <Redirect to="/"/> : <Register/> ,
                 },
                 {
                     path: "/login",
-                    render: (props) => privateRoute ? <Login/> : <Redirect to="/"/>,
+                    render: (props) => privateRoute ? <Redirect to="/"/> : <Login/> ,
                 },
                 {
                     component: Error404

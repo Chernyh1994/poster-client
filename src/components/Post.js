@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,7 +10,16 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 
+import { getPosts } from '../store/actions/postAction';
+
 const Post = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  });
+
+  // const { items } = useSelector(state => state.postReducer);
 
   return (
     <Card>

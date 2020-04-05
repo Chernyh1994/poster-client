@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 
 export const FormTemplate = styled.div`
     height: auto;
-    padding: 7em 0 7em 0 ;
     display: flex;
     align-items: center;
     justify-content: center
@@ -12,6 +11,10 @@ export const FormTemplate = styled.div`
 
 export const FormCard = styled(Card)`
     min-width: 375px;
+`;
+
+export const PostCard = styled(Card)`
+    min-width: 75px;
 `;
 
 export const CustomBlock = styled.div`
@@ -41,4 +44,9 @@ export const HeaderTitle = styled.h3`
 
 export const TemplateHomeBlock = styled.h3`
     display: flex;
+`;
+
+export const TemplateContent = styled.h3`
+    width: -webkit-fill-available;
+    padding: 0;
 `;

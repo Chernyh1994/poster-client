@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Menu from '../../components/Menu';
 import Navbar from '../../components/Navbar';
 import { HeaderStyled } from '../../components/styledComponent/HeaderStyled';
+import{ TemplateContent } from '../../components/styledComponent/Templates';
 
 const Header = ({route}) => {
     const classes = HeaderStyled();
@@ -22,11 +23,11 @@ const Header = ({route}) => {
             <div className={classes.root}>
                 <Menu/>
                 <Navbar/>
-                <div>
-                    <main className={classes.content}>
+                <TemplateContent>
+                    <div className={classes.content}>
                         {renderRoutes(route.routes)}
-                    </main>
-                </div>
+                    </div>
+                </TemplateContent>
             </div> } 
         </div>
     )

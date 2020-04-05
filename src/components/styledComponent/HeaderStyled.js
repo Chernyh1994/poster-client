@@ -5,7 +5,6 @@ export const HeaderStyled = makeStyles((theme) => ({
         display: 'flex',
       }, 
     content: {
-        flexGrow: 1,
         padding: theme.spacing(3),
     },
     toolbar: theme.mixins.toolbar,
