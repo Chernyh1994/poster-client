@@ -1,8 +1,27 @@
-import { createStore } from 'redux';
-import reducers from './reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
 
-export default createStore(
-  reducers,
-  // eslint-disable-next-line no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { reducers } from './reducers';
+import { localStorageMiddleware } from '../middlewares/localStorageMiddleware';
+import { handleErrorMiddleware } from '../middlewares/handleErrorMiddleware';
+import { rootSaga, sagaMiddleware } from './sagas/saga';
+
+export const configureStore = () => {
+
+  const composeEnhancers =
+    (typeof window !== 'undefined' &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    compose;
+
+  const store = createStore(
+    reducers,
+    composeEnhancers(applyMiddleware(
+      sagaMiddleware, 
+      localStorageMiddleware, 
+      handleErrorMiddleware)
+    ),
+  );
+
+  sagaMiddleware.run(rootSaga);
+  
+  return store;
+};

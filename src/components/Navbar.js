@@ -1,48 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import { useDispatch, useSelector } from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
+import { logout } from '../store/actions/authAction';
+import { LinkNavbar } from './styledComponent/Link';
+import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
+
+const Navbar = () => {
+
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.authReducer);
+
+  const handleLogout = () => {
+    dispatch(logout());
   }
-}));
-
-export default function ButtonAppBar() {
-  const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
+    <CustomAppBar>
+      <Toolbar>
+        <HeaderTitle>
             Twitter Test Project
-          </Typography>
-          <Button color="inherit">
-            Sing in
+        </HeaderTitle>
+        { 
+          !user ?
+          <div>
+            <LinkNavbar to='/login'>
+              <Button style={{ color: 'white' }}>
+                Log in
+              </Button>
+            </LinkNavbar>
+            <LinkNavbar to='/register'>
+              <Button variant="outlined" style={{ color: 'white' }}>
+                Sing up
+              </Button>
+            </LinkNavbar>
+          </div> 
+          :
+          <Button onClick={handleLogout} style={{ color: 'white' }}>
+            Logout
           </Button>
-          <Link to='/regist' className="link">
-            <Button variant="outlined" style={{ color: 'white' }}>
-              Sing up
-          </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </div>
+        }
+      </Toolbar>
+    </CustomAppBar>
   );
-}
+};
+
+export default Navbar;

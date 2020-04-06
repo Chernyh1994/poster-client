@@ -1,19 +1,57 @@
-/* eslint-disable import/no-named-as-default-member */
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Home from './home';
-// eslint-disable-next-line import/no-named-as-default
-import Registration from './auth/registration';
-import ErrorPage from './error';
+import { renderRoutes } from "react-router-config";
+import { Switch, BrowserRouter } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { useSelector } from 'react-redux';
 
-const Pages = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" component={Home} exact />
-      <Route path="/regist" component={Registration} />
-      <Route component={ErrorPage} />
-    </Switch>
-  </BrowserRouter>
-);
+import Home from './main/home';
+import Login from './auth/login'
+import Register from './auth/register';
+import Error404 from './error';
+import Header from './layouts';
+import CreatePost from './main/createPost';
+
+const Pages = () => {
+
+    const {user} = useSelector(state => state.authReducer);
+
+    const privateRoute = !!user
+
+    const routes = [
+        {
+            component: Header,
+            routes: [
+                {
+                    path: "/",
+                    exact: true,
+                    component: Home
+                },
+                {
+                    path: "/create",
+                    render: (props) => privateRoute ? <CreatePost/> : <Redirect to="/login"/> ,
+                },
+                {
+                    path: "/register",
+                    render: (props) => privateRoute ? <Redirect to="/"/> : <Register/> ,
+                },
+                {
+                    path: "/login",
+                    render: (props) => privateRoute ? <Redirect to="/"/> : <Login/> ,
+                },
+                {
+                    component: Error404
+                },
+            ]
+        }
+    ];
+    
+    return (
+        <BrowserRouter>
+            <Switch>
+                {renderRoutes(routes)}
+            </Switch>
+        </BrowserRouter>
+    );
+};
 
 export default Pages;

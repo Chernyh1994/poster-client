@@ -1,6 +1,15 @@
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
+import { handleRequests } from 'redux-saga-requests';
 
-export default combineReducers({
-  userReducer
+import { authReducer } from './authReducer';
+import { postReducer } from './postReducer';
+
+const requestsReducer = handleRequests
+
+export const reducers = combineReducers({
+    requests: requestsReducer,
+    authReducer: authReducer,
+    postReducer: postReducer,
 });
+
+
