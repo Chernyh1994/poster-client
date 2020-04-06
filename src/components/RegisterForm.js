@@ -13,6 +13,7 @@ import * as Yup from 'yup';
 
 import { registerUser } from '../store/actions/authAction';
 import {CustomBlock} from './styledComponent/Templates';
+import { LinkNavbar } from './styledComponent/Link';
 
 const validator = Yup.object({
     name: Yup.string()
@@ -152,9 +153,11 @@ const RegisterForm = () => {
                 <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Sing Up
                 </Button>
-                <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
-                    Cancel
-                </Button>
+                <LinkNavbar to='/'>
+                    <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
+                        Home
+                    </Button>
+                </LinkNavbar>
             </CustomBlock>
 
         </form>

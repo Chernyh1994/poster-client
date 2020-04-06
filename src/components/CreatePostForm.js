@@ -11,12 +11,12 @@ import { createPost } from '../store/actions/postAction';
 
 const validator = Yup.object({
     title: Yup.string()
-        .min(5, 'title must be longer')
-        .max(32, 'title should be shorter')
+        .min(5, 'title must be longer than 5 characters')
+        .max(100, 'title should be shorter than 100 characters')
         .required('Required'),
     description: Yup.string()
-        .min(5, 'description must be longer')
-        .max(256, 'description should be shorter')
+        .min(5, 'description must be longer than 5 characters')
+        .max(2000, 'description should be shorter than 2000 characters')
         .required('Required'),
 });
 

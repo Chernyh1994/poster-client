@@ -6,11 +6,18 @@ export const FormTemplate = styled.div`
     height: auto;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 `;
 
 export const FormCard = styled(Card)`
-    min-width: 375px;
+    min-width: auto;
+`;
+
+export const FormCardHome = styled(Card)`
+    height: fit-content;
+    width: -webkit-fill-available;
+    margin: 10px;
+
 `;
 
 export const PostCard = styled(Card)`
@@ -44,9 +51,10 @@ export const HeaderTitle = styled.h3`
 
 export const TemplateHomeBlock = styled.h3`
     display: flex;
+    justify-content: center;
 `;
 
-export const TemplateContent = styled.h3`
+export const TemplateContent = styled.div`
     width: -webkit-fill-available;
     padding: 0;
 `;

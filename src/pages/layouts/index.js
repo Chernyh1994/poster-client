@@ -9,12 +9,12 @@ import{ TemplateContent } from '../../components/styledComponent/Templates';
 
 const Header = ({route}) => {
     const classes = HeaderStyled();
-    const { token } = useSelector(state => state.authReducer);
+    const { user } = useSelector(state => state.authReducer);
 
     return( 
         <div>
             <div className={classes.toolbar} />
-           {!token ?
+           {!user ?
             <main className={classes.content}>
                 <Navbar/>
                 {renderRoutes(route.routes) }

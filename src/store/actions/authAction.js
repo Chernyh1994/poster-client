@@ -1,6 +1,7 @@
 import {  
   LOGIN_USER, 
   REGISTER_USER,
+  USER,
   LOGOUT 
 } from '../constants';
 
@@ -21,6 +22,15 @@ export const registerUser = (name, email, password) => ({
       url: '/api/V1/register', 
       method: 'post',
       data: name, email, password,
+    },
+})
+
+export const getUser = () => ({
+  type: USER,
+  request: 
+    { 
+      url: '/api/V1/user', 
+      method: 'get',
     },
 })
 

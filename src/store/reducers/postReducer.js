@@ -1,26 +1,34 @@
 import {  
-    POSTS_SUCCESS, 
-    POSTS_ERROR,
+    POST_LIST_SUCCESS, 
+    POST_LIST_ERROR,
+    POST_LIST,
   } from '../constants';
   
   const initialState = {
-    items: null,
+    postList: null,
+    isLoding: false,
   };
     
   export const postReducer = (state = initialState, action) => {
     switch (action.type) {
-      case POSTS_SUCCESS:
-        console.log('testss');
+      case POST_LIST: 
+      return {
+        ...state,
+        isLoding: true
+      };
+      case POST_LIST_SUCCESS:
         const { items } = action.response.data;
         return {
           ...state,
-          items,
+          postList: items,
+          isLoding: false
         };
-      case POSTS_ERROR:
+      case POST_LIST_ERROR:
         const { error } = action.error.message;
         return {
           ...state,
           error,
+          isLoding: false
         };
       default: return state;
     }

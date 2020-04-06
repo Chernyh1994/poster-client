@@ -9,13 +9,13 @@ import Login from './auth/login'
 import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
-import CreatrPost from './main/createPost';
+import CreatePost from './main/createPost';
 
 const Pages = () => {
 
-    const {token} = useSelector(state => state.authReducer);
+    const {user} = useSelector(state => state.authReducer);
 
-    const privateRoute = !!token
+    const privateRoute = !!user
 
     const routes = [
         {
@@ -28,7 +28,7 @@ const Pages = () => {
                 },
                 {
                     path: "/create",
-                    render: (props) => privateRoute ? <CreatrPost/> : <Redirect to="/login"/> ,
+                    render: (props) => privateRoute ? <CreatePost/> : <Redirect to="/login"/> ,
                 },
                 {
                     path: "/register",

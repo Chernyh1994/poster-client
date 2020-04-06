@@ -1,10 +1,10 @@
 import {  
-    POSTS, 
+    POST_LIST, 
     CREATE_POST,
   } from '../constants';
   
   export const getPosts = () => ({
-    type: POSTS,
+    type: POST_LIST,
     request:
       { 
         url: '/api/post/posts', 

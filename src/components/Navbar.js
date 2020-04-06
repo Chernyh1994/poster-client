@@ -10,7 +10,7 @@ import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
 const Navbar = () => {
 
   const dispatch = useDispatch();
-  const { token } = useSelector(state => state.authReducer);
+  const { user } = useSelector(state => state.authReducer);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -23,7 +23,7 @@ const Navbar = () => {
             Twitter Test Project
         </HeaderTitle>
         { 
-          !token ?
+          !user ?
           <div>
             <LinkNavbar to='/login'>
               <Button style={{ color: 'white' }}>

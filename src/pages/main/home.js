@@ -1,32 +1,37 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Post from '../../components/Post';
+import PostList from '../../components/PostList';
 import LoginForm from '../../components/LoginForm';
 import { 
     TemplateHomeBlock, 
-    FormTitle 
+    FormTitle,
+    TemplateContent ,
+    FormCardHome
 } from '../../components/styledComponent/Templates';
 
 const Home = () => {
-    const { token } = useSelector(state => state.authReducer);
+    const { user } = useSelector(state => state.authReducer);
 
     return(
         <React.Fragment>
-            {!token ?
+            {!user ?
             <TemplateHomeBlock>
-                <div>
-                    <Post/>     
-                </div>
-                <div>
+
+                <TemplateContent>
+                    <PostList/>     
+                </TemplateContent>
+
+                <FormCardHome>
                     <FormTitle> 
                         LOGIN 
                     </FormTitle>
                     <LoginForm/>
-                </div>
+                </FormCardHome>
+                
             </TemplateHomeBlock>
             :
-            <Post/> }
+            <PostList/> }
         </React.Fragment>
     )
 };
