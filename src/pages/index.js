@@ -10,6 +10,7 @@ import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
 import CreatePost from './main/createPost';
+import AboutPost from './main/aboutPost';
 
 const Pages = () => {
 
@@ -37,6 +38,10 @@ const Pages = () => {
                 {
                     path: "/login",
                     render: (props) => privateRoute ? <Redirect to="/"/> : <Login/> ,
+                },
+                {
+                    path: "/about/:id",
+                    component: AboutPost,
                 },
                 {
                     component: Error404

@@ -10,3 +10,7 @@ export const LinkNavbar = styled(Link)`
     text-decoration: none;
     color: white;
 `;
+
+export const LinkTemplate = styled(Link)`
+    text-decoration: none;
+`;

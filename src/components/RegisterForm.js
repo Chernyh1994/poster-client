@@ -34,27 +34,15 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch();
 
-    const [visibility, setVisibility] = useState({
-        showPassword: false,
-        showRepeatPassword: false,
-    });
+    const [showPassword, setShow] = useState(false);
+    const [showRepeatPassword, setRepeatShow] = useState(false);
 
-    const handleClickShowPassword = () => {
-        setVisibility(
-            {
-                ...visibility,
-                showPassword: !visibility.showPassword,
-            },
-        );
+    const handleShowPassword = () => {
+        setShow(!showPassword);
     };
 
-    const handleClickShowRepeatPassword = () => {
-        setVisibility(
-            {
-                ...visibility,
-                showRepeatPassword: !visibility.showRepeatPassword,
-            },
-        );
+    const handleShowRepeatPassword = () => {
+        setRepeatShow(!showRepeatPassword);
     };
 
     const register = useFormik({
@@ -103,7 +91,7 @@ const RegisterForm = () => {
                 <TextField
                     fullWidth
                     label="Password*"
-                    type={visibility.showPassword ? 'text' : 'password'}
+                    type={showPassword ? 'text' : 'password'}
                     variant="outlined"
                     {...register.getFieldProps('password')}
                     error={!!register.touched.password && !!register.errors.password }
@@ -113,10 +101,10 @@ const RegisterForm = () => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
+                                    onClick={handleShowPassword}
                                     edge="end"
                                 >
-                                    {visibility.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         )
@@ -128,7 +116,7 @@ const RegisterForm = () => {
                 <TextField
                     fullWidth
                     label="Repeat Password*"
-                    type={visibility.showRepeatPassword ? 'text' : 'password'}
+                    type={showRepeatPassword ? 'text' : 'password'}
                     variant="outlined"
                     {...register.getFieldProps('repeatPassword')}
                     error={!!register.touched.repeatPassword && !!register.errors.repeatPassword }
@@ -138,10 +126,10 @@ const RegisterForm = () => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={handleClickShowRepeatPassword}
+                                    onClick={handleShowRepeatPassword}
                                     edge="end"
                                 >
-                                    {visibility.showRepeatPassword ? <Visibility /> : <VisibilityOff />}
+                                    {showRepeatPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         )

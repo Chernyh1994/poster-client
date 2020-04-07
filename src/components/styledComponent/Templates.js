@@ -15,9 +15,11 @@ export const FormCard = styled(Card)`
 
 export const FormCardHome = styled(Card)`
     height: fit-content;
-    width: -webkit-fill-available;
     margin: 10px;
-
+    width: 100%;
+    width: -moz-available;         
+    width: -webkit-fill-available;  
+    width: fill-available;
 `;
 
 export const PostCard = styled(Card)`
@@ -55,6 +57,9 @@ export const TemplateHomeBlock = styled.h3`
 `;
 
 export const TemplateContent = styled.div`
-    width: -webkit-fill-available;
+    width: 100%;
+    width: -moz-available;         
+    width: -webkit-fill-available;  
+    width: fill-available;
     padding: 0;
 `;

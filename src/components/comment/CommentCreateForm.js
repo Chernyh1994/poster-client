@@ -6,49 +6,35 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { CustomBlock } from "./styledComponent/Templates";
-import { createPost } from '../store/actions/postAction';
+import { CustomBlock } from '../styledComponent/Templates';
+import { createComment } from '../../store/actions/commentAction';
 
 const validator = Yup.object({
-    title: Yup.string()
-        .min(5, 'title must be longer than 5 characters')
-        .max(100, 'title should be shorter than 100 characters')
-        .required('Required'),
     description: Yup.string()
-        .min(5, 'description must be longer than 5 characters')
-        .max(2000, 'description should be shorter than 2000 characters')
+        .min(1, 'description must be longer than 1 characters')
+        .max(1000, 'description should be shorter than 1000 characters')
         .required('Required'),
 });
 
-const CreatePostForm = () => {
+const CommentCreateForm = () => {
     
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.authReducer);
 
     const post = useFormik({
         initialValues: {
-            title: '',
             description:'',
-            author_id: user.id
+            author_id: user.id,
+            post_id: ''
         },
         validationSchema: validator,
-        onSubmit: (title, description, author_id) => {
-            dispatch(createPost(title, description, author_id));
+        onSubmit: ( description, author_id, post_id) => {
+            dispatch(createComment( description, author_id, post_id));
         },
     });
 
     return (
         <form onSubmit={post.handleSubmit}>
-            <CustomBlock>
-                <TextField
-                    fullWidth
-                    label="Title*"
-                    name="title"
-                    {...post.getFieldProps('title')}
-                    error={!!post.touched.title && !!post.errors.title }
-                    helperText={post.touched.title && post.errors.title ? post.errors.title: null}
-                />
-            </CustomBlock>
 
             <CustomBlock>
                 <TextField
@@ -73,4 +59,4 @@ const CreatePostForm = () => {
     );
 }
 
-export default CreatePostForm;
+export default CommentCreateForm;

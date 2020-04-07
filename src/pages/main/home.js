@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import PostList from '../../components/PostList';
+import PostList from '../../components/post/PostList';
 import LoginForm from '../../components/LoginForm';
 import { 
     TemplateHomeBlock, 
