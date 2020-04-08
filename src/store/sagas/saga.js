@@ -7,18 +7,18 @@ import createSagaMiddleware from 'redux-saga';
 axios.defaults.withCredentials = true;
 
 const { requestsSagas } = handleRequests({
-    driver: createDriver(
-        axios.create({
-            baseURL: process.env.REACT_APP_API_URL,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            } 
-        }),
-    ),
+  driver: createDriver(
+    axios.create({
+      baseURL: process.env.REACT_APP_API_URL,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }),
+  )
 });
 
 export function* rootSaga() {
-    yield all(requestsSagas);
+  yield all(requestsSagas);
 }
 
 export const sagaMiddleware = createSagaMiddleware();

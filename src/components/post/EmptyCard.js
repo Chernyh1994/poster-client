@@ -17,26 +17,26 @@ const EmptyCard = () => {
   const dispatch = useDispatch();
 
   const getPostList = () => {
-    dispatch(getPosts(0)); 
-  }
+    dispatch(getPosts(0));
+  };
 
   return (
     <Card className={classes.root}>
-        <CardContent>
+      <CardContent>
 
-            <Typography className={classes.title} variant="h5" component="h2">
+        <Typography className={classes.title} variant="h5" component="h2">
             Post List is empty.
-            </Typography>
+        </Typography>
 
-        </CardContent>
+      </CardContent>
 
-        <CardActions disableSpacing>
-            <Button onClick={getPostList} color="primary" fullWidth type="submit" startIcon={<ReplayIcon fontSize="small" />} >
+      <CardActions disableSpacing>
+        <Button onClick={getPostList} color="primary" fullWidth type="submit" startIcon={<ReplayIcon fontSize="small" />} >
             Try again
-            </Button>
-        </CardActions>
+        </Button>
+      </CardActions>
     </Card>
-  )
+  );
 };
 
 export default EmptyCard;

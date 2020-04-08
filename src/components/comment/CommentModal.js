@@ -16,28 +16,30 @@ import { createComment } from '../../store/actions/commentActions';
 
 const validator = Yup.object({
   description: Yup.string()
-      .min(1, 'description must be longer than 1 characters')
-      .max(1000, 'description should be shorter than 1000 characters')
-      .required('Required'),
+    .min(1, 'description must be longer than 1 characters')
+    .max(1000, 'description should be shorter than 1000 characters')
+    .required('Required')
 });
 
-const CommentModal = ({postId}) => {
+// eslint-disable-next-line react/prop-types
+const CommentModal = ({ postId }) => {
   const [open, setOpen] = React.useState(false);
 
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.authReducer);
+  const { user } = useSelector((state) => state.authReducer);
 
   const comment = useFormik({
-      initialValues: {
-          description:'',
-          author_id:user && user.id,
-          post_id: postId,
-      },
-      validationSchema: validator,
-      onSubmit: ( description, author_id, post_id) => {
-          dispatch(createComment( description, author_id, post_id));
-          setOpen(false);
-      },
+    initialValues: {
+      description: '',
+      author_id: user && user.id,
+      post_id: postId
+    },
+    validationSchema: validator,
+    // eslint-disable-next-line camelcase
+    onSubmit: (description, author_id, post_id) => {
+      dispatch(createComment(description, author_id, post_id));
+      setOpen(false);
+    }
   });
 
   const handleClickOpen = () => {
@@ -54,29 +56,30 @@ const CommentModal = ({postId}) => {
       <IconButton onClick={handleClickOpen} aria-label="share">
         <CommentIcon />
       </IconButton>
-      
+
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Comment</DialogTitle>
         <DialogContent>
           <form onSubmit={comment.handleSubmit}>
 
             <CustomBlock>
-                <TextField
-                    fullWidth
-                    label="Description*"
-                    name="description"
-                    placeholder="Placeholder"
-                    multiline
-                    {...comment.getFieldProps('description')}
-                    error={!!comment.touched.description && !!comment.errors.description }
-                    helperText={comment.touched.description && comment.errors.description ? comment.errors.description: null}
-                />
+              <TextField
+                fullWidth
+                label="Description*"
+                name="description"
+                placeholder="Placeholder"
+                multiline
+                {...comment.getFieldProps('description')}
+                error={!!comment.touched.description && !!comment.errors.description }
+                // eslint-disable-next-line max-len
+                helperText={comment.touched.description && comment.errors.description ? comment.errors.description : null}
+              />
             </CustomBlock>
 
             <CustomBlock>
-                <Button color="primary" fullWidth type="submit" startIcon={<PostAddIcon fontSize="small" />} >
+              <Button color="primary" fullWidth type="submit" startIcon={<PostAddIcon fontSize="small" />} >
                     Send
-                </Button>
+              </Button>
             </CustomBlock>
 
           </form>
@@ -84,6 +87,6 @@ const CommentModal = ({postId}) => {
       </Dialog>
     </div>
   );
-}
+};
 
 export default CommentModal;

@@ -1,20 +1,17 @@
 import React from 'react';
 import CreatePostForm from '../../components/post/CreatePostForm';
 import {
-    PostCard, 
-    FormTitle, 
+  PostCard,
+  FormTitle
 } from '../../components/styledComponent/Templates';
 
-const CreatePost = () => {
-
-    return (
-        <PostCard>
-            <FormTitle> 
+const CreatePost = () => (
+  <PostCard>
+    <FormTitle>
                 New Post
-            </FormTitle> 
-            <CreatePostForm/>
-        </PostCard>
-    )
-};
+    </FormTitle>
+    <CreatePostForm/>
+  </PostCard>
+);
 
 export default CreatePost;

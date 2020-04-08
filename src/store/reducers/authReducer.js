@@ -1,19 +1,21 @@
-import {  
-  LOGIN_USER_SUCCESS, 
+/* eslint-disable no-case-declarations */
+import {
+  LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
   USER_SUCCESS,
   USER_ERROR,
-  LOGOUT, 
+  LOGOUT
 } from '../constants';
 
 const initialState = {
-    token: null,
-    user: null,
-    error: null,
-  };
-  
+  token: null,
+  user: null,
+  error: null
+};
+
+// eslint-disable-next-line import/prefer-default-export
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
@@ -23,7 +25,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token,
-        user,
+        user
       };
     case LOGIN_USER_ERROR:
     case REGISTER_USER_ERROR:
@@ -31,11 +33,10 @@ export const authReducer = (state = initialState, action) => {
       const { error } = action.error.message;
       return {
         ...state,
-        error,
+        error
       };
     case LOGOUT:
       return initialState;
     default: return state;
   }
 };
-  

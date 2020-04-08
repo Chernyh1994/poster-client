@@ -10,27 +10,27 @@ import { StyledCommentCard } from '../styledComponent/Card';
 const CommentCard = () => {
   const classes = StyledCommentCard();
 
-  const { commentList } = useSelector(state => state.commentReducer);
-  
+  const { commentList } = useSelector((state) => state.commentReducer);
+
   return (
-    commentList.map((comment, index) => (    
+    commentList.map((comment, index) => (
       <Card className={classes.root} key={index}>
         <CardActionArea>
           <CardContent>
 
-          <Typography variant="body2" component="p">
+            <Typography variant="body2" component="p">
               {comment.description}
-          </Typography>
+            </Typography>
 
-          <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="p">
               {comment.user.name}
-          </Typography>
+            </Typography>
 
           </CardContent>
-          </CardActionArea>
+        </CardActionArea>
       </Card>
     ))
-  )
+  );
 };
 
 export default CommentCard;

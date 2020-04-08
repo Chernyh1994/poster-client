@@ -5,13 +5,12 @@ import { authReducer } from './authReducer';
 import { postReducer } from './postReducer';
 import { commentReducer } from './commentReducer';
 
-const requestsReducer = handleRequests
+const requestsReducer = handleRequests;
 
+// eslint-disable-next-line import/prefer-default-export
 export const reducers = combineReducers({
-    requests: requestsReducer,
-    authReducer: authReducer,
-    postReducer: postReducer,
-    commentReducer: commentReducer,
+  requests: requestsReducer,
+  authReducer,
+  postReducer,
+  commentReducer
 });
-
-

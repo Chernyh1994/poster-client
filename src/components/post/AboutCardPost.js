@@ -10,10 +10,10 @@ import CommentModal from '../comment/CommentModal';
 import { StyledCard } from '../styledComponent/Card';
 
 const AboutCardPost = () => {
-    const classes = StyledCard();
-  
-    const { post } = useSelector(state => state.postReducer);
-    const getPost = post['0'];
+  const classes = StyledCard();
+
+  const { post } = useSelector((state) => state.postReducer);
+  const getPost = post['0'];
 
   return (
     <Card className={classes.root} >
@@ -26,21 +26,21 @@ const AboutCardPost = () => {
         <Typography variant="h5" component="h2">
           {getPost.title}
         </Typography>
-        
+
         <Typography className={classes.pos} color="textSecondary">
           {getPost.user.name}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p">
-            {getPost.description}
+          {getPost.description}
         </Typography>
 
-        </CardContent>
-        <CardActions disableSpacing>
-          <CommentModal postId={getPost.id} />
+      </CardContent>
+      <CardActions disableSpacing>
+        <CommentModal postId={getPost.id} />
       </CardActions>
-  </Card>
-  )
+    </Card>
+  );
 };
 
 export default AboutCardPost;

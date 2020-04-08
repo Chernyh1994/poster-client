@@ -9,31 +9,29 @@ import LoadingCard from '../../components/LoadingCard';
 import CommentList from '../../components/comment/CommentList';
 
 const AboutPost = (props) => {
+  const dispatch = useDispatch();
+  // eslint-disable-next-line react/prop-types
+  const id = props.match.params.id;
 
-    const dispatch = useDispatch();
-    const id = props.match.params.id;
+  useEffect(() => {
+    dispatch(getPost(id));
+    dispatch(getComments(id));
+  }, [dispatch, id]);
 
-    useEffect(() => {
-        dispatch(getPost(id));
-        dispatch(getComments(id)); 
-    },[dispatch, id]);
-  
-    const { post, isLoading } = useSelector(state => state.postReducer);
+  const { post, isLoading } = useSelector((state) => state.postReducer);
 
-    if(isLoading){
-        return <LoadingCard/>
-    }
+  if (isLoading) {
+    return <LoadingCard/>;
+  }
 
-    return (
-        post && post.length ?
-            <div>
-                <AboutCardPost/>
-                <CommentList/>
-            </div>
-        :
-            <EmptyCard/>
-    )
-   
+  return (
+    post && post.length ?
+      <div>
+        <AboutCardPost/>
+        <CommentList/>
+      </div> :
+      <EmptyCard/>
+  );
 };
 
 export default AboutPost;

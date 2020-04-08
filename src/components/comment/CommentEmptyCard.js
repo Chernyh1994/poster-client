@@ -10,15 +10,15 @@ const CommentEmptyCard = () => {
 
   return (
     <Card className={classes.root}>
-        <CardContent>
+      <CardContent>
 
-            <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary" component="p">
                 No comment.
-            </Typography>
+        </Typography>
 
-        </CardContent>
+      </CardContent>
     </Card>
-  )
+  );
 };
 
 export default CommentEmptyCard;

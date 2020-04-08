@@ -4,14 +4,13 @@ import { SpinnerStyled } from './styledComponent/SpinnerStyled';
 
 
 const Spinner = () => {
+  const classes = SpinnerStyled();
 
-    const classes = SpinnerStyled();
-
-    return (
-      <div className={classes.root}>
-        <CircularProgress />
-      </div>
-    );
+  return (
+    <div className={classes.root}>
+      <CircularProgress />
+    </div>
+  );
 };
 
 export default Spinner;

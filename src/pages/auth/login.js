@@ -1,23 +1,21 @@
 import React from 'react';
 
-import { 
-  FormTemplate, 
-  FormCard, 
-  FormTitle, 
+import {
+  FormTemplate,
+  FormCard,
+  FormTitle
 } from '../../components/styledComponent/Templates';
 import LoginForm from '../../components/LoginForm';
 
-const Login = () => {
-  return (
-    <FormTemplate>
-      <FormCard>
-        <FormTitle> 
-          LOGIN 
-        </FormTitle>
-        <LoginForm/>
-      </FormCard>
-    </FormTemplate>
-  );
-};
+const Login = () => (
+  <FormTemplate>
+    <FormCard>
+      <FormTitle>
+          LOGIN
+      </FormTitle>
+      <LoginForm/>
+    </FormCard>
+  </FormTemplate>
+);
 
 export default Login;

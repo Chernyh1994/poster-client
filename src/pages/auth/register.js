@@ -1,23 +1,21 @@
 import React from 'react';
 
-import { 
-  FormTemplate, 
-  FormCard, 
-  FormTitle,
+import {
+  FormTemplate,
+  FormCard,
+  FormTitle
 } from '../../components/styledComponent/Templates';
-import RegisterForm from "../../components/RegisterForm";
+import RegisterForm from '../../components/RegisterForm';
 
-const Register = () => {
-  return (
-    <FormTemplate>
-      <FormCard>
-        <FormTitle>
+const Register = () => (
+  <FormTemplate>
+    <FormCard>
+      <FormTitle>
           REGISTRATION
-        </FormTitle>
-        <RegisterForm/>
-      </FormCard>
-    </FormTemplate>
-  );
-};
+      </FormTitle>
+      <RegisterForm/>
+    </FormCard>
+  </FormTemplate>
+);
 
 export default Register;

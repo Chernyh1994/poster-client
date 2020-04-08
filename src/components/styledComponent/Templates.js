@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 

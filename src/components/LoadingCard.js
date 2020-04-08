@@ -9,18 +9,17 @@ import Spinner from './Spinner';
 const LoadingCard = () => {
   const classes = StyledCard();
 
-    return (
-      <Card className={classes.root}>
-        <CardContent>
+  return (
+    <Card className={classes.root}>
+      <CardContent>
 
-          <Typography className={classes.title} variant="h5" component="h2">
-            <Spinner/>
-          </Typography>
+        <Typography className={classes.title} variant="h5" component="h2">
+          <Spinner/>
+        </Typography>
 
-        </CardContent>
-      </Card>
-    )
-  
+      </CardContent>
+    </Card>
+  );
 };
 
 export default LoadingCard;
