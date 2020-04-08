@@ -2,9 +2,11 @@ export const LOGIN_USER = 'AUTH/LOGIN_USER';
 export const REGISTER_USER = 'AUTH/REGISTER_USER';
 export const USER = 'AUTH/USER';
 export const LOGOUT = 'AUTH/LOGOUT';
+
 export const CREATE_POST = 'POST/CREATE_POST';
 export const POST_LIST = 'POST/POST_LIST';
 export const GET_POST = 'POST/GET_POST';
+
 export const GET_COMMENT = 'COMMENT/GET_COMMENT';
 export const CREATE_COMMENT = 'COMMENT/CREATE_COMMENT';
 

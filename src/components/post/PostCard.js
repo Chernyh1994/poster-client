@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import * as moment from 'moment';
 
 import { StyledCard } from '../styledComponent/Card';
 import { LinkTemplate } from '../styledComponent/Link';
@@ -20,22 +20,32 @@ const PostCard = () => {
     postList.map((post, index) => (    
       <Card className={classes.root} key={index}>
         <LinkTemplate to={`/about/${post.id}`}>
-          <CardActionArea>
-            <CardHeader
-            title={post.title}
-            subheader={post.user.name}
-            />
+          <CardActionArea> 
             <CardContent>
+              
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                {moment().startOf(post.created_at).fromNow()}
+              </Typography>
 
-            <Typography variant="body2" color="textSecondary" component="p">
-                {post.description}
-            </Typography>
+              <Typography variant="h5" component="h2">
+                {post.title}
+              </Typography>
+              
+              <Typography className={classes.pos} color="textSecondary">
+                {post.user.name}
+              </Typography>
 
+              <Typography variant="body2" component="p">
+                  {post.description}
+              </Typography>
+            
             </CardContent>
           </CardActionArea>
         </LinkTemplate>
           <CardActions disableSpacing>
+   
             <CommentModal postId={post.id} />
+
           </CardActions>
       </Card>
     ))

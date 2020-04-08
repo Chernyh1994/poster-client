@@ -4,13 +4,14 @@ import {
     POST_LIST,
     GET_POST,
     GET_POST_SUCCESS,
-    GET_POST_ERROR
+    GET_POST_ERROR,
   } from '../constants';
   
   const initialState = {
-    postList: null,
-    post:null,
+    postList: [],
+    post: null,
     isLoading: false,
+    hasMore: true
   };
     
   export const postReducer = (state = initialState, action) => {
@@ -22,11 +23,12 @@ import {
         isLoading: true
       };
       case POST_LIST_SUCCESS:
-        const { items } = action.response.data;
+        const { items, hasMore } = action.response.data;
         return {
           ...state,
-          postList: items,
-          isLoading: false
+          postList: [...state.postList, ...items],
+          isLoading: false,
+          hasMore: hasMore 
         };
       case GET_POST_SUCCESS:
         const { post } = action.response.data;
@@ -34,7 +36,7 @@ import {
           ...state,
           post: post,
           isLoading: false
-        };  
+        };
       case POST_LIST_ERROR:
       case GET_POST_ERROR:  
         const { error } = action.error.message;

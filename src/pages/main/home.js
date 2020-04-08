@@ -14,9 +14,8 @@ const Home = () => {
     const { user } = useSelector(state => state.authReducer);
 
     return(
-        <React.Fragment>
-            {!user ?
-            <TemplateHomeBlock>
+        !user ?
+        <TemplateHomeBlock>
 
                 <TemplateContent>
                     <PostList/>     
@@ -31,8 +30,7 @@ const Home = () => {
                 
             </TemplateHomeBlock>
             :
-            <PostList/> }
-        </React.Fragment>
+            <PostList/> 
     )
 };
 

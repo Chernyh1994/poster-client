@@ -4,11 +4,11 @@ import {
     GET_POST,
   } from '../constants';
   
-  export const getPosts = () => ({
+  export const getPosts = (offset) => ({
     type: POST_LIST,
     request:
       { 
-        url: '/api/post/posts', 
+        url: `/api/post/posts/${offset}`, 
         method: 'get',
       },
   })

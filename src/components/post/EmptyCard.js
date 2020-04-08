@@ -17,7 +17,7 @@ const EmptyCard = () => {
   const dispatch = useDispatch();
 
   const getPostList = () => {
-    dispatch(getPosts()); 
+    dispatch(getPosts(0)); 
   }
 
   return (

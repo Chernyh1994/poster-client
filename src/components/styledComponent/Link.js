@@ -13,4 +13,5 @@ export const LinkNavbar = styled(Link)`
 
 export const LinkTemplate = styled(Link)`
     text-decoration: none;
+    color: #000 !important;
 `;

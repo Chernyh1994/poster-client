@@ -5,11 +5,10 @@ export const StyledCard = makeStyles((theme) => ({
         margin: '10px',
     },
     title: {
-        display: 'flex',
-        justifyContent: 'center'
-    },
-    description: {
-
+        fontSize: 14,
+      },
+    pos: {
+        marginBottom: 12,
     },
 }));
 

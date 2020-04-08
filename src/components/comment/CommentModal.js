@@ -36,6 +36,7 @@ const CommentModal = ({postId}) => {
       validationSchema: validator,
       onSubmit: ( description, author_id, post_id) => {
           dispatch(createComment( description, author_id, post_id));
+          setOpen(false);
       },
   });
 
