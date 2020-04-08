@@ -21,7 +21,7 @@ const validator = Yup.object({
       .required('Required'),
 });
 
-const CommentModal = () => {
+const CommentModal = ({postId}) => {
   const [open, setOpen] = React.useState(false);
 
   const dispatch = useDispatch();
@@ -29,9 +29,9 @@ const CommentModal = () => {
 
   const comment = useFormik({
       initialValues: {
-          // description:'',
-          // author_id: '',
-          // post_id: ''
+          description:'',
+          author_id:user && user.id,
+          post_id: postId,
       },
       validationSchema: validator,
       onSubmit: ( description, author_id, post_id) => {

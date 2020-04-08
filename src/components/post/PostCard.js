@@ -35,7 +35,7 @@ const PostCard = () => {
           </CardActionArea>
         </LinkTemplate>
           <CardActions disableSpacing>
-            <CommentModal/>
+            <CommentModal postId={post.id} />
           </CardActions>
       </Card>
     ))
