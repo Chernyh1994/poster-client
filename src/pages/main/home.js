@@ -23,7 +23,7 @@ const Home = () => {
 
         <FormCardHome>
           <FormTitle>
-                        LOGIN
+            LOGIN
           </FormTitle>
           <LoginForm/>
         </FormCardHome>

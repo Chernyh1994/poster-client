@@ -13,6 +13,7 @@ import Error404 from './error';
 import Header from './layouts';
 import CreatePost from './main/createPost';
 import AboutPost from './main/aboutPost';
+import Profile from './main/profile';
 
 const Pages = () => {
   const { user } = useSelector((state) => state.authReducer);
@@ -39,6 +40,10 @@ const Pages = () => {
         {
           path: '/login',
           render: () => (privateRoute ? <Redirect to="/"/> : <Login/>)
+        },
+        {
+          path: '/profile',
+          render: () => (privateRoute ? <Profile/> : <Redirect to="/login"/>)
         },
         {
           path: '/about/:id',

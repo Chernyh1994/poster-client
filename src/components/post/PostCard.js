@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import * as moment from 'moment';
 
 import { StyledCard } from '../styledComponent/Card';
 import { LinkTemplate } from '../styledComponent/Link';
@@ -24,7 +23,7 @@ const PostCard = () => {
             <CardContent>
 
               <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {moment().startOf(post.created_at).fromNow()}
+                {post.created_at}
               </Typography>
 
               <Typography variant="h5" component="h2">
