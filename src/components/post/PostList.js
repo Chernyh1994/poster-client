@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -10,16 +10,17 @@ import PostCard from './PostCard';
 
 const PostList = () => {
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //     dispatch(getPosts());
-  // },[dispatch]);
-
   const { postList, isLoading, hasMore } = useSelector((state) => state.postReducer);
+  const getCountPost = postList.length;
+
+  useEffect(() => {
+    dispatch(getPosts(getCountPost));
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   const hendlePosts = () => {
     if (!isLoading) {
-      dispatch(getPosts(postList.length));
+      dispatch(getPosts(getCountPost));
     }
   };
 
