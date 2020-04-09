@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { CustomBlock } from '../styledComponent/Templates';
-import { createComment } from '../../store/actions/commentActions';
+import { createSubComment } from '../../store/actions/commentActions';
 
 const validator = Yup.object({
   description: Yup.string()
@@ -18,7 +18,7 @@ const validator = Yup.object({
 });
 
 // eslint-disable-next-line react/prop-types
-const CommentCreateForm = ({ postId }) => {
+const CommentCommentingForm = ({ parentId }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
 
@@ -26,11 +26,11 @@ const CommentCreateForm = ({ postId }) => {
     initialValues: {
       description: '',
       author_id: user && user.id,
-      post_id: postId
+      parent_id: parentId
     },
     validationSchema: validator,
-    onSubmit: (description, author_id, post_id) => {
-      dispatch(createComment(description, author_id, post_id));
+    onSubmit: (description, author_id, parent_id) => {
+      dispatch(createSubComment(description, author_id, parent_id));
     }
   });
 
@@ -62,4 +62,4 @@ const CommentCreateForm = ({ postId }) => {
   );
 };
 
-export default CommentCreateForm;
+export default CommentCommentingForm;

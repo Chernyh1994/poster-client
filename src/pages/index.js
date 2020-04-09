@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/display-name */
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { Switch, BrowserRouter } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +18,7 @@ import Profile from './main/profile';
 const Pages = () => {
   const { user } = useSelector((state) => state.authReducer);
 
-  const privateRoute = !!user;
+  const privateRoute = user;
 
   const routes = [
     {

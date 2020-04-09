@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 
 import { getUser } from '../store/actions/authAction';

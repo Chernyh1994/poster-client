@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -23,6 +24,7 @@ const validator = Yup.object({
 const CreatePostForm = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
+  // const history = useHistory();
 
   const post = useFormik({
     initialValues: {
@@ -33,6 +35,7 @@ const CreatePostForm = () => {
     validationSchema: validator,
     // eslint-disable-next-line camelcase
     onSubmit: (title, description, author_id) => {
+      // history.push('/');
       dispatch(createPost(title, description, author_id));
     }
   });
@@ -65,7 +68,7 @@ const CreatePostForm = () => {
 
       <CustomBlock>
         <Button color="primary" fullWidth type="submit" startIcon={<PostAddIcon fontSize="small" />} >
-                    Send
+          Send
         </Button>
       </CustomBlock>
 

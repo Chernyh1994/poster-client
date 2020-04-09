@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -7,10 +9,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 
-import CommentCreateForm from './CommentCreateForm';
+import PostCommentingForm from './PostCommentingForm';
+import CommentCommentingForm from './CommentCommentingForm';
 import LoginForm from '../LoginForm';
 
-const CommentModal = ({ postId }) => {
+const CommentModal = ({ postId, parentId }) => {
   const [open, setOpen] = React.useState(false);
   const { user } = useSelector((state) => state.authReducer);
 
@@ -33,9 +36,13 @@ const CommentModal = ({ postId }) => {
         <DialogTitle id="form-dialog-title">{user ? 'Comment' : 'Login'} </DialogTitle>
         <DialogContent>
           {user ?
-            <CommentCreateForm postId={postId}/> :
-            <LoginForm/>
-          }
+
+            postId ?
+              <PostCommentingForm postId={postId}/>
+              :
+              <CommentCommentingForm parentId={parentId}/>
+            :
+            <LoginForm/>}
         </DialogContent>
       </Dialog>
     </div>
