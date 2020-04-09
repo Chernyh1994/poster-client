@@ -18,7 +18,7 @@ export const configureStore = () => {
     composeEnhancers(applyMiddleware(
       sagaMiddleware,
       localStorageMiddleware,
-      handleErrorMiddleware)
+      handleErrorMiddleware,)
     ),
   );
 
