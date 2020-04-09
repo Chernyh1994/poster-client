@@ -14,7 +14,9 @@ const PostList = () => {
   const getCountPost = postList.length;
 
   useEffect(() => {
-    dispatch(getPosts(getCountPost));
+    if (!getCountPost) {
+      dispatch(getPosts(getCountPost));
+    }
     // eslint-disable-next-line
   }, [dispatch]);
 

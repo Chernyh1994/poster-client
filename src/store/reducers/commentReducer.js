@@ -7,8 +7,9 @@ import {
 } from '../constants';
 
 const initialState = {
-  commentList: null,
-  isLoading: false
+  commentList: [],
+  isLoading: false,
+  hasMore: true
 };
 
 export const commentReducer = (state = initialState, action) => {
@@ -19,11 +20,12 @@ export const commentReducer = (state = initialState, action) => {
         isLoading: true
       };
     case GET_COMMENT_SUCCESS:
-      const { comment } = action.response.data;
+      const { comment, hasMore } = action.response.data;
       return {
         ...state,
-        commentList: comment,
-        isLoading: false
+        commentList: [...state.commentList, ...comment],
+        isLoading: false,
+        hasMore
       };
     case GET_COMMENT_ERROR:
       const { error } = action.error.message;

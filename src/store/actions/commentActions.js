@@ -15,11 +15,11 @@ export const createComment = (description, userId, postId) => ({
       }
 });
 
-export const getComments = (id) => ({
+export const getComments = (id, offset) => ({
   type: GET_COMMENT,
   request:
       {
-        url: `/api/comment/${id}`,
+        url: `/api/comment/${id}/${offset}`,
         method: 'get'
       }
 });
