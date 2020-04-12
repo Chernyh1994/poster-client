@@ -13,10 +13,10 @@ import CommentModal from '../comment/CommentModal';
 const PostCard = () => {
   const classes = StyledCard();
 
-  const { postList } = useSelector((state) => state.postReducer);
+  const posts = useSelector((state) => state.postReducer.posts);
 
   return (
-    postList.map((post, index) => (
+    posts.map((post, index) => (
       <Card className={classes.root} key={index}>
         <LinkTemplate to={`/about/${post.id}`}>
           <CardActionArea>
@@ -31,7 +31,7 @@ const PostCard = () => {
               </Typography>
 
               <Typography className={classes.pos} color="textSecondary">
-                {post.user.name}
+                {post.author.name}
               </Typography>
 
               <Typography variant="body2" component="p">
@@ -42,9 +42,7 @@ const PostCard = () => {
           </CardActionArea>
         </LinkTemplate>
         <CardActions disableSpacing>
-
           <CommentModal postId={post.id} />
-
         </CardActions>
       </Card>
     ))

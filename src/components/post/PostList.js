@@ -10,28 +10,29 @@ import PostCard from './PostCard';
 
 const PostList = () => {
   const dispatch = useDispatch();
-  const { postList, isLoading, hasMore } = useSelector((state) => state.postReducer);
-  const getCountPost = postList.length;
+  const {
+    posts, isLoading, nextNumbPage, lastPage
+  } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!getCountPost) {
-      dispatch(getPosts(getCountPost));
+    if (!posts.length) {
+      dispatch(getPosts(1));
     }
     // eslint-disable-next-line
   }, [dispatch]);
 
   const hendlePosts = () => {
     if (!isLoading) {
-      dispatch(getPosts(getCountPost));
+      dispatch(getPosts(nextNumbPage));
     }
   };
 
   return (
-    postList && postList.length ?
+    posts ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendlePosts}
-        hasMore={hasMore}
+        hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
         <PostCard/>

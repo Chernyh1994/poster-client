@@ -20,12 +20,12 @@ export const subCommentReducer = (state = initialState, action) => {
         isLoading: true
       };
     case GET_SUB_COMMENT_SUCCESS:
-      const { subComment, hasMore } = action.response.data;
+      const { subComment } = action.response.data;
+      console.log(subComment)
       return {
         ...state,
         subCommentList: subComment,
-        isLoading: false,
-        hasMore
+        isLoading: false
       };
     case GET_SUB_COMMENT_ERROR:
       const { error } = action.error.message;

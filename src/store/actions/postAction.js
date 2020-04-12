@@ -1,14 +1,14 @@
 import {
-  POST_LIST,
+  POSTS,
   CREATE_POST,
-  GET_POST
+  POST
 } from '../constants';
 
-export const getPosts = (offset) => ({
-  type: POST_LIST,
+export const getPosts = (numbPage) => ({
+  type: POSTS,
   request:
       {
-        url: `/api/post/posts/${offset}`,
+        url: `/api/V1/post?page=${numbPage}`,
         method: 'get'
       }
 });
@@ -17,7 +17,7 @@ export const createPost = (title, description, userId) => ({
   type: CREATE_POST,
   request:
       {
-        url: '/api/post/create',
+        url: '/api/V1/post',
         method: 'post',
         data: title,
         description,
@@ -26,10 +26,10 @@ export const createPost = (title, description, userId) => ({
 });
 
 export const getPost = (id) => ({
-  type: GET_POST,
+  type: POST,
   request:
       {
-        url: `/api/post/get/${id}`,
+        url: `/api/V1/post/${id}`,
         method: 'get'
       }
 });

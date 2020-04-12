@@ -1,46 +1,48 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable import/prefer-default-export */
 import {
-  POST_LIST_SUCCESS,
-  POST_LIST_ERROR,
-  POST_LIST,
-  GET_POST,
-  GET_POST_SUCCESS,
-  GET_POST_ERROR
+  POSTS,
+  POSTS_SUCCESS,
+  POSTS_ERROR,
+  POST,
+  POST_SUCCESS,
+  POST_ERROR
 } from '../constants';
 
 const initialState = {
-  postList: [],
-  post: null,
+  posts: [],
+  post: [],
   isLoading: false,
-  hasMore: true
+  nextNumbPage: null,
+  lastPage: null
 };
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case POST_LIST:
-    case GET_POST:
+    case POSTS:
+    case POST:
       return {
         ...state,
         isLoading: true
       };
-    case POST_LIST_SUCCESS:
-      const { items, hasMore } = action.response.data;
+    case POSTS_SUCCESS:
+      const { posts } = action.response.data;
       return {
         ...state,
-        postList: [...state.postList, ...items],
+        posts: [...state.posts, ...posts.data],
         isLoading: false,
-        hasMore
+        nextNumbPage: posts.current_page + 1,
+        lastPage: posts.last_page
       };
-    case GET_POST_SUCCESS:
+    case POST_SUCCESS:
       const { post } = action.response.data;
       return {
         ...state,
         post,
         isLoading: false
       };
-    case POST_LIST_ERROR:
-    case GET_POST_ERROR:
+    case POSTS_ERROR:
+    case POST_ERROR:
       const { error } = action.error.message;
       return {
         ...state,
