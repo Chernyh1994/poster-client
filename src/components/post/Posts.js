@@ -4,11 +4,11 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { getPosts } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
-import EmptyCard from './EmptyCard';
-import PostCard from './PostCard';
+import PostsEmpty from './PostsEmpty';
+import PostsCard from './PostsCard';
 
 
-const PostList = () => {
+const Posts = () => {
   const dispatch = useDispatch();
   const {
     posts, isLoading, nextNumbPage, lastPage
@@ -35,10 +35,10 @@ const PostList = () => {
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        <PostCard/>
+        <PostsCard/>
       </InfiniteScroll> :
-      <EmptyCard/>
+      <PostsEmpty/>
   );
 };
 
-export default PostList;
+export default Posts;

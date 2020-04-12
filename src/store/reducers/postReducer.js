@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   posts: [],
-  post: [],
+  post: null,
   isLoading: false,
   nextNumbPage: null,
   lastPage: null

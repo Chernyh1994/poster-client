@@ -9,8 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 
-import PostCommentingForm from './PostCommentingForm';
-import CommentCommentingForm from './CommentCommentingForm';
+import CreateCommentForm from './CreateCommentForm';
 import LoginForm from '../LoginForm';
 
 const CommentModal = ({ postId, parentId }) => {
@@ -36,11 +35,7 @@ const CommentModal = ({ postId, parentId }) => {
         <DialogTitle id="form-dialog-title">{user ? 'Comment' : 'Login'} </DialogTitle>
         <DialogContent>
           {user ?
-
-            postId ?
-              <PostCommentingForm postId={postId}/>
-              :
-              <CommentCommentingForm parentId={parentId}/>
+            <CreateCommentForm parentId={parentId} postId={postId} />
             :
             <LoginForm/>}
         </DialogContent>

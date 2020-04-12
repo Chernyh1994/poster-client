@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import PostList from '../../components/post/PostList';
+import Posts from '../../components/post/Posts';
 import LoginForm from '../../components/LoginForm';
 import {
   TemplateHomeBlock,
@@ -18,7 +18,7 @@ const Home = () => {
       <TemplateHomeBlock>
 
         <TemplateContent>
-          <PostList/>
+          {/* <Posts/> */}
         </TemplateContent>
 
         <FormCardHome>
@@ -29,7 +29,7 @@ const Home = () => {
         </FormCardHome>
 
       </TemplateHomeBlock> :
-      <PostList/>
+      <Posts/>
   );
 };
 

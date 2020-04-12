@@ -1,33 +1,31 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable import/prefer-default-export */
 import {
-  GET_COMMENT,
-  GET_COMMENT_SUCCESS,
-  GET_COMMENT_ERROR
+  COMMENT,
+  COMMENT_SUCCESS,
+  COMMENT_ERROR
 } from '../constants';
 
 const initialState = {
-  commentList: [],
-  isLoading: false,
-  hasMore: true
+  comment: null,
+  isLoading: false
 };
 
 export const commentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_COMMENT:
+    case COMMENT:
       return {
         ...state,
         isLoading: true
       };
-    case GET_COMMENT_SUCCESS:
-      const { comment, hasMore } = action.response.data;
+    case COMMENT_SUCCESS:
+      const { comment } = action.response.data;
       return {
         ...state,
-        commentList: [...state.commentList, ...comment],
-        isLoading: false,
-        hasMore
+        comment,
+        isLoading: false
       };
-    case GET_COMMENT_ERROR:
+    case COMMENT_ERROR:
       const { error } = action.error.message;
       return {
         ...state,

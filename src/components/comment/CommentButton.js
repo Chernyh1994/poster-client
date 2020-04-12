@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
@@ -8,24 +9,24 @@ import clsx from 'clsx';
 import CardActions from '@material-ui/core/CardActions';
 
 import { StyledCommentCard } from '../styledComponent/Card';
-import SubCommentContent from './SubCommentContent';
+import SubComment from './SubComments';
 import CommentModal from './CommentModal';
-import { getSubComments } from '../../store/actions/subCommentActions';
+import { getComments } from '../../store/actions/commentActions';
 
-const SubCommentButton = ({ parentId }) => {
+const CommentButton = ({ parentId, postId, commentId }) => {
   const classes = StyledCommentCard();
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-    dispatch(getSubComments(parentId));
+    dispatch(getComments(commentId));
   };
 
   return (
     <div>
       <CardActions disableSpacing>
-        <CommentModal parentId={parentId}/>
+        <CommentModal parentId={parentId} postId={postId} />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -37,9 +38,9 @@ const SubCommentButton = ({ parentId }) => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <SubCommentContent expanded={expanded}/>
+      <SubComment expanded={expanded} postId={postId}/>
     </div>
   );
 };
 
-export default SubCommentButton;
+export default CommentButton;

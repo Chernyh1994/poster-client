@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -18,19 +18,18 @@ const validator = Yup.object({
 });
 
 // eslint-disable-next-line react/prop-types
-const PostCommentingForm = ({ postId }) => {
+const CreateCommentForm = ({ parentId, postId }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer);
 
   const comment = useFormik({
     initialValues: {
       description: '',
-      author_id: user && user.id,
-      post_id: postId
+      post_id: postId,
+      parent_id: parentId
     },
     validationSchema: validator,
-    onSubmit: (description, author_id, post_id) => {
-      dispatch(createComment(description, author_id, post_id));
+    onSubmit: (description, parent_id, post_id) => {
+      dispatch(createComment(description, parent_id, post_id));
     }
   });
 
@@ -62,4 +61,4 @@ const PostCommentingForm = ({ postId }) => {
   );
 };
 
-export default PostCommentingForm;
+export default CreateCommentForm;

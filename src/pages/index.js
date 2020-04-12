@@ -12,7 +12,7 @@ import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
 import CreatePost from './main/createPost';
-import AboutPost from './main/aboutPost';
+import postPage from './main/postPage';
 import Profile from './main/profile';
 
 const Pages = () => {
@@ -46,8 +46,8 @@ const Pages = () => {
           render: () => (privateRoute ? <Profile/> : <Redirect to="/login"/>)
         },
         {
-          path: '/about/:id',
-          component: AboutPost
+          path: '/post/:id',
+          component: postPage
         },
         {
           component: Error404

@@ -13,15 +13,14 @@ export const getPosts = (numbPage) => ({
       }
 });
 
-export const createPost = (title, description, userId) => ({
+export const createPost = (title, description) => ({
   type: CREATE_POST,
   request:
       {
         url: '/api/V1/post',
         method: 'post',
         data: title,
-        description,
-        userId
+        description
       }
 });
 

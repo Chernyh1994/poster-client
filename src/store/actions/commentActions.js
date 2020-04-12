@@ -1,25 +1,25 @@
 import {
   CREATE_COMMENT,
-  GET_COMMENT
+  COMMENT
 } from '../constants';
 
-export const createComment = (description, userId, postId) => ({
+export const createComment = (description, postId, parentId) => ({
   type: CREATE_COMMENT,
   request:
       {
-        url: '/api/comment/create',
+        url: '/api/V1/comment',
         method: 'post',
         data: description,
-        userId,
-        postId
+        postId,
+        parentId
       }
 });
 
-export const getComments = (id, offset) => ({
-  type: GET_COMMENT,
+export const getComments = (id) => ({
+  type: COMMENT,
   request:
       {
-        url: `/api/comment/${id}/${offset}`,
+        url: `/api/V1/comment/${id}`,
         method: 'get'
       }
 });
