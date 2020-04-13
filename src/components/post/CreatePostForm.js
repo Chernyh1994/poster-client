@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { CustomBlock } from '../styledComponent/Templates';
-import { createPost } from '../../store/actions/postAction';
+import { createPost, testUpload } from '../../store/actions/postAction';
 
 const validator = Yup.object({
   title: Yup.string()
@@ -22,6 +22,12 @@ const validator = Yup.object({
 
 const CreatePostForm = () => {
   const dispatch = useDispatch();
+  const [file, setFile] = useState(null);
+
+  const test = (event) => {
+    setFile(event.target.files[0]);
+  };
+
 
   const post = useFormik({
     initialValues: {
@@ -30,8 +36,12 @@ const CreatePostForm = () => {
     },
     validationSchema: validator,
     // eslint-disable-next-line camelcase
-    onSubmit: (title, description, author_id) => {
-      dispatch(createPost(title, description, author_id));
+    onSubmit: (title, description) => {
+      const formData = new FormData();
+      formData.append('images', file, file.name);
+
+      dispatch(createPost(title, description));
+      dispatch(testUpload(formData));
     }
   });
 
@@ -58,6 +68,16 @@ const CreatePostForm = () => {
           {...post.getFieldProps('description')}
           error={!!post.touched.description && !!post.errors.description }
           helperText={post.touched.description && post.errors.description ? post.errors.description : null}
+        />
+      </CustomBlock>
+
+      <CustomBlock>
+        <input
+          name="images"
+          type="file"
+          accept="image/*"
+          onChange={test}
+          // {...post.getFieldProps('images')}
         />
       </CustomBlock>
 

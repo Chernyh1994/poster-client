@@ -1,7 +1,8 @@
 import {
   POSTS,
   CREATE_POST,
-  POST
+  POST,
+  TEST
 } from '../constants';
 
 export const getPosts = (numbPage) => ({
@@ -30,5 +31,15 @@ export const getPost = (id) => ({
       {
         url: `/api/V1/post/${id}`,
         method: 'get'
+      }
+});
+
+export const testUpload = (formData) => ({
+  type: TEST,
+  request:
+      {
+        url: '/api/V1/images',
+        method: 'post',
+        data: formData
       }
 });

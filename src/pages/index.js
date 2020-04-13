@@ -16,9 +16,9 @@ import postPage from './main/postPage';
 import Profile from './main/profile';
 
 const Pages = () => {
-  const { user } = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.authReducer.user);
 
-  const privateRoute = user;
+  const isAuthorized = !!user;
 
   const routes = [
     {
@@ -31,19 +31,19 @@ const Pages = () => {
         },
         {
           path: '/create',
-          render: () => (privateRoute ? <CreatePost/> : <Redirect to="/login"/>)
+          render: () => (isAuthorized ? <CreatePost/> : <Redirect to="/login"/>)
         },
         {
           path: '/register',
-          render: () => (privateRoute ? <Redirect to="/"/> : <Register/>)
+          render: () => (isAuthorized ? <Redirect to="/"/> : <Register/>)
         },
         {
           path: '/login',
-          render: () => (privateRoute ? <Redirect to="/"/> : <Login/>)
+          render: () => (isAuthorized ? <Redirect to="/"/> : <Login/>)
         },
         {
           path: '/profile',
-          render: () => (privateRoute ? <Profile/> : <Redirect to="/login"/>)
+          render: () => (isAuthorized ? <Profile/> : <Redirect to="/login"/>)
         },
         {
           path: '/post/:id',
