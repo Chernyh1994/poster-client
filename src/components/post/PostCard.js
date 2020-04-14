@@ -23,10 +23,6 @@ const PostCard = () => {
             {post.created_at}
           </Typography>
 
-          <Typography variant="h5" component="h2">
-            {post.title}
-          </Typography>
-
           <Typography className={classes.pos} color="textSecondary">
             {post.author.name}
           </Typography>

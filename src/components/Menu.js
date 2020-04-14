@@ -6,7 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
-import PostAddIcon from '@material-ui/icons/PostAdd';
+import ListIcon from '@material-ui/icons/List';
 
 import { LinkMenu } from './styledComponent/Link';
 import { DrawerStyled } from './styledComponent/DrawerStyled';
@@ -25,7 +25,7 @@ const Menu = () => {
       <div className={classes.toolbar} />
       <List>
 
-        <LinkMenu to='/'>
+        <LinkMenu to='/home'>
           <ListItem button>
             <ListItemIcon><HomeIcon/></ListItemIcon>
             <ListItemText primary={'Home'} />
@@ -39,10 +39,10 @@ const Menu = () => {
           </ListItem>
         </LinkMenu>
 
-        <LinkMenu to='/create'>
+        <LinkMenu to='/list'>
           <ListItem button>
-            <ListItemIcon><PostAddIcon/></ListItemIcon>
-            <ListItemText primary={'+ New Post'} />
+            <ListItemIcon><ListIcon/></ListItemIcon>
+            <ListItemText primary={'List'} />
           </ListItem>
         </LinkMenu>
 

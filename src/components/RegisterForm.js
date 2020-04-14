@@ -141,7 +141,7 @@ const RegisterForm = () => {
         <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Sing Up
         </Button>
-        <LinkNavbar to='/'>
+        <LinkNavbar to='/home'>
           <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
                         Home
           </Button>

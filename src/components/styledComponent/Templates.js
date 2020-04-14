@@ -30,6 +30,16 @@ export const CustomBlock = styled.div`
     padding: 15px;
 `;
 
+export const ButtonGroup = styled.div`
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const DownloadInput = styled.input`
+    display: none;
+`;
+
 export const FormTitle = styled.h3`
     font-size: 1.5rem;
     font-family: "Helvetica", "Arial", sans-serif;
@@ -62,4 +72,17 @@ export const TemplateContent = styled.div`
     width: -webkit-fill-available;  
     width: fill-available;
     padding: 0;
+`;
+
+export const ImagesBlock = styled.div`
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Image = styled.img`
+    width: 100%;
+    border-radius: 30px;
+    padding: 20px;
 `;

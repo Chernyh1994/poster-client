@@ -3,19 +3,23 @@ import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import ImageIcon from '@material-ui/icons/Image';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { CustomBlock } from '../styledComponent/Templates';
-import { createPost, testUpload } from '../../store/actions/postAction';
+import {
+  CustomBlock,
+  ButtonGroup,
+  DownloadInput,
+  ImagesBlock,
+  Image
+} from '../styledComponent/Templates';
+import { createPost } from '../../store/actions/postAction';
 
 const validator = Yup.object({
-  title: Yup.string()
-    .min(5, 'title must be longer than 5 characters')
-    .max(100, 'title should be shorter than 100 characters')
-    .required('Required'),
   description: Yup.string()
-    .min(5, 'description must be longer than 5 characters')
+    .min(1, 'description must be longer than 1 characters')
     .max(2000, 'description should be shorter than 2000 characters')
     .required('Required')
 });
@@ -23,69 +27,67 @@ const validator = Yup.object({
 const CreatePostForm = () => {
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
 
-  const test = (event) => {
-    setFile(event.target.files[0]);
+  const fileSelectedHandle = (event) => {
+    const files = event.target.files[0];
+    const reader = new FileReader();
+
+    setFile(files);
+
+    reader.onload = () => {
+      setImagePreviewUrl(reader.result);
+    };
+
+    reader.readAsDataURL(files);
   };
-
 
   const post = useFormik({
     initialValues: {
-      title: '',
       description: ''
     },
     validationSchema: validator,
-    // eslint-disable-next-line camelcase
-    onSubmit: (title, description) => {
+    onSubmit: (parameter) => {
       const formData = new FormData();
-      formData.append('images', file, file.name);
-
-      dispatch(createPost(title, description));
-      dispatch(testUpload(formData));
+      formData.append('description', parameter.description);
+      if (!!file) {
+        formData.append('images', file, file.name);
+      }
+      dispatch(createPost(formData));
     }
   });
 
   return (
     <form onSubmit={post.handleSubmit}>
-      <CustomBlock>
-        <TextField
-          fullWidth
-          label="Title*"
-          name="title"
-          {...post.getFieldProps('title')}
-          error={!!post.touched.title && !!post.errors.title }
-          helperText={post.touched.title && post.errors.title ? post.errors.title : null}
-        />
-      </CustomBlock>
 
       <CustomBlock>
         <TextField
           fullWidth
-          label="Description*"
+          label="What's happening?"
           name="description"
-          placeholder="Placeholder"
-          multiline
           {...post.getFieldProps('description')}
           error={!!post.touched.description && !!post.errors.description }
           helperText={post.touched.description && post.errors.description ? post.errors.description : null}
         />
       </CustomBlock>
 
-      <CustomBlock>
-        <input
-          name="images"
-          type="file"
-          accept="image/*"
-          onChange={test}
-          // {...post.getFieldProps('images')}
-        />
-      </CustomBlock>
+      <ImagesBlock>
+        <div><Image src={imagePreviewUrl}/></div>
+      </ImagesBlock>
 
-      <CustomBlock>
-        <Button color="primary" fullWidth type="submit" startIcon={<PostAddIcon fontSize="small" />} >
+      <ButtonGroup>
+        <Button color="primary" component="label" startIcon={<ImageIcon fontSize="small" />} >
+          <DownloadInput
+            name="images"
+            type="file"
+            accept="image/*"
+            onChange={fileSelectedHandle}
+          />
+        </Button>
+        <Button color="primary" type="submit" startIcon={<PostAddIcon fontSize="small" />} >
           Send
         </Button>
-      </CustomBlock>
+      </ButtonGroup>
 
     </form>
   );

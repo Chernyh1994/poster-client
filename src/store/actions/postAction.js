@@ -1,8 +1,7 @@
 import {
   POSTS,
   CREATE_POST,
-  POST,
-  TEST
+  POST
 } from '../constants';
 
 export const getPosts = (numbPage) => ({
@@ -14,14 +13,13 @@ export const getPosts = (numbPage) => ({
       }
 });
 
-export const createPost = (title, description) => ({
+export const createPost = (formData) => ({
   type: CREATE_POST,
   request:
       {
         url: '/api/V1/post',
         method: 'post',
-        data: title,
-        description
+        data: formData
       }
 });
 
@@ -31,15 +29,5 @@ export const getPost = (id) => ({
       {
         url: `/api/V1/post/${id}`,
         method: 'get'
-      }
-});
-
-export const testUpload = (formData) => ({
-  type: TEST,
-  request:
-      {
-        url: '/api/V1/images',
-        method: 'post',
-        data: formData
       }
 });

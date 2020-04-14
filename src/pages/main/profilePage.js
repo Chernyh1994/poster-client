@@ -2,8 +2,8 @@ import React from 'react';
 
 import ProfileCard from '../../components/ProfileCard';
 
-const Profile = () => (
+const ProfilePage = () => (
   <ProfileCard/>
 );
 
-export default Profile;
+export default ProfilePage;

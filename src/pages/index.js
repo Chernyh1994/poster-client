@@ -6,14 +6,14 @@ import { Switch, BrowserRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 
-import Home from './main/home';
+import HomePage from './main/homePage';
 import Login from './auth/login';
 import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
-import CreatePost from './main/createPost';
+import PostsPage from './main/postsPage';
 import postPage from './main/postPage';
-import Profile from './main/profile';
+import ProfilePage from './main/profilePage';
 
 const Pages = () => {
   const user = useSelector((state) => state.authReducer.user);
@@ -25,13 +25,12 @@ const Pages = () => {
       component: Header,
       routes: [
         {
-          path: '/',
-          exact: true,
-          component: Home
+          path: '/home',
+          render: () => (isAuthorized ? <HomePage/> : <Redirect to="/login"/>)
         },
         {
-          path: '/create',
-          render: () => (isAuthorized ? <CreatePost/> : <Redirect to="/login"/>)
+          path: '/list',
+          render: () => (isAuthorized ? <PostsPage/> : <Redirect to="/login"/>)
         },
         {
           path: '/register',
@@ -43,7 +42,7 @@ const Pages = () => {
         },
         {
           path: '/profile',
-          render: () => (isAuthorized ? <Profile/> : <Redirect to="/login"/>)
+          render: () => (isAuthorized ? <ProfilePage/> : <Redirect to="/login"/>)
         },
         {
           path: '/post/:id',
