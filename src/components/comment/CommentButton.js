@@ -20,7 +20,7 @@ const CommentButton = ({ parentId, postId, commentId }) => {
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-    dispatch(getComments(commentId));
+    dispatch(getComments(postId, commentId));
   };
 
   return (

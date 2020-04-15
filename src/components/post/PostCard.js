@@ -8,6 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import CommentModal from '../comment/CommentModal';
 import { StyledCard } from '../styledComponent/Card';
 import CommentsCard from '../comment/CommentsCard';
+import {
+  ImagesBlock,
+  Image
+} from '../styledComponent/Templates';
 
 const PostCard = () => {
   const classes = StyledCard();
@@ -30,6 +34,12 @@ const PostCard = () => {
           <Typography variant="body2" component="p">
             {post.description}
           </Typography>
+
+          { post.images.map((image, id) => (
+            <ImagesBlock key={id}>
+              <Image src={`http://localhost:8000/storage/${image.path}`}/>
+            </ImagesBlock>
+          ))}
 
         </CardContent>
         <CardActions disableSpacing>

@@ -26,7 +26,7 @@ export const PostCard = styled(Card)`
     min-width: 75px;
 `;
 
-export const CustomBlock = styled.div`
+export const InputWrap = styled.div`
     padding: 15px;
 `;
 

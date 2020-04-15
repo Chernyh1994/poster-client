@@ -34,11 +34,11 @@ const Pages = () => {
         },
         {
           path: '/register',
-          render: () => (isAuthorized ? <Redirect to="/"/> : <Register/>)
+          render: () => (isAuthorized ? <Redirect to="/home"/> : <Register/>)
         },
         {
           path: '/login',
-          render: () => (isAuthorized ? <Redirect to="/"/> : <Login/>)
+          render: () => (isAuthorized ? <Redirect to="/home"/> : <Login/>)
         },
         {
           path: '/profile',

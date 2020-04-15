@@ -4,10 +4,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Pages from './pages';
-import { GetUser } from './utils/getUser';
+import { useGetUser } from './utils/useGetUser';
+import { useToken } from './utils/useToken';
 
 const App = () => {
-  GetUser();
+  useGetUser();
+  useToken();
   return (
     <StylesProvider injectFirst>
       <ToastContainer />

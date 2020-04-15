@@ -7,7 +7,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { CustomBlock } from '../styledComponent/Templates';
+import { InputWrap } from '../styledComponent/Templates';
 import { createComment } from '../../store/actions/commentActions';
 
 const validator = Yup.object({
@@ -24,19 +24,18 @@ const CreateCommentForm = ({ parentId, postId }) => {
   const comment = useFormik({
     initialValues: {
       description: '',
-      post_id: postId,
       parent_id: parentId
     },
     validationSchema: validator,
-    onSubmit: (description, parent_id, post_id) => {
-      dispatch(createComment(description, parent_id, post_id));
+    onSubmit: (description, parent_id) => {
+      dispatch(createComment(description, parent_id, postId));
     }
   });
 
   return (
     <form onSubmit={comment.handleSubmit}>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Description*"
@@ -48,13 +47,13 @@ const CreateCommentForm = ({ parentId, postId }) => {
           // eslint-disable-next-line max-len
           helperText={comment.touched.description && comment.errors.description ? comment.errors.description : null}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <Button color="primary" fullWidth type="submit" startIcon={<PostAddIcon fontSize="small" />} >
             Send
         </Button>
-      </CustomBlock>
+      </InputWrap>
 
     </form>
 

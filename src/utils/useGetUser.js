@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getUser } from '../store/actions/authAction';
 
 // eslint-disable-next-line import/prefer-default-export
-export const GetUser = () => {
+export function useGetUser() {
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -12,4 +12,4 @@ export const GetUser = () => {
       dispatch(getUser());
     }
   }, [dispatch, token]);
-};
+}

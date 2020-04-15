@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { registerUser } from '../store/actions/authAction';
-import { CustomBlock } from './styledComponent/Templates';
+import { InputWrap } from './styledComponent/Templates';
 import { LinkNavbar } from './styledComponent/Link';
 
 const validator = Yup.object({
@@ -62,7 +62,7 @@ const RegisterForm = () => {
   return (
     <form onSubmit={register.handleSubmit}>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Name*"
@@ -72,9 +72,9 @@ const RegisterForm = () => {
           error={!!register.touched.name && !!register.errors.name }
           helperText={register.touched.name && register.errors.name ? register.errors.name : null}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Email*"
@@ -84,9 +84,9 @@ const RegisterForm = () => {
           error={!!register.touched.email && !!register.errors.email }
           helperText={register.touched.email && register.errors.email ? register.errors.email : null}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Password*"
@@ -109,9 +109,9 @@ const RegisterForm = () => {
             )
           }}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Repeat Password*"
@@ -135,9 +135,9 @@ const RegisterForm = () => {
             )
           }}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Sing Up
         </Button>
@@ -146,7 +146,7 @@ const RegisterForm = () => {
                         Home
           </Button>
         </LinkNavbar>
-      </CustomBlock>
+      </InputWrap>
 
     </form>
   );

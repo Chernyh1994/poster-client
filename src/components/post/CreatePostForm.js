@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import {
-  CustomBlock,
+  InputWrap,
   ButtonGroup,
   DownloadInput,
   ImagesBlock,
@@ -31,15 +31,10 @@ const CreatePostForm = () => {
 
   const fileSelectedHandle = (event) => {
     const files = event.target.files[0];
-    const reader = new FileReader();
+    const objectURL = URL.createObjectURL(files);
 
+    setImagePreviewUrl(objectURL);
     setFile(files);
-
-    reader.onload = () => {
-      setImagePreviewUrl(reader.result);
-    };
-
-    reader.readAsDataURL(files);
   };
 
   const post = useFormik({
@@ -60,7 +55,7 @@ const CreatePostForm = () => {
   return (
     <form onSubmit={post.handleSubmit}>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="What's happening?"
@@ -69,10 +64,12 @@ const CreatePostForm = () => {
           error={!!post.touched.description && !!post.errors.description }
           helperText={post.touched.description && post.errors.description ? post.errors.description : null}
         />
-      </CustomBlock>
+      </InputWrap>
 
       <ImagesBlock>
-        <div><Image src={imagePreviewUrl}/></div>
+        <div>
+          <Image src={imagePreviewUrl}/>
+        </div>
       </ImagesBlock>
 
       <ButtonGroup>

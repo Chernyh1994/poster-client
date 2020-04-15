@@ -9,6 +9,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import { StyledCard } from '../styledComponent/Card';
 import { LinkTemplate } from '../styledComponent/Link';
 import CommentModal from '../comment/CommentModal';
+import {
+  ImagesBlock,
+  Image
+} from '../styledComponent/Templates';
 
 const PostsCard = () => {
   const classes = StyledCard();
@@ -34,9 +38,16 @@ const PostsCard = () => {
                 {post.description}
               </Typography>
 
+              {post.images.map((image, id) => (
+                <ImagesBlock key={id}>
+                  <Image src={`http://localhost:8000/storage/${image.path}`}/>
+                </ImagesBlock>
+              ))}
+
             </CardContent>
           </CardActionArea>
         </LinkTemplate>
+
         <CardActions disableSpacing>
           <CommentModal postId={post.id} />
         </CardActions>

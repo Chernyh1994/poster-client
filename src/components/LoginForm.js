@@ -10,7 +10,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { CustomBlock } from './styledComponent/Templates';
+import { InputWrap } from './styledComponent/Templates';
 import { loginUser } from '../store/actions/authAction';
 
 const validator = Yup.object({
@@ -44,7 +44,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={login.handleSubmit}>
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Email*"
@@ -54,9 +54,9 @@ const LoginForm = () => {
           error={!!login.touched.email && !!login.errors.email }
           helperText={login.touched.email && login.errors.email ? login.errors.email : null}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <TextField
           fullWidth
           label="Password*"
@@ -79,13 +79,13 @@ const LoginForm = () => {
             )
           }}
         />
-      </CustomBlock>
+      </InputWrap>
 
-      <CustomBlock>
+      <InputWrap>
         <Button color="primary" fullWidth type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
                     Log in
         </Button>
-      </CustomBlock>
+      </InputWrap>
 
     </form>
   );
