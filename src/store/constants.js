@@ -2,6 +2,7 @@ export const LOGIN_USER = 'AUTH/LOGIN_USER';
 export const REGISTER_USER = 'AUTH/REGISTER_USER';
 export const USER = 'AUTH/USER';
 export const LOGOUT = 'AUTH/LOGOUT';
+export const USER_UPDATE = 'AUTH/USER_UPDATE';
 
 export const CREATE_POST = 'POST/CREATE_POST';
 export const POSTS = 'POST/POSTS';
@@ -21,6 +22,9 @@ export const LOGOUT_ERROR = 'AUTH/LOGOUT_ERROR';
 
 export const USER_SUCCESS = 'AUTH/USER_SUCCESS';
 export const USER_ERROR = 'AUTH/USER_ERROR';
+
+export const USER_UPDATE_SUCCESS = 'AUTH/USER_UPDATE_SUCCESS';
+export const USER_UPDATE_ERROR = 'AUTH/USER_UPDATE_ERROR';
 
 export const CREATE_POST_SUCCESS = 'POST/CREATE_POST_SUCCESS';
 export const CREATE_POST_ERROR = 'POST/CREATE_POST_ERROR';

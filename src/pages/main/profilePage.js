@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ProfileCard from '../../components/ProfileCard';
+import Profile from '../../components/profile';
 
 const ProfilePage = () => (
-  <ProfileCard/>
+  <Profile/>
 );
 
 export default ProfilePage;

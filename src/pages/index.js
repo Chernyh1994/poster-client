@@ -12,7 +12,7 @@ import Register from './auth/register';
 import Error404 from './error';
 import Header from './layouts';
 import PostsPage from './main/postsPage';
-import postPage from './main/postPage';
+import PostPage from './main/postPage';
 import ProfilePage from './main/profilePage';
 
 const Pages = () => {
@@ -25,14 +25,6 @@ const Pages = () => {
       component: Header,
       routes: [
         {
-          path: '/home',
-          render: () => (isAuthorized ? <HomePage/> : <Redirect to="/login"/>)
-        },
-        {
-          path: '/list',
-          render: () => (isAuthorized ? <PostsPage/> : <Redirect to="/login"/>)
-        },
-        {
           path: '/register',
           render: () => (isAuthorized ? <Redirect to="/home"/> : <Register/>)
         },
@@ -41,12 +33,21 @@ const Pages = () => {
           render: () => (isAuthorized ? <Redirect to="/home"/> : <Login/>)
         },
         {
+          path: '/home',
+          exact: true,
+          render: () => (isAuthorized ? <HomePage/> : <Redirect to="/login"/>)
+        },
+        {
           path: '/profile',
           render: () => (isAuthorized ? <ProfilePage/> : <Redirect to="/login"/>)
         },
         {
+          path: '/posts',
+          render: () => (isAuthorized ? <PostsPage/> : <Redirect to="/login"/>)
+        },
+        {
           path: '/post/:id',
-          component: postPage
+          component: PostPage
         },
         {
           component: Error404

@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import ImageIcon from '@material-ui/icons/Image';
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 

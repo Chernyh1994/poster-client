@@ -83,7 +83,7 @@ const LoginForm = () => {
 
       <InputWrap>
         <Button color="primary" fullWidth type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
-                    Log in
+          Log in
         </Button>
       </InputWrap>
 

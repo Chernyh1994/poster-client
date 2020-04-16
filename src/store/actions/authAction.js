@@ -2,6 +2,7 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   USER,
+  USER_UPDATE,
   LOGOUT
 } from '../constants';
 
@@ -34,6 +35,16 @@ export const getUser = () => ({
     {
       url: '/api/V1/user',
       method: 'get'
+    }
+});
+
+export const userUpdate = (formData) => ({
+  type: USER_UPDATE,
+  request:
+    {
+      url: '/api/V1/user',
+      method: 'put',
+      data: formData
     }
 });
 

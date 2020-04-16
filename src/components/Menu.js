@@ -39,7 +39,7 @@ const Menu = () => {
           </ListItem>
         </LinkMenu>
 
-        <LinkMenu to='/list'>
+        <LinkMenu to='/posts'>
           <ListItem button>
             <ListItemIcon><ListIcon/></ListItemIcon>
             <ListItemText primary={'List'} />

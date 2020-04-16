@@ -7,6 +7,9 @@ export const StyledCard = makeStyles(() => ({
   title: {
     fontSize: 14
   },
+  userInfoTitle: {
+    fontSize: 24
+  },
   pos: {
     marginBottom: 12
   }
