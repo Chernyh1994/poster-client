@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
 
 import { StyledCard } from '../styledComponent/Card';
 import { LinkTemplate } from '../styledComponent/Link';
@@ -24,15 +26,14 @@ const PostsCard = () => {
       <Card className={classes.root} key={index}>
         <LinkTemplate to={`/post/${post.id}`}>
           <CardActionArea>
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" src={`http://localhost:8000/storage/${post.author.avatar_path}`} className={classes.avatar}/>
+              }
+              title={post.author.name}
+              subheader={post.created_at}
+            />
             <CardContent>
-
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {post.created_at}
-              </Typography>
-
-              <Typography className={classes.pos} color="textSecondary">
-                {post.author.name}
-              </Typography>
 
               <Typography variant="body2" component="p">
                 {post.description}

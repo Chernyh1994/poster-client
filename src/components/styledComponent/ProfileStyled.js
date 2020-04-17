@@ -14,7 +14,8 @@ export const ProfileWrap = styled.div`
 `;
 
 export const AvatarWrap = styled.div`
-    width: 40%;
+    width: 200px;
+    height: 200px;
 `;
 
 export const UserInfoWrap = styled.div`

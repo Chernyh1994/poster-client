@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
@@ -18,9 +18,11 @@ const ProfileCard = () => {
   const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
   const [imagePreviewUrl, setImagePreviewUrl] = useState(startAvatar);
 
-  // if (!user.token) {
-  //   setImagePreviewUrl();
-  // }
+  useEffect(() => {
+    if (user.avatar_path) {
+      setImagePreviewUrl(`http://localhost:8000/storage/${user.avatar_path}`);
+    }
+  }, [user.avatar_path]);
 
   return (
     <Card className={classes.root}>
