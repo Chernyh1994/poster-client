@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const StyledCard = makeStyles(() => ({
   root: {
-    margin: '10px'
+    margin: '10px',
+    maxWidth: '500px'
   },
   title: {
     fontSize: 14
@@ -17,7 +18,8 @@ export const StyledCard = makeStyles(() => ({
 
 export const StyledCommentCard = makeStyles((theme) => ({
   root: {
-    margin: '30px'
+    margin: '20px',
+    maxWidth: '480px'
   },
   expand: {
     transform: 'rotate(0deg)',

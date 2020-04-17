@@ -22,10 +22,6 @@ export const FormCardHome = styled(Card)`
     width: fill-available;
 `;
 
-export const PostCard = styled(Card)`
-    min-width: 75px;
-`;
-
 export const InputWrap = styled.div`
     padding: 15px;
 `;
