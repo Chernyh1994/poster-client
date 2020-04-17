@@ -51,8 +51,10 @@ export const postReducer = (state = initialState, action) => {
       const { user_posts } = action.response.data;
       return {
         ...state,
-        userPosts: user_posts,
-        isLoading: false
+        userPosts: [...state.userPosts, ...user_posts.data],
+        isLoading: false,
+        nextNumbPage: user_posts.current_page + 1,
+        lastPage: user_posts.last_page
       };
     case POSTS_ERROR:
     case POST_ERROR:

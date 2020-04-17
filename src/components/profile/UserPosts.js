@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import { getUserPosts } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
@@ -9,22 +10,33 @@ import PostsCard from '../post/PostsCard';
 
 const UserPosts = () => {
   const dispatch = useDispatch();
-  const { userPosts, isLoading } = useSelector((state) => state.postReducer);
+  const {
+    userPosts, isLoading, nextNumbPage, lastPage
+  } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
     if (!userPosts.length) {
-      dispatch(getUserPosts());
+      dispatch(getUserPosts(1));
     }
     // eslint-disable-next-line
   }, [dispatch]);
 
-  if (isLoading) {
-    return (<LoadingCard/>);
-  }
+  const hendleUserPosts = () => {
+    if (!isLoading) {
+      dispatch(getUserPosts(nextNumbPage));
+    }
+  };
 
   return (
     userPosts ?
-      <PostsCard posts={userPosts}/> :
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={hendleUserPosts}
+        hasMore={nextNumbPage <= lastPage }
+        loader={<div key={0}> <LoadingCard/> </div>}
+      >
+        <PostsCard posts={userPosts}/>
+      </InfiniteScroll> :
       <PostsEmpty/>
   );
 };

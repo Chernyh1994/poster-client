@@ -33,11 +33,11 @@ export const getPost = (id) => ({
       }
 });
 
-export const getUserPosts = () => ({
+export const getUserPosts = (numbPage) => ({
   type: USER_POSTS,
   request:
       {
-        url: '/api/V1/user/posts',
+        url: `/api/V1/user/posts?page=${numbPage}`,
         method: 'get'
       }
 });
