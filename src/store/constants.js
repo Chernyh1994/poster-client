@@ -7,6 +7,7 @@ export const USER_UPDATE = 'AUTH/USER_UPDATE';
 export const CREATE_POST = 'POST/CREATE_POST';
 export const POSTS = 'POST/POSTS';
 export const POST = 'POST/POST';
+export const USER_POSTS = 'POST/USER_POSTS';
 
 export const CREATE_COMMENT = 'COMMENT/CREATE_COMMENT';
 export const COMMENT = 'COMMENT/COMMENT';
@@ -31,6 +32,9 @@ export const CREATE_POST_ERROR = 'POST/CREATE_POST_ERROR';
 
 export const POSTS_SUCCESS = 'POST/POSTS_SUCCESS';
 export const POSTS_ERROR = 'POST/POSTS_ERROR';
+
+export const USER_POSTS_SUCCESS = 'POST/USER_POSTS_SUCCESS';
+export const USER_POSTS_ERROR = 'POST/USER_POSTS_ERROR';
 
 export const POST_SUCCESS = 'POST/POST_SUCCESS';
 export const POST_ERROR = 'POST/POST_ERROR';

@@ -1,7 +1,8 @@
 import {
   POSTS,
   CREATE_POST,
-  POST
+  POST,
+  USER_POSTS
 } from '../constants';
 
 export const getPosts = (numbPage) => ({
@@ -28,6 +29,15 @@ export const getPost = (id) => ({
   request:
       {
         url: `/api/V1/post/${id}`,
+        method: 'get'
+      }
+});
+
+export const getUserPosts = () => ({
+  type: USER_POSTS,
+  request:
+      {
+        url: '/api/V1/user/posts',
         method: 'get'
       }
 });

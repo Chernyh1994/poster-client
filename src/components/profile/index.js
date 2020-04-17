@@ -2,6 +2,7 @@ import React from 'react';
 
 import ProfileCard from './ProfileCard';
 import Navigation from './Navigation';
+import UserPosts from './UserPosts';
 
 const Profile = () => {
 
@@ -9,6 +10,7 @@ const Profile = () => {
     <div>
       <ProfileCard/>
       <Navigation/>
+      <UserPosts/>
     </div>
   );
 };

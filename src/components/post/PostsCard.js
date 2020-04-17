@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,10 +15,8 @@ import {
   Image
 } from '../styledComponent/Templates';
 
-const PostsCard = () => {
+const PostsCard = ({ posts }) => {
   const classes = StyledCard();
-
-  const posts = useSelector((state) => state.postReducer.posts);
 
   return (
     posts.map((post, index) => (

@@ -35,7 +35,7 @@ const Posts = () => {
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        <PostsCard/>
+        <PostsCard posts={posts}/>
       </InfiniteScroll> :
       <PostsEmpty/>
   );

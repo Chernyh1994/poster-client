@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-case-declarations */
 /* eslint-disable import/prefer-default-export */
 import {
@@ -6,12 +7,16 @@ import {
   POSTS_ERROR,
   POST,
   POST_SUCCESS,
-  POST_ERROR
+  POST_ERROR,
+  USER_POSTS,
+  USER_POSTS_SUCCESS,
+  USER_POSTS_ERROR
 } from '../constants';
 
 const initialState = {
   posts: [],
   post: null,
+  userPosts: [],
   isLoading: false,
   nextNumbPage: null,
   lastPage: null
@@ -21,6 +26,7 @@ export const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case POSTS:
     case POST:
+    case USER_POSTS:
       return {
         ...state,
         isLoading: true
@@ -41,8 +47,16 @@ export const postReducer = (state = initialState, action) => {
         post,
         isLoading: false
       };
+    case USER_POSTS_SUCCESS:
+      const { user_posts } = action.response.data;
+      return {
+        ...state,
+        userPosts: user_posts,
+        isLoading: false
+      };
     case POSTS_ERROR:
     case POST_ERROR:
+    case USER_POSTS_ERROR:
       const { error } = action.error.message;
       return {
         ...state,
