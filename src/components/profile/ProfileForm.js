@@ -52,6 +52,7 @@ const ProfileForm = () => {
       const formData = new FormData();
       formData.append('name', parameter.name);
       formData.append('email', parameter.email);
+      formData.append('_method', 'put');
       if (!!avatar) {
         formData.append('avatar', avatar, avatar.name);
       }

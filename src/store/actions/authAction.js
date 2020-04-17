@@ -43,7 +43,7 @@ export const userUpdate = (formData) => ({
   request:
     {
       url: '/api/V1/user',
-      method: 'put',
+      method: 'post',
       data: formData
     }
 });
