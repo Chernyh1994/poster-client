@@ -5,20 +5,16 @@ import Typography from '@material-ui/core/Typography';
 
 import { StyledCommentCard } from '../styledComponent/Card';
 
-const CommentEmptyCard = () => {
+const CommentEmpty = () => {
   const classes = StyledCommentCard();
 
   return (
     <Card className={classes.root}>
       <CardContent>
-
-        <Typography variant="body2" color="textSecondary" component="p">
-                No comment.
-        </Typography>
-
+        <Typography variant="body2" color="textSecondary" component="p"> No comment.</Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default CommentEmptyCard;
+export default CommentEmpty;

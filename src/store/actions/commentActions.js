@@ -1,6 +1,7 @@
 import {
   CREATE_COMMENT,
-  COMMENT
+  SUB_COMMENTS,
+  COMMENTS
 } from '../constants';
 
 export const createComment = (description, parentId, postId) => ({
@@ -14,11 +15,20 @@ export const createComment = (description, parentId, postId) => ({
       }
 });
 
-export const getComments = (postId, commentId) => ({
-  type: COMMENT,
+export const getSubComments = (postId, commentId) => ({
+  type: SUB_COMMENTS,
   request:
       {
         url: `/api/V1/post/${postId}/comment/${commentId}`,
+        method: 'get'
+      }
+});
+
+export const getComments = (postId) => ({
+  type: COMMENTS,
+  request:
+      {
+        url: `/api/V1/post/${postId}/comment`,
         method: 'get'
       }
 });

@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 import CommentModal from '../comment/CommentModal';
 import { StyledCard } from '../styledComponent/Card';
-import CommentsCard from '../comment/CommentsCard';
+import Comments from '../comment/Comments';
 import {
   ImagesBlock,
   Image
@@ -48,7 +48,7 @@ const PostCard = () => {
         </CardActions>
       </Card>
 
-      <CommentsCard comments={post.comments} postId={post.id} />
+      <Comments postId={post.id} />
     </div>
   );
 };
