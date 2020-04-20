@@ -8,6 +8,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Card from '@material-ui/core/Card';
 
 import { StyledCard } from '../styledComponent/Card';
+import { LinkNavigation } from '../styledComponent/Link';
 
 const Navigation = () => {
   const classes = StyledCard();
@@ -20,10 +21,34 @@ const Navigation = () => {
   return (
     <Card className={classes.root}>
       <BottomNavigation value={value} onChange={handleChange}>
-        <BottomNavigationAction label="Posts" value="post" icon={<ListIcon />} />
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-        <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+        <BottomNavigationAction
+          component={LinkNavigation}
+          to='/profile/posts'
+          label="Posts"
+          value="post"
+          icon={<ListIcon />}
+        />
+        <BottomNavigationAction
+          component={LinkNavigation}
+          to='/profile/favorites'
+          label="Favorites"
+          value="favorites"
+          icon={<FavoriteIcon />}
+        />
+        <BottomNavigationAction
+          component={LinkNavigation}
+          to='/profile/nearby'
+          label="Nearby"
+          value="nearby"
+          icon={<LocationOnIcon />}
+        />
+        <BottomNavigationAction
+          component={LinkNavigation}
+          to='/profile/folder'
+          label="Folder"
+          value="folder"
+          icon={<FolderIcon />}
+        />
       </BottomNavigation>
     </Card>
   );

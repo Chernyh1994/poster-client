@@ -14,6 +14,7 @@ import Header from './layouts';
 import PostsPage from './main/postsPage';
 import PostPage from './main/postPage';
 import ProfilePage from './main/profilePage';
+import UserPosts from '../components/profile/UserPosts';
 
 const Pages = () => {
   const user = useSelector((state) => state.authReducer.user);
@@ -39,7 +40,13 @@ const Pages = () => {
         },
         {
           path: '/profile',
-          render: () => (isAuthorized ? <ProfilePage/> : <Redirect to="/login"/>)
+          component: ProfilePage,
+          routes: [
+            {
+              path: '/profile/posts',
+              component: UserPosts
+            }
+          ]
         },
         {
           path: '/posts',

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { useSelector } from 'react-redux';
@@ -18,7 +19,6 @@ const Header = ({ route }) => {
       {!user ?
         <main className={classes.content}>
           <Navbar/>
-          {/* eslint-disable-next-line react/prop-types */}
           {renderRoutes(route.routes) }
         </main> :
         <div className={classes.root}>
@@ -26,7 +26,6 @@ const Header = ({ route }) => {
           <Navbar/>
           <TemplateContent>
             <div className={classes.content}>
-              {/* eslint-disable-next-line react/prop-types */}
               {renderRoutes(route.routes)}
             </div>
           </TemplateContent>

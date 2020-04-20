@@ -39,17 +39,14 @@ export const getUser = () => ({
     }
 });
 
-export const userUpdate = (formData, handleClose) => ({
+export const userUpdate = (formData) => ({
   type: USER_UPDATE,
   request:
     {
       url: '/api/V1/user',
       method: 'post',
       data: formData
-    },
-  meta: {
-    getData: (data) => handleClose()
-  }
+    }
 });
 
 export const logout = () => ({

@@ -15,3 +15,7 @@ export const LinkTemplate = styled(Link)`
     text-decoration: none;
     color: #000 !important;
 `;
+
+export const LinkNavigation = styled(Link)`
+    text-decoration: none;
+`;

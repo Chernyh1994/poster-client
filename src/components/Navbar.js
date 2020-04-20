@@ -35,9 +35,12 @@ const Navbar = () => {
                 </Button>
               </LinkNavbar>
             </div> :
-            <Button onClick={handleLogout} style={{ color: 'white' }}>
-            Logout
-            </Button>
+            <LinkNavbar to='/login'>
+              <Button onClick={handleLogout} style={{ color: 'white' }}>
+                Logout
+              </Button>
+            </LinkNavbar>
+
         }
       </Toolbar>
     </CustomAppBar>

@@ -56,7 +56,8 @@ const ProfileForm = ({handleClose}) => {
       if (!!avatar) {
         formData.append('avatar', avatar, avatar.name);
       }
-      dispatch(userUpdate(formData, handleClose));
+      dispatch(userUpdate(formData));
+      handleClose();
     }
   });
 
