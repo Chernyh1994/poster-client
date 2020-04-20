@@ -2,8 +2,7 @@ import {
   POSTS,
   CREATE_POST,
   POST,
-  USER_POSTS,
-  CREATE_POST_SUCCESS
+  USER_POSTS
 } from '../constants';
 
 export const getPosts = (numbPage) => ({
@@ -24,10 +23,7 @@ export const createPost = (formData, history) => ({
         data: formData
       },
   meta: {
-    mutations: {
-      type: CREATE_POST_SUCCESS,
-      data: history.push('/posts')
-    }
+    getData: (data) => history.push('/posts')
   }
 });
 
