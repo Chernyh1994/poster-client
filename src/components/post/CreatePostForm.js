@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -7,6 +8,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import { useHistory } from 'react-router-dom';
 import {
   InputWrap,
   ButtonGroup,
@@ -24,6 +26,7 @@ const validator = Yup.object({
 });
 
 const CreatePostForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
@@ -44,10 +47,10 @@ const CreatePostForm = () => {
     onSubmit: (parameter) => {
       const formData = new FormData();
       formData.append('description', parameter.description);
-      if (!!file) {
+      if (file) {
         formData.append('images', file, file.name);
       }
-      dispatch(createPost(formData));
+      dispatch(createPost(formData, history));
     }
   });
 
