@@ -35,7 +35,7 @@ const CommentModal = ({ postId, parentId }) => {
         <DialogTitle id="form-dialog-title">{user ? 'Comment' : 'Login'} </DialogTitle>
         <DialogContent>
           {user ?
-            <CreateCommentForm parentId={parentId} postId={postId} />
+            <CreateCommentForm parentId={parentId} postId={postId} handleClose={handleClose}/>
             :
             <LoginForm/>}
         </DialogContent>

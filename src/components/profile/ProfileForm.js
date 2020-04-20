@@ -27,7 +27,7 @@ const validator = Yup.object({
     .required('Required')
 });
 
-const ProfileForm = () => {
+const ProfileForm = ({handleClose}) => {
   const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
@@ -56,7 +56,7 @@ const ProfileForm = () => {
       if (!!avatar) {
         formData.append('avatar', avatar, avatar.name);
       }
-      dispatch(userUpdate(formData));
+      dispatch(userUpdate(formData, handleClose));
     }
   });
 

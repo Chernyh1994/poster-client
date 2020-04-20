@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   LOGIN_USER,
   REGISTER_USER,
@@ -38,14 +39,17 @@ export const getUser = () => ({
     }
 });
 
-export const userUpdate = (formData) => ({
+export const userUpdate = (formData, handleClose) => ({
   type: USER_UPDATE,
   request:
     {
       url: '/api/V1/user',
       method: 'post',
       data: formData
-    }
+    },
+  meta: {
+    getData: (data) => handleClose()
+  }
 });
 
 export const logout = () => ({

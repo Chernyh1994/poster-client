@@ -18,7 +18,7 @@ const validator = Yup.object({
 });
 
 // eslint-disable-next-line react/prop-types
-const CreateCommentForm = ({ parentId, postId }) => {
+const CreateCommentForm = ({ parentId, postId, handleClose }) => {
   const dispatch = useDispatch();
 
   const comment = useFormik({
@@ -28,7 +28,7 @@ const CreateCommentForm = ({ parentId, postId }) => {
     },
     validationSchema: validator,
     onSubmit: (description, parent_id) => {
-      dispatch(createComment(description, parent_id, postId));
+      dispatch(createComment(description, parent_id, postId, handleClose));
     }
   });
 

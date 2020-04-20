@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import {
   CREATE_COMMENT,
   SUB_COMMENTS,
   COMMENTS
 } from '../constants';
 
-export const createComment = (description, parentId, postId) => ({
+export const createComment = (description, parentId, postId, handleClose) => ({
   type: CREATE_COMMENT,
   request:
       {
@@ -12,7 +13,10 @@ export const createComment = (description, parentId, postId) => ({
         method: 'post',
         data: description,
         parentId
-      }
+      },
+  meta: {
+    getData: (data) => handleClose()
+  }
 });
 
 export const getSubComments = (postId, commentId) => ({

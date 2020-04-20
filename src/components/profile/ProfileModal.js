@@ -27,7 +27,7 @@ const ProfileModal = () => {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title"> </DialogTitle>
         <DialogContent>
-          <ProfileForm/>
+          <ProfileForm handleClose={handleClose}/>
         </DialogContent>
       </Dialog>
     </div>
