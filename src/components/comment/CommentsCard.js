@@ -10,6 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 
 import CommentButton from './CommentButton';
 import { StyledCommentCard } from '../styledComponent/Card';
+import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 
 const CommentsCard = ({ comments, postId }) => {
   const classes = StyledCommentCard();
@@ -19,7 +20,14 @@ const CommentsCard = ({ comments, postId }) => {
       <Card className={classes.root} key={index} >
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" src={`http://localhost:8000/storage/${comment.author.avatar_path}`} className={classes.avatar}/>
+            <Avatar
+              component={LinkNavigation}
+              to={`/${comment.author.name}`}
+              aria-label="recipe"
+              src={comment.author.avatar_path ?
+                `http://localhost:8000/storage/${comment.author.avatar_path}` :
+                startAvatar }
+              className={classes.avatar}/>
           }
           title={comment.author.name}
           subheader={comment.created_at}

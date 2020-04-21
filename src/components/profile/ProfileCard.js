@@ -11,11 +11,11 @@ import {
   AvatarWrap,
   NewAvatar
 } from '../styledComponent/ProfileStyled';
+import { startAvatar } from '../styledComponent/Link';
 
 const ProfileCard = () => {
   const { user } = useSelector((state) => state.authReducer);
   const classes = StyledCard();
-  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
   return (
     <Card className={classes.root}>

@@ -14,10 +14,10 @@ import {
   ImagesBlock,
   Image
 } from '../styledComponent/Templates';
+import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
-  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
   return (
     <div>
@@ -25,6 +25,8 @@ const PostCard = ({ post }) => {
         <CardHeader
           avatar={
             <Avatar
+              component={LinkNavigation}
+              to={`/${post.author.name}`}
               aria-label="recipe"
               src={post.author.avatar_path ?
                 `http://localhost:8000/storage/${post.author.avatar_path}` :

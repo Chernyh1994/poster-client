@@ -19,3 +19,5 @@ export const LinkTemplate = styled(Link)`
 export const LinkNavigation = styled(Link)`
     text-decoration: none;
 `;
+
+export const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';

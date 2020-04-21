@@ -8,7 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 
 import { StyledCard } from '../styledComponent/Card';
-import { LinkTemplate } from '../styledComponent/Link';
+import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 import CommentModal from '../comment/CommentModal';
 import {
   ImagesBlock,
@@ -17,41 +17,44 @@ import {
 
 const PostsCard = ({ posts }) => {
   const classes = StyledCard();
-  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
   return (
     posts.map((post, index) => (
-      <Card className={classes.root} key={index}>
-        <LinkTemplate to={`/post/${post.id}`}>
-          <CardActionArea>
-            <CardHeader
-              avatar={
-                <Avatar
-                  aria-label="recipe"
-                  src={post.author.avatar_path ?
-                    `http://localhost:8000/storage/${post.author.avatar_path}` :
-                    startAvatar }
-                  className={classes.avatar}
-                />
-              }
-              title={post.author.name}
-              subheader={post.created_at}
+      <Card className={classes.root} key={index} >
+        <CardHeader
+          avatar={
+            <Avatar
+              component={LinkNavigation}
+              to={`/${post.author.name}`}
+              aria-label="recipe"
+              src={post.author.avatar_path ?
+                `http://localhost:8000/storage/${post.author.avatar_path}` :
+                startAvatar }
+              className={classes.avatar}
             />
-            <CardContent>
+          }
+          title={post.author.name}
+          subheader={post.created_at}
+        />
+        <CardActionArea
+          component={LinkNavigation}
+          to={`/post/${post.id}`}
+        >
 
-              <Typography variant="body2" component="p">
-                {post.description}
-              </Typography>
+          <CardContent>
 
-              {post.images.map((image, id) => (
-                <ImagesBlock key={id}>
-                  <Image src={`http://localhost:8000/storage/${image.path}`}/>
-                </ImagesBlock>
-              ))}
+            <Typography variant="body2" component="p">
+              {post.description}
+            </Typography>
 
-            </CardContent>
-          </CardActionArea>
-        </LinkTemplate>
+            {post.images.map((image, id) => (
+              <ImagesBlock key={id}>
+                <Image src={`http://localhost:8000/storage/${image.path}`}/>
+              </ImagesBlock>
+            ))}
+
+          </CardContent>
+        </CardActionArea>
 
         <CardActions disableSpacing>
           <CommentModal postId={post.id} />

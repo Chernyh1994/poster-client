@@ -7,6 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CardActions from '@material-ui/core/CardActions';
 
 import { StyledCommentCard } from '../styledComponent/Card';
+import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 
 const SubCommentsCard = ({ subComments }) => {
   const classes = StyledCommentCard();
@@ -16,7 +17,15 @@ const SubCommentsCard = ({ subComments }) => {
       <Card className={classes.root} key={index} >
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" src={`http://localhost:8000/storage/${subComment.author.avatar_path}`} className={classes.avatar}/>
+            <Avatar
+              component={LinkNavigation}
+              to={`/${subComment.author.name}`}
+              aria-label="recipe"
+              src={subComment.author.avatar_path ?
+                `http://localhost:8000/storage/${subComment.author.avatar_path}` :
+                startAvatar }
+              className={classes.avatar}
+            />
           }
           title={subComment.author.name}
           subheader={subComment.created_at}
