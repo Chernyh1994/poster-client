@@ -26,7 +26,7 @@ const PostsCard = ({ posts }) => {
           avatar={
             <Avatar
               component={Link}
-              to={`/${post.author.name}`}
+              to={`/profile/${post.author.id}`}
               aria-label="recipe"
               src={post.author.avatar_path ?
                 `http://localhost:8000/storage/${post.author.avatar_path}` :

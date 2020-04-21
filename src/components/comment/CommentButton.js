@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import { StyledCommentCard } from '../styledComponent/Card';
 import SubComments from './SubComments';
 import CommentModal from './CommentModal';
-import { getSubComments } from '../../store/actions/commentActions';
+import { getSubComments } from '../../store/actions/commentAction';
 
 const CommentButton = ({ postId, commentId }) => {
   const classes = StyledCommentCard();

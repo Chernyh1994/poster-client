@@ -8,11 +8,13 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { DrawerStyled } from './styledComponent/DrawerStyled';
 
 const Menu = () => {
   const classes = DrawerStyled();
+  const user = useSelector((state) => state.authReducer.user);
 
   return (
     <Drawer
@@ -35,7 +37,7 @@ const Menu = () => {
         <ListItem
           button
           component={Link}
-          to='/profile'
+          to={`/profile/${user.id}`}
         >
           <ListItemIcon><AccountCircleIcon/></ListItemIcon>
           <ListItemText primary={'Profile'} />

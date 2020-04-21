@@ -14,30 +14,31 @@ import {
 import { startAvatar } from '../styledComponent/Templates';
 
 const ProfileCard = () => {
-  const { user } = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.authReducer.user);
+  const userProfile = useSelector((state) => state.userReducer.userProfile);
   const classes = StyledCard();
-
   return (
     <Card className={classes.root}>
-      <ProfileWrap>
-        <AvatarWrap>
-          <NewAvatar
-            alt="avatar"
-            src={user.avatar_path ?
-              `http://localhost:8000/storage/${user.avatar_path}` :
-              startAvatar}
-          />
-        </AvatarWrap>
-        <UserInfoWrap>
-          <Typography className={classes.userInfoTitle} color="textSecondary">
-            Name: {user.name}
-          </Typography>
-          <Typography className={classes.userInfoTitle} color="textSecondary">
-            Email: {user.email}
-          </Typography>
-          <ProfileModal/>
-        </UserInfoWrap>
-      </ProfileWrap>
+      {userProfile ?
+        <ProfileWrap>
+          <AvatarWrap>
+            <NewAvatar
+              alt="avatar"
+              src={userProfile.avatar_path ?
+                `http://localhost:8000/storage/${userProfile.avatar_path}` :
+                startAvatar}
+            />
+          </AvatarWrap>
+          <UserInfoWrap>
+            <Typography className={classes.userInfoTitle} color="textSecondary">
+            Name: {userProfile.name}
+            </Typography>
+            <Typography className={classes.userInfoTitle} color="textSecondary">
+            Email: {userProfile.email}
+            </Typography>
+            { userProfile.id === user.id ? <ProfileModal/> : null }
+          </UserInfoWrap>
+        </ProfileWrap> : null}
     </Card>
   );
 };

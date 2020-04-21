@@ -39,7 +39,8 @@ const Pages = () => {
           render: () => (isAuthorized ? <HomePage/> : <Redirect to="/login"/>)
         },
         {
-          path: '/profile',
+          path: '/profile/:id',
+          exact: true,
           component: ProfilePage,
           routes: [
             {

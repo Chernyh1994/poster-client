@@ -20,7 +20,7 @@ const SubCommentsCard = ({ subComments }) => {
           avatar={
             <Avatar
               component={Link}
-              to={`/${subComment.author.name}`}
+              to={`/profile/${subComment.author.id}`}
               aria-label="recipe"
               src={subComment.author.avatar_path ?
                 `http://localhost:8000/storage/${subComment.author.avatar_path}` :
