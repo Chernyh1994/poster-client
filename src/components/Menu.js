@@ -7,8 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
+import { Link } from 'react-router-dom';
 
-import { LinkMenu } from './styledComponent/Link';
 import { DrawerStyled } from './styledComponent/DrawerStyled';
 
 const Menu = () => {
@@ -24,27 +24,31 @@ const Menu = () => {
     >
       <div className={classes.toolbar} />
       <List>
+        <ListItem
+          button
+          component={Link}
+          to='/home' >
+          <ListItemIcon><HomeIcon/></ListItemIcon>
+          <ListItemText primary={'Home'} />
+        </ListItem>
 
-        <LinkMenu to='/home'>
-          <ListItem button>
-            <ListItemIcon><HomeIcon/></ListItemIcon>
-            <ListItemText primary={'Home'} />
-          </ListItem>
-        </LinkMenu>
+        <ListItem
+          button
+          component={Link}
+          to='/profile'
+        >
+          <ListItemIcon><AccountCircleIcon/></ListItemIcon>
+          <ListItemText primary={'Profile'} />
+        </ListItem>
 
-        <LinkMenu to='/profile'>
-          <ListItem button>
-            <ListItemIcon><AccountCircleIcon/></ListItemIcon>
-            <ListItemText primary={'Profile'} />
-          </ListItem>
-        </LinkMenu>
-
-        <LinkMenu to='/posts'>
-          <ListItem button>
-            <ListItemIcon><ListIcon/></ListItemIcon>
-            <ListItemText primary={'List'} />
-          </ListItem>
-        </LinkMenu>
+        <ListItem
+          button
+          component={Link}
+          to='/posts'
+        >
+          <ListItemIcon><ListIcon/></ListItemIcon>
+          <ListItemText primary={'List'} />
+        </ListItem>
 
       </List>
     </Drawer>

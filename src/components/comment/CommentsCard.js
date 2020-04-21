@@ -7,10 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import CardActions from '@material-ui/core/CardActions';
+import { Link } from 'react-router-dom';
 
 import CommentButton from './CommentButton';
 import { StyledCommentCard } from '../styledComponent/Card';
-import { LinkNavigation, startAvatar } from '../styledComponent/Link';
+import { startAvatar } from '../styledComponent/Templates';
 
 const CommentsCard = ({ comments, postId }) => {
   const classes = StyledCommentCard();
@@ -21,7 +22,7 @@ const CommentsCard = ({ comments, postId }) => {
         <CardHeader
           avatar={
             <Avatar
-              component={LinkNavigation}
+              component={Link}
               to={`/${comment.author.name}`}
               aria-label="recipe"
               src={comment.author.avatar_path ?

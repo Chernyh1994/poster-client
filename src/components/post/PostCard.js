@@ -6,15 +6,16 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
 
 import CommentModal from '../comment/CommentModal';
 import { StyledCard } from '../styledComponent/Card';
 import Comments from '../comment/Comments';
 import {
   ImagesBlock,
-  Image
+  Image,
+  startAvatar
 } from '../styledComponent/Templates';
-import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
@@ -25,7 +26,7 @@ const PostCard = ({ post }) => {
         <CardHeader
           avatar={
             <Avatar
-              component={LinkNavigation}
+              component={Link}
               to={`/${post.author.name}`}
               aria-label="recipe"
               src={post.author.avatar_path ?

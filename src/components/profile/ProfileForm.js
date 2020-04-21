@@ -17,7 +17,8 @@ import {
 } from '../styledComponent/ProfileStyled';
 import {
   DownloadInput,
-  InputWrap
+  InputWrap,
+  startAvatar
 } from '../styledComponent/Templates';
 
 const validator = Yup.object({
@@ -32,7 +33,6 @@ const validator = Yup.object({
 const ProfileForm = ({ handleClose }) => {
   const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
-  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
   const [avatar, setAvatar] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(startAvatar);
 

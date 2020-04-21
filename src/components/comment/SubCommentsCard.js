@@ -5,9 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import CardActions from '@material-ui/core/CardActions';
+import { Link } from 'react-router-dom';
 
 import { StyledCommentCard } from '../styledComponent/Card';
-import { LinkNavigation, startAvatar } from '../styledComponent/Link';
+import { startAvatar } from '../styledComponent/Templates';
 
 const SubCommentsCard = ({ subComments }) => {
   const classes = StyledCommentCard();
@@ -18,7 +19,7 @@ const SubCommentsCard = ({ subComments }) => {
         <CardHeader
           avatar={
             <Avatar
-              component={LinkNavigation}
+              component={Link}
               to={`/${subComment.author.name}`}
               aria-label="recipe"
               src={subComment.author.avatar_path ?

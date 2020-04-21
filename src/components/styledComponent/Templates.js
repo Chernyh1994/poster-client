@@ -82,3 +82,5 @@ export const Image = styled.img`
     border-radius: 30px;
     padding: 20px;
 `;
+
+export const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';

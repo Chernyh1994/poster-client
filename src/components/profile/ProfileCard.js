@@ -11,7 +11,7 @@ import {
   AvatarWrap,
   NewAvatar
 } from '../styledComponent/ProfileStyled';
-import { startAvatar } from '../styledComponent/Link';
+import { startAvatar } from '../styledComponent/Templates';
 
 const ProfileCard = () => {
   const { user } = useSelector((state) => state.authReducer);

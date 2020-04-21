@@ -6,13 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
 
 import { StyledCard } from '../styledComponent/Card';
-import { LinkNavigation, startAvatar } from '../styledComponent/Link';
 import CommentModal from '../comment/CommentModal';
 import {
   ImagesBlock,
-  Image
+  Image,
+  startAvatar
 } from '../styledComponent/Templates';
 
 const PostsCard = ({ posts }) => {
@@ -24,7 +25,7 @@ const PostsCard = ({ posts }) => {
         <CardHeader
           avatar={
             <Avatar
-              component={LinkNavigation}
+              component={Link}
               to={`/${post.author.name}`}
               aria-label="recipe"
               src={post.author.avatar_path ?
@@ -37,7 +38,7 @@ const PostsCard = ({ posts }) => {
           subheader={post.created_at}
         />
         <CardActionArea
-          component={LinkNavigation}
+          component={Link}
           to={`/post/${post.id}`}
         >
 

@@ -6,9 +6,9 @@ import ListIcon from '@material-ui/icons/List';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Card from '@material-ui/core/Card';
+import { Link } from 'react-router-dom';
 
 import { StyledCard } from '../styledComponent/Card';
-import { LinkNavigation } from '../styledComponent/Link';
 
 const Navigation = () => {
   const classes = StyledCard();
@@ -22,28 +22,28 @@ const Navigation = () => {
     <Card className={classes.root}>
       <BottomNavigation value={value} onChange={handleChange}>
         <BottomNavigationAction
-          component={LinkNavigation}
+          component={Link}
           to='/profile/posts'
           label="Posts"
           value="post"
           icon={<ListIcon />}
         />
         <BottomNavigationAction
-          component={LinkNavigation}
+          component={Link}
           to='/profile/favorites'
           label="Favorites"
           value="favorites"
           icon={<FavoriteIcon />}
         />
         <BottomNavigationAction
-          component={LinkNavigation}
+          component={Link}
           to='/profile/nearby'
           label="Nearby"
           value="nearby"
           icon={<LocationOnIcon />}
         />
         <BottomNavigationAction
-          component={LinkNavigation}
+          component={Link}
           to='/profile/folder'
           label="Folder"
           value="folder"

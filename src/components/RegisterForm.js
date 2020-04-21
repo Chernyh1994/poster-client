@@ -10,10 +10,10 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import HomeIcon from '@material-ui/icons/Home';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import { registerUser } from '../store/actions/authAction';
 import { InputWrap } from './styledComponent/Templates';
-import { LinkNavbar } from './styledComponent/Link';
 
 const validator = Yup.object({
   name: Yup.string()
@@ -138,14 +138,8 @@ const RegisterForm = () => {
       </InputWrap>
 
       <InputWrap>
-        <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >
-                    Sing Up
-        </Button>
-        <LinkNavbar to='/home'>
-          <Button color="secondary" startIcon={<HomeIcon fontSize="small" />}>
-                        Home
-          </Button>
-        </LinkNavbar>
+        <Button color="primary" type="submit" startIcon={<PersonAddIcon fontSize="small" />} >Sing Up</Button>
+        <Button color="secondary" startIcon={<HomeIcon fontSize="small"/>} component={Link} to='/home'>Home</Button>
       </InputWrap>
 
     </form>
