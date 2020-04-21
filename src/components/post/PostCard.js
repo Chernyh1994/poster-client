@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,17 +15,22 @@ import {
   Image
 } from '../styledComponent/Templates';
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
   const classes = StyledCard();
-
-  const post = useSelector((state) => state.postReducer.post);
+  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
   return (
     <div>
       <Card className={classes.root} >
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" src={`http://localhost:8000/storage/${post.author.avatar_path}`} className={classes.avatar}/>
+            <Avatar
+              aria-label="recipe"
+              src={post.author.avatar_path ?
+                `http://localhost:8000/storage/${post.author.avatar_path}` :
+                startAvatar}
+              className={classes.avatar}
+            />
           }
           title={post.author.name}
           subheader={post.created_at}
@@ -38,7 +43,8 @@ const PostCard = () => {
 
           { post.images.map((image, id) => (
             <ImagesBlock key={id}>
-              <Image src={`http://localhost:8000/storage/${image.path}`}/>
+              <Image
+                src={`http://localhost:8000/storage/${image.path}`}/>
             </ImagesBlock>
           ))}
 

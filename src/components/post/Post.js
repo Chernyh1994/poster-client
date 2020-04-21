@@ -23,7 +23,7 @@ const Post = ({ postId }) => {
   return (
     !post ?
       <PostEmpty postId={postId}/> :
-      <PostCard/>
+      <PostCard post={post}/>
   );
 };
 

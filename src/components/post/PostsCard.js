@@ -17,6 +17,7 @@ import {
 
 const PostsCard = ({ posts }) => {
   const classes = StyledCard();
+  const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
   return (
     posts.map((post, index) => (
@@ -25,7 +26,13 @@ const PostsCard = ({ posts }) => {
           <CardActionArea>
             <CardHeader
               avatar={
-                <Avatar aria-label="recipe" src={`http://localhost:8000/storage/${post.author.avatar_path}`} className={classes.avatar}/>
+                <Avatar
+                  aria-label="recipe"
+                  src={post.author.avatar_path ?
+                    `http://localhost:8000/storage/${post.author.avatar_path}` :
+                    startAvatar }
+                  className={classes.avatar}
+                />
               }
               title={post.author.name}
               subheader={post.created_at}

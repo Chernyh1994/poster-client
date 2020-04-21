@@ -1,3 +1,5 @@
+/* eslint-disable no-extra-boolean-cast */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -27,7 +29,7 @@ const validator = Yup.object({
     .required('Required')
 });
 
-const ProfileForm = ({handleClose}) => {
+const ProfileForm = ({ handleClose }) => {
   const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
