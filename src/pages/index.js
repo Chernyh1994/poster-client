@@ -27,16 +27,16 @@ const Pages = () => {
       routes: [
         {
           path: '/register',
-          render: () => (isAuthorized ? <Redirect to="/home"/> : <Register/>)
+          render: () => (isAuthorized ? <Redirect to="/"/> : <Register/>)
         },
         {
           path: '/login',
-          render: () => (isAuthorized ? <Redirect to="/home"/> : <Login/>)
+          render: () => (isAuthorized ? <Redirect to="/"/> : <Login/>)
         },
         {
-          path: '/home',
+          path: '/',
           exact: true,
-          render: () => (isAuthorized ? <HomePage/> : <Redirect to="/login"/>)
+          component: HomePage
         },
         {
           path: '/profile/:id',
