@@ -1,4 +1,4 @@
-import { LOGIN_USER_SUCCESS, REGISTER_USER_SUCCESS, LOGOUT } from '../store/constants';
+import { LOGIN_USER_SUCCESS, REGISTER_USER_SUCCESS, LOGOUT } from '../store/constants/authConstants';
 
 // eslint-disable-next-line import/prefer-default-export
 export const localStorageMiddleware = () => (next) => (action) => {

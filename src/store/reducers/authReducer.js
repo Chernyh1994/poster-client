@@ -9,7 +9,7 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_ERROR,
   LOGOUT
-} from '../constants';
+} from '../constants/authConstants';
 
 const initialState = {
   token: null,

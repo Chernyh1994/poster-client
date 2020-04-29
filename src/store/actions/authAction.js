@@ -5,7 +5,7 @@ import {
   USER,
   USER_UPDATE,
   LOGOUT
-} from '../constants';
+} from '../constants/authConstants';
 
 export const loginUser = (email, password) => ({
   type: LOGIN_USER,

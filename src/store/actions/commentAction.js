@@ -3,7 +3,7 @@ import {
   CREATE_COMMENT,
   SUB_COMMENTS,
   COMMENTS
-} from '../constants';
+} from '../constants/commentConstants';
 
 export const createComment = (description, parentId, postId, handleClose) => ({
   type: CREATE_COMMENT,

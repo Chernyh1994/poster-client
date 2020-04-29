@@ -11,7 +11,7 @@ import {
   USER_POSTS,
   USER_POSTS_SUCCESS,
   USER_POSTS_ERROR
-} from '../constants';
+} from '../constants/postConstants';
 
 const initialState = {
   posts: [],

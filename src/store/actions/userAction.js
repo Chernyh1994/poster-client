@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import {
   USER_PROFILE
-} from '../constants';
+} from '../constants/userConstants';
 
 export const getUserProfile = (aurotId) => ({
   type: USER_PROFILE,

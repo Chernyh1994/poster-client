@@ -2,7 +2,7 @@
 import {
   USER_PROFILE_SUCCESS,
   USER_PROFILE_ERROR
-} from '../constants';
+} from '../constants/userConstants';
 
 const initialState = {
   userProfile: null,

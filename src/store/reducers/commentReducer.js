@@ -8,7 +8,7 @@ import {
   COMMENTS,
   COMMENTS_SUCCESS,
   COMMENTS_ERROR
-} from '../constants';
+} from '../constants/commentConstants';
 
 const initialState = {
   comment: null,

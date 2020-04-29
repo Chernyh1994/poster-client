@@ -4,7 +4,7 @@ import {
   CREATE_POST,
   POST,
   USER_POSTS
-} from '../constants';
+} from '../constants/postConstants';
 
 export const getPosts = (numbPage) => ({
   type: POSTS,
