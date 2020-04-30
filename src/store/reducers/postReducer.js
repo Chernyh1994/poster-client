@@ -1,6 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-case-declarations */
-/* eslint-disable import/prefer-default-export */
 import {
   POSTS,
   POSTS_SUCCESS,
@@ -14,7 +11,10 @@ import {
 } from '../constants/postConstants';
 
 const initialState = {
-  posts: [],
+  posts: {
+    postId : {},
+    allIds : []
+  },
   post: null,
   userPosts: [],
   isLoading: false,
@@ -35,10 +35,15 @@ export const postReducer = (state = initialState, action) => {
       const { posts } = action.response.data;
       return {
         ...state,
-        posts: [...state.posts, ...posts.data],
-        isLoading: false,
-        nextNumbPage: posts.current_page + 1,
-        lastPage: posts.last_page
+        posts: {
+          byId: posts.data.reduce((accumulator, item) => {
+            return { ...accumulator, [item.id]: item }
+          }),
+          allIds:  [ ...posts.data.map((post)=> post.id)] ,
+        },
+        // isLoading: false,
+        // nextNumbPage: posts.current_page + 1,
+        // lastPage: posts.last_page
       };
     case POST_SUCCESS:
       const { post } = action.response.data;

@@ -19,49 +19,52 @@ import {
 const PostsCard = ({ posts }) => {
   const classes = StyledCard();
 
+  
+
   return (
-    posts.map((post, index) => (
-      <Card className={classes.root} key={index} >
-        <CardHeader
-          avatar={
-            <Avatar
-              component={Link}
-              to={`/profile/${post.author.id}`}
-              aria-label="recipe"
-              src={post.author.avatar_path ?
-                `http://localhost:8000/storage/${post.author.avatar_path}` :
-                startAvatar }
-              className={classes.avatar}
-            />
-          }
-          title={post.author.name}
-          subheader={post.created_at}
-        />
-        <CardActionArea
-          component={Link}
-          to={`/post/${post.id}`}
-        >
+    // posts.map((post, index) => (
+    //   <Card className={classes.root} key={index} >
+    //     <CardHeader
+    //       avatar={
+    //         <Avatar
+    //           component={Link}
+    //           to={`/profile/${post.author.id}`}
+    //           aria-label="recipe"
+    //           src={post.author.avatar_path ?
+    //             `http://localhost:8000/storage/${post.author.avatar_path}` :
+    //             startAvatar }
+    //           className={classes.avatar}
+    //         />
+    //       }
+    //       title={post.author.name}
+    //       subheader={post.created_at}
+    //     />
+    //     <CardActionArea
+    //       component={Link}
+    //       to={`/post/${post.id}`}
+    //     >
 
-          <CardContent>
+    //       <CardContent>
 
-            <Typography variant="body2" component="p">
-              {post.content}
-            </Typography>
+    //         <Typography variant="body2" component="p">
+    //           {post.content}
+    //         </Typography>
 
-            {post.images.map((image, id) => (
-              <ImagesBlock key={id}>
-                <Image src={`http://localhost:8000/storage/${image.path}`}/>
-              </ImagesBlock>
-            ))}
+    //         {post.images.map((image, id) => (
+    //           <ImagesBlock key={id}>
+    //             <Image src={`http://localhost:8000/storage/${image.path}`}/>
+    //           </ImagesBlock>
+    //         ))}
 
-          </CardContent>
-        </CardActionArea>
+    //       </CardContent>
+    //     </CardActionArea>
 
-        <CardActions disableSpacing>
-          <CommentModal postId={post.id} />
-        </CardActions>
-      </Card>
-    ))
+    //     <CardActions disableSpacing>
+    //       <CommentModal postId={post.id} />
+    //     </CardActions>
+    //   </Card>
+    // ))
+    <div>Posts</div>
   );
 };
 
