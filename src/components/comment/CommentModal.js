@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 
 import CreateCommentForm from './CreateCommentForm';
-import LoginForm from '../LoginForm';
+import LoginForm from '../auth/LoginForm';
 
 const CommentModal = ({ postId, parentId }) => {
   const [open, setOpen] = React.useState(false);

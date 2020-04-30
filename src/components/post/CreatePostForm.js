@@ -19,9 +19,9 @@ import {
 import { createPost } from '../../store/actions/postAction';
 
 const validator = Yup.object({
-  description: Yup.string()
-    .min(1, 'description must be longer than 1 characters')
-    .max(2000, 'description should be shorter than 2000 characters')
+  content: Yup.string()
+    .min(1, 'content must be longer than 1 characters')
+    .max(2000, 'content should be shorter than 2000 characters')
     .required('Required')
 });
 
@@ -41,12 +41,12 @@ const CreatePostForm = () => {
 
   const post = useFormik({
     initialValues: {
-      description: ''
+      content: ''
     },
     validationSchema: validator,
-    onSubmit: (parameter) => {
+    onSubmit: ({content}) => {
       const formData = new FormData();
-      formData.append('description', parameter.description);
+      formData.append('content', content);
       if (file) {
         formData.append('images', file, file.name);
       }
@@ -61,10 +61,10 @@ const CreatePostForm = () => {
         <TextField
           fullWidth
           label="What's happening?"
-          name="description"
-          {...post.getFieldProps('description')}
-          error={!!post.touched.description && !!post.errors.description }
-          helperText={post.touched.description && post.errors.description ? post.errors.description : null}
+          name="content"
+          {...post.getFieldProps('content')}
+          error={!!post.touched.content && !!post.errors.content }
+          helperText={post.touched.content && post.errors.content ? post.errors.content : null}
         />
       </InputWrap>
 

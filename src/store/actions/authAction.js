@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   LOGIN_USER,
   REGISTER_USER,
@@ -9,44 +8,37 @@ import {
 
 export const loginUser = (email, password) => ({
   type: LOGIN_USER,
-  request:
-    {
-      url: '/api/V1/login',
-      method: 'post',
-      data: email,
-      password
-    }
+  request: {
+    url: '/api/V1/login',
+    method: 'post',
+    data: { email, password },
+  }
 });
 
 export const registerUser = (name, email, password) => ({
   type: REGISTER_USER,
-  request:
-    {
-      url: '/api/V1/register',
-      method: 'post',
-      data: name,
-      email,
-      password
-    }
+  request: {
+    url: '/api/V1/register',
+    method: 'post',
+    data: { name, email, password },
+  }
 });
 
 export const getUser = () => ({
   type: USER,
-  request:
-    {
-      url: '/api/V1/user',
-      method: 'get'
-    }
+  request: {
+    url: '/api/V1/user',
+    method: 'get'
+  }
 });
 
 export const userUpdate = (formData) => ({
   type: USER_UPDATE,
-  request:
-    {
-      url: '/api/V1/user',
-      method: 'post',
-      data: formData
-    }
+  request: {
+    url: '/api/V1/user',
+    method: 'post',
+    data: formData
+  }
 });
 
 export const logout = () => ({

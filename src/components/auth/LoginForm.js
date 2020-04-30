@@ -10,8 +10,8 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { InputWrap } from './styledComponent/Templates';
-import { loginUser } from '../store/actions/authAction';
+import { InputWrap } from '../styledComponent/Templates';
+import { loginUser } from '../../store/actions/authAction';
 
 const validator = Yup.object({
   email: Yup.string()
@@ -37,7 +37,8 @@ const LoginForm = () => {
       password: ''
     },
     validationSchema: validator,
-    onSubmit: (email, password) => {
+    onSubmit: ({email, password}) => {
+      console.log(email);
       dispatch(loginUser(email, password));
     }
   });

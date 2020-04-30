@@ -12,8 +12,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { registerUser } from '../store/actions/authAction';
-import { InputWrap } from './styledComponent/Templates';
+import { registerUser } from '../../store/actions/authAction';
+import { InputWrap } from '../styledComponent/Templates';
 
 const validator = Yup.object({
   name: Yup.string()
@@ -54,7 +54,7 @@ const RegisterForm = () => {
 
     validationSchema: validator,
 
-    onSubmit: (name, email, password) => {
+    onSubmit: ({ name, email, password }) => {
       dispatch(registerUser(name, email, password));
     }
   });

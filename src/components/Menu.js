@@ -29,7 +29,7 @@ const Menu = () => {
         <ListItem
           button
           component={Link}
-          to='/home' >
+          to='/' >
           <ListItemIcon><HomeIcon/></ListItemIcon>
           <ListItemText primary={'Home'} />
         </ListItem>

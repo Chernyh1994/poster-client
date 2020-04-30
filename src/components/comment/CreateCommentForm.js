@@ -11,9 +11,9 @@ import { InputWrap } from '../styledComponent/Templates';
 import { createComment } from '../../store/actions/commentAction';
 
 const validator = Yup.object({
-  description: Yup.string()
-    .min(1, 'description must be longer than 1 characters')
-    .max(1000, 'description should be shorter than 1000 characters')
+  content: Yup.string()
+    .min(1, 'content must be longer than 1 characters')
+    .max(1000, 'content should be shorter than 1000 characters')
     .required('Required')
 });
 
@@ -23,12 +23,12 @@ const CreateCommentForm = ({ parentId, postId, handleClose }) => {
 
   const comment = useFormik({
     initialValues: {
-      description: '',
-      parent_id: parentId
+      content: ''
     },
     validationSchema: validator,
-    onSubmit: (description, parent_id) => {
-      dispatch(createComment(description, parent_id, postId, handleClose));
+    onSubmit: ({content}) => {
+      dispatch(createComment(content, parentId, postId));
+      handleClose();
     }
   });
 
@@ -38,14 +38,14 @@ const CreateCommentForm = ({ parentId, postId, handleClose }) => {
       <InputWrap>
         <TextField
           fullWidth
-          label="Description*"
-          name="description"
+          label="content*"
+          name="content"
           placeholder="Placeholder"
           multiline
-          {...comment.getFieldProps('description')}
-          error={!!comment.touched.description && !!comment.errors.description }
+          {...comment.getFieldProps('content')}
+          error={!!comment.touched.content && !!comment.errors.content }
           // eslint-disable-next-line max-len
-          helperText={comment.touched.description && comment.errors.description ? comment.errors.description : null}
+          helperText={comment.touched.content && comment.errors.content ? comment.errors.content : null}
         />
       </InputWrap>
 
