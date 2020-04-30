@@ -15,8 +15,12 @@ import PostsPage from './main/postsPage';
 import PostPage from './main/postPage';
 import ProfilePage from './main/profilePage';
 import UserPosts from '../components/profile/UserPosts';
+import { useGetUser } from '../utils/useGetUser';
+import { useToken } from '../utils/useToken';
 
 const Pages = () => {
+  useGetUser();
+  useToken();
   const user = useSelector((state) => state.authReducer.user);
 
   const isAuthorized = !!user;

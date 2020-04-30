@@ -1,19 +1,21 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { StylesProvider } from '@material-ui/core/styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Pages from './pages';
-import { useGetUser } from './utils/useGetUser';
-import { useToken } from './utils/useToken';
+import { configureStore } from './store';
 
 const App = () => {
-  useGetUser();
-  useToken();
+  const store = configureStore();
+
   return (
     <StylesProvider injectFirst>
-      <ToastContainer />
-      <Pages/>
+      <Provider store={store}>
+        <ToastContainer />
+        <Pages/>
+      </Provider>
     </StylesProvider>);
 };
 

@@ -19,6 +19,7 @@ import {
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
+  console.log(post)
 
   return (
     <div>
@@ -41,7 +42,7 @@ const PostCard = ({ post }) => {
         <CardContent>
 
           <Typography variant="body2" component="p">
-            {post.description}
+            {post.content}
           </Typography>
 
           { post.images.map((image, id) => (

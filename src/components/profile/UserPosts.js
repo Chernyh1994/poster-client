@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { getUserPosts } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
-import PostsEmpty from '../post/PostsEmpty';
+import EmptyContentCard from '../EmptyContentCard';
 import PostsCard from '../post/PostsCard';
 
 
@@ -37,7 +37,7 @@ const UserPosts = () => {
       >
         <PostsCard posts={userPosts}/>
       </InfiniteScroll> :
-      <PostsEmpty/>
+      <EmptyContentCard/>
   );
 };
 

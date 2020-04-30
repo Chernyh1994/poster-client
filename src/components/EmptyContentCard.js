@@ -8,11 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ReplayIcon from '@material-ui/icons/Replay';
 
-import { getPost } from '../../store/actions/postAction';
-import { StyledCard } from '../styledComponent/Card';
+import { getPost } from '../store/actions/postAction';
+import { StyledCard } from './styledComponent/Card';
 
 
-const PostEmpty = ({ postId }) => {
+const EmptyContentCard = ({ postId }) => {
   const classes = StyledCard();
 
   const dispatch = useDispatch();
@@ -40,4 +40,4 @@ const PostEmpty = ({ postId }) => {
   );
 };
 
-export default PostEmpty;
+export default EmptyContentCard;

@@ -45,7 +45,7 @@ const PostsCard = ({ posts }) => {
           <CardContent>
 
             <Typography variant="body2" component="p">
-              {post.description}
+              {post.content}
             </Typography>
 
             {post.images.map((image, id) => (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getPost } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
-import PostEmpty from './PostEmpty';
+import EmptyContentCard from '../EmptyContentCard';
 import PostCard from './PostCard';
 
 
@@ -21,9 +21,9 @@ const Post = ({ postId }) => {
   }
 
   return (
-    !post ?
-      <PostEmpty postId={postId}/> :
-      <PostCard post={post}/>
+    post ?
+      <PostCard post={post}/> :
+      <EmptyContentCard postId={postId}/>
   );
 };
 
