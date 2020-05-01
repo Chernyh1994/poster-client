@@ -5,7 +5,7 @@ import {
 export const getUserProfile = (aurotId) => ({
   type: USER_PROFILE,
   request: {
-    url: `/api/V1/user/profile/${aurotId}`,
+    url: `/api/V1/user/${aurotId}`,
     method: 'get'
   }
 });

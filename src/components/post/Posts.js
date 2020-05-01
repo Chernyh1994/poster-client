@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { getPosts } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
-import PostsCard from './PostsCard';
+import PostCard from './PostCard';
 
 
 const Posts = () => {
@@ -15,27 +15,27 @@ const Posts = () => {
   } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!posts.length) {
+    if (!posts.allIds) {
       dispatch(getPosts(1));
     }
-    // eslint-disable-next-line
-  }, [dispatch]);
+  }, [dispatch, posts]);
 
   const hendlePosts = () => {
     if (!isLoading) {
       dispatch(getPosts(nextNumbPage));
     }
   };
+ 
 
   return (
-    posts ?
+    posts.allIds ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendlePosts}
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        <PostsCard posts={posts}/>
+      { posts.allIds.map((post, index) => <PostCard key={index} post={posts.byId[post]}/>)}
       </InfiniteScroll> :
       <EmptyContentCard/>
   );

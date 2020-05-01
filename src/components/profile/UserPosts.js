@@ -2,40 +2,40 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import { getUserPosts } from '../../store/actions/postAction';
+import { getMyPosts } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
-import PostsCard from '../post/PostsCard';
+import PostCard from '../post/PostCard';
 
 
 const UserPosts = () => {
   const dispatch = useDispatch();
   const {
-    userPosts, isLoading, nextNumbPage, lastPage
+    posts, isLoading, nextNumbPage, lastPage
   } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!userPosts.length) {
-      dispatch(getUserPosts(1));
+    if (!posts.myIds.length) {
+      dispatch(getMyPosts());
     }
     // eslint-disable-next-line
   }, [dispatch]);
 
   const hendleUserPosts = () => {
     if (!isLoading) {
-      dispatch(getUserPosts(nextNumbPage));
+      dispatch(getMyPosts(nextNumbPage));
     }
   };
 
   return (
-    userPosts ?
+    posts.myIds ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendleUserPosts}
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        <PostsCard posts={userPosts}/>
+        <PostCard posts={posts.myIds}/>
       </InfiniteScroll> :
       <EmptyContentCard/>
   );

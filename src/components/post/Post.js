@@ -6,7 +6,7 @@ import { getPost } from '../../store/actions/postAction';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
 import PostCard from './PostCard';
-
+import Comments from '../comment/Comments';
 
 const Post = ({ postId }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,11 @@ const Post = ({ postId }) => {
 
   return (
     post ?
-      <PostCard post={post}/> :
+      <div>
+        <PostCard post={post}/>
+        <Comments postId={post.id}/>
+      </div>
+      :
       <EmptyContentCard postId={postId}/>
   );
 };
