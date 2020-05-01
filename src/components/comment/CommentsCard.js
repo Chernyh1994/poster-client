@@ -13,12 +13,11 @@ import CommentButton from './CommentButton';
 import { StyledCommentCard } from '../styledComponent/Card';
 import { startAvatar } from '../styledComponent/Templates';
 
-const CommentsCard = ({ comments, postId }) => {
+const CommentsCard = ({ comment, postId }) => {
   const classes = StyledCommentCard();
 
   return (
-    comments.map((comment, index) => (
-      <Card className={classes.root} key={index} >
+      <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar
@@ -36,7 +35,7 @@ const CommentsCard = ({ comments, postId }) => {
         <CardContent>
 
           <Typography variant="body2" component="p">
-            {comment.description}
+            {comment.content}
           </Typography>
 
         </CardContent>
@@ -44,7 +43,6 @@ const CommentsCard = ({ comments, postId }) => {
           <CommentButton postId={postId} commentId={comment.id} />
         </CardActions>
       </Card>
-    ))
   );
 };
 

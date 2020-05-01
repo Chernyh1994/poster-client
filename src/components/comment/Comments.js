@@ -8,7 +8,6 @@ import CommentsCard from './CommentsCard';
 import CommentEmpty from './CommentEmpty';
 import { getComments } from '../../store/actions/commentAction';
 
-
 const Comments = ({ postId }) => {
   const dispatch = useDispatch();
   const {
@@ -17,7 +16,6 @@ const Comments = ({ postId }) => {
 
   useEffect(() => {
     dispatch(getComments(postId));
-    // eslint-disable-next-line
   }, [dispatch]);
 
   const hendlePosts = () => {
@@ -27,14 +25,14 @@ const Comments = ({ postId }) => {
   };
 
   return (
-    comments ?
+    comments.parentIds ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendlePosts}
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        <CommentsCard comments={comments} postId={postId}/>
+      { comments.parentIds.map((comment, index) => <CommentsCard key={index} comment={comments.byId[comment]} postId={postId}/>)}
       </InfiniteScroll> :
       <CommentEmpty/>
   );

@@ -11,8 +11,11 @@ import {
 } from '../constants/commentConstants';
 
 const initialState = {
-  comment: null,
-  comments: [],
+  comments: {
+    byId: null,
+    allIds: null,
+    parentIds: null
+  },
   subComments: [],
   isLoading: false,
   nextNumbPage: null,
@@ -38,7 +41,18 @@ export const commentReducer = (state = initialState, action) => {
       const { comments } = action.response.data;
       return {
         ...state,
-        comments: [...comments.data],
+        comments: {
+          byId: comments.data.reduce((accumulator, item) => {
+            return { ...accumulator, [item.id]: item }
+          }, {}),
+          allIds: [ ...comments.data.map(comment => comment.id) ],
+          parentIds: comments.data.reduce((accumulator, item) => {
+            if(item.parent_id === null) {
+              accumulator.push(item.id)
+            }
+            return accumulator;
+          },[]),
+        },
         isLoading: false,
         nextNumbPage: comments.current_page + 1,
         lastPage: comments.last_page

@@ -7,7 +7,6 @@ import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
 import PostCard from './PostCard';
 
-
 const Posts = () => {
   const dispatch = useDispatch();
   const {
@@ -25,7 +24,6 @@ const Posts = () => {
       dispatch(getPosts(nextNumbPage));
     }
   };
- 
 
   return (
     posts.allIds ?
