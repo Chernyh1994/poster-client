@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 
 import LodingCard from '../LoadingCard';
-import CommentEmpty from './CommentEmpty';
+import EmptyContentCard from '../EmptyContentCard';
 import SubCommentsCard from './SubCommentsCard';
 
 const SubComments = ({ expanded }) => {
@@ -20,7 +20,7 @@ const SubComments = ({ expanded }) => {
       <CardContent>
         { subComments ?
           <SubCommentsCard subComments={subComments}/> :
-          <CommentEmpty/>
+          <EmptyContentCard/>
         }
       </CardContent>
     </Collapse>
