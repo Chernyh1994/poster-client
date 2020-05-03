@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import {
   USER_PROFILE_SUCCESS,
   USER_PROFILE_ERROR
@@ -9,7 +8,6 @@ const initialState = {
   error: null
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_PROFILE_SUCCESS:

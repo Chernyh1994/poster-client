@@ -7,17 +7,17 @@ import {
   TemplateContent,
   FormCardHome
 } from '../../components/styledComponent/Templates';
+import LoadingCard from '../../components/LoadingCard';
 
 const GuestPage = () => (
   <TemplateHomeBlock>
     <TemplateContent>
-      <div>test</div>
+      <LoadingCard/>
     </TemplateContent>
     <FormCardHome>
       <FormTitle> LOGIN </FormTitle>
       <LoginForm/>
     </FormCardHome>
-
   </TemplateHomeBlock>
 );
 

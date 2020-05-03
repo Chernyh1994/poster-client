@@ -26,7 +26,7 @@ const CreateCommentForm = ({ parentId, postId, handleClose }) => {
       content: ''
     },
     validationSchema: validator,
-    onSubmit: ({content}) => {
+    onSubmit: ({ content }) => {
       dispatch(createComment(content, parentId, postId));
       handleClose();
     }

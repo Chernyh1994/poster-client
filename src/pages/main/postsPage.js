@@ -6,16 +6,14 @@ import {
   TemplateContent
 } from '../../components/styledComponent/Templates';
 
-const PostsPage = () => {
-  return (
-    <TemplateHomeBlock>
+const PostsPage = () => (
+  <TemplateHomeBlock>
 
-      <TemplateContent>
-        <Posts/>
-      </TemplateContent>
+    <TemplateContent>
+      <Posts/>
+    </TemplateContent>
 
-    </TemplateHomeBlock>
-  );
-};
+  </TemplateHomeBlock>
+);
 
 export default PostsPage;

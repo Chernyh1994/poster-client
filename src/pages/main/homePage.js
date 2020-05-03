@@ -15,12 +15,12 @@ const HomePage = () => {
 
   const isAuthorized = !!user;
   return (
-    isAuthorized ? 
-    <Card className={classes.root}>
-      <FormTitle> Home </FormTitle>
-      <CreatePostForm/>
-    </Card>
-    : <GuestPage/>
+    isAuthorized ?
+      <Card className={classes.root}>
+        <FormTitle> Home </FormTitle>
+        <CreatePostForm/>
+      </Card> :
+      <GuestPage/>
   );
 };
 

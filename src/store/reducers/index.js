@@ -8,7 +8,6 @@ import { userReducer } from './userReducer';
 
 const requestsReducer = handleRequests;
 
-// eslint-disable-next-line import/prefer-default-export
 export const reducers = combineReducers({
   requests: requestsReducer,
   authReducer,

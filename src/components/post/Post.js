@@ -24,8 +24,7 @@ const Post = ({ postId }) => {
       <div>
         <PostCard post={post}/>
         <Comments postId={post.id}/>
-      </div>
-      :
+      </div> :
       <EmptyContentCard postId={postId}/>
   );
 };

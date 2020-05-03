@@ -18,7 +18,6 @@ import {
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
-  console.log(post)
 
   return (
     <Card className={classes.root} >

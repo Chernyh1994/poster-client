@@ -8,11 +8,11 @@ import Avatar from '@material-ui/core/Avatar';
 import CardActions from '@material-ui/core/CardActions';
 import { Link } from 'react-router-dom';
 
-import CommentButton from './CommentButton';
+import CommentActions from './CommentActions';
 import { StyledCommentCard } from '../styledComponent/Card';
 import { startAvatar } from '../styledComponent/Templates';
 
-const CommentsCard = ({ comment, postId }) => {
+const CommentCard = ({ comment, postId }) => {
   const classes = StyledCommentCard();
 
   return (
@@ -38,11 +38,13 @@ const CommentsCard = ({ comment, postId }) => {
         </Typography>
 
       </CardContent>
-      <CardActions disableSpacing>
-        <CommentButton postId={postId} commentId={comment.id} />
-      </CardActions>
+      { !comment.parent_id ?
+        <CardActions disableSpacing>
+          <CommentActions postId={postId} parentId={comment.id} comment={comment} />
+        </CardActions> :
+        <div></div> }
     </Card>
   );
 };
 
-export default CommentsCard;
+export default CommentCard;

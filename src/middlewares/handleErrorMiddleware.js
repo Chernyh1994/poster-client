@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 // eslint-disable-next-line import/prefer-default-export
 export const handleErrorMiddleware = () => (next) => (action) => {
-  if (RegExp('_ERROR').test(action.type)) {
+  if (action.type.endsWith('_ERROR')) {
     toast.error(action.error.message);
   }
 

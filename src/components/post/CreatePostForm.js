@@ -44,7 +44,7 @@ const CreatePostForm = () => {
       content: ''
     },
     validationSchema: validator,
-    onSubmit: ({content}) => {
+    onSubmit: ({ content }) => {
       const formData = new FormData();
       formData.append('content', content);
       if (file) {

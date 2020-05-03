@@ -5,10 +5,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Pages from './pages';
-import { configureStore } from './store';
+import initStore from './store';
 
 const App = () => {
-  const store = configureStore();
+  const store = initStore();
 
   return (
     <StylesProvider injectFirst>

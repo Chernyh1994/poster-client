@@ -36,10 +36,8 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: {
-          byId: posts.data.reduce((accumulator, item) => {
-              return { ...accumulator, [item.id]: item }
-            }, {}),
-          allIds: [ ...posts.data.map((post)=> post.id) ],
+          byId: posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {}),
+          allIds: [...posts.data.map((post) => post.id)]
         },
         isLoading: false,
         nextNumbPage: posts.current_page + 1,

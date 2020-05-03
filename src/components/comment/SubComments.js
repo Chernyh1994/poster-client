@@ -6,12 +6,12 @@ import Collapse from '@material-ui/core/Collapse';
 
 import LodingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
-import SubCommentsCard from './SubCommentsCard';
+import CommentCard from './CommentCard';
 
-const SubComments = ({ expanded }) => {
-  const { subComments, isLoading } = useSelector((state) => state.commentReducer);
+const SubComments = ({ expanded, comment }) => {
+  const { subComments, settings } = useSelector((state) => state.commentReducer);
 
-  if (isLoading) {
+  if (settings.isLoading) {
     return <LodingCard/>;
   }
 
@@ -19,7 +19,7 @@ const SubComments = ({ expanded }) => {
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
         { subComments ?
-          <SubCommentsCard subComments={subComments}/> :
+          comment.comments.map((comment, index) => <CommentCard key={index} comment={subComments.byId[comment]}/>) :
           <EmptyContentCard/>
         }
       </CardContent>

@@ -9,7 +9,7 @@ export const createComment = (content, parentId, postId) => ({
   request: {
     url: `/api/V1/post/${postId}/comment`,
     method: 'post',
-    data: { content, parentId }
+    data: { content, parent_id: parentId }
   }
 });
 

@@ -14,20 +14,13 @@ import { Link } from 'react-router-dom';
 
 import { registerUser } from '../../store/actions/authAction';
 import { InputWrap } from '../styledComponent/Templates';
+import { validatorForm } from '../../config/validatorForm';
 
 const validator = Yup.object({
-  name: Yup.string()
-    .min(4, 'User Name must be longer')
-    .required('Required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
-  password: Yup.string()
-    .min(8, 'Password must be longer')
-    .required('Required'),
-  repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required')
+  name: validatorForm.name,
+  email: validatorForm.email,
+  password: validatorForm.password,
+  repeatPassword: validatorForm.repeatPassword
 });
 
 const RegisterForm = () => {

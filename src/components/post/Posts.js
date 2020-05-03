@@ -19,7 +19,7 @@ const Posts = () => {
     }
   }, [dispatch, posts]);
 
-  const hendlePosts = () => {
+  const handlePosts = () => {
     if (!isLoading) {
       dispatch(getPosts(nextNumbPage));
     }
@@ -29,11 +29,11 @@ const Posts = () => {
     posts.allIds ?
       <InfiniteScroll
         pageStart={0}
-        loadMore={hendlePosts}
+        loadMore={handlePosts}
         hasMore={nextNumbPage <= lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-      { posts.allIds.map((post, index) => <PostCard key={index} post={posts.byId[post]}/>)}
+        { posts.allIds.map((post, index) => <PostCard key={index} post={posts.byId[post]}/>)}
       </InfiniteScroll> :
       <EmptyContentCard/>
   );

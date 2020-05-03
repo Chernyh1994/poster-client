@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
@@ -17,7 +16,6 @@ const initialState = {
   error: null
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:

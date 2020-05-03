@@ -11,7 +11,7 @@ export const loginUser = (email, password) => ({
   request: {
     url: '/api/V1/login',
     method: 'post',
-    data: { email, password },
+    data: { email, password }
   }
 });
 
@@ -20,7 +20,7 @@ export const registerUser = (name, email, password) => ({
   request: {
     url: '/api/V1/register',
     method: 'post',
-    data: { name, email, password },
+    data: { name, email, password }
   }
 });
 

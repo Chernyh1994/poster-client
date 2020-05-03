@@ -12,14 +12,11 @@ import * as Yup from 'yup';
 
 import { InputWrap } from '../styledComponent/Templates';
 import { loginUser } from '../../store/actions/authAction';
+import { validatorForm } from '../../config/validatorForm';
 
 const validator = Yup.object({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
-  password: Yup.string()
-    .min(8, 'Password must be longer')
-    .required('Required')
+  email: validatorForm.email,
+  password: validatorForm.password
 });
 
 const LoginForm = () => {
@@ -37,7 +34,7 @@ const LoginForm = () => {
       password: ''
     },
     validationSchema: validator,
-    onSubmit: ({email, password}) => {
+    onSubmit: ({ email, password }) => {
       console.log(email);
       dispatch(loginUser(email, password));
     }

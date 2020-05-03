@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import LoadingCard from '../LoadingCard';
-import CommentsCard from './CommentsCard';
+import CommentCard from './CommentCard';
 import EmptyContentCard from '../EmptyContentCard';
 import { getComments } from '../../store/actions/commentAction';
 
 const Comments = ({ postId }) => {
   const dispatch = useDispatch();
-  const {comments, settings} = useSelector((state) => state.commentReducer);
+  const { comments, settings } = useSelector((state) => state.commentReducer);
 
   useEffect(() => {
     dispatch(getComments(postId));
@@ -30,7 +30,7 @@ const Comments = ({ postId }) => {
         hasMore={settings.nextNumbPage <= settings.lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-      { comments.parentIds.map((comment, index) => <CommentsCard key={index} comment={comments.byId[comment]} postId={postId}/>)}
+        { comments.parentIds.map((comment, index) => <CommentCard key={index} comment={comments.byId[comment]} postId={postId}/>)}
       </InfiniteScroll> :
       <EmptyContentCard/>
   );
