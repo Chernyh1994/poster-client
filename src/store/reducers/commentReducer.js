@@ -16,7 +16,7 @@ function normalizedData(state, action) {
   const subCommentList = {};
   const subCommentIds = [];
 
-  const addSubComments = comments.data.reduce((accumulator, item) => {
+  const commentsList = comments.data.reduce((accumulator, item) => {
     const commentIds = [];
     item.comments.forEach((comment) => {
       commentIds.push(comment.id);
@@ -31,7 +31,7 @@ function normalizedData(state, action) {
   return {
     ...state,
     comments: {
-      byId: addSubComments,
+      byId: commentsList,
       allIds: [...comments.data.map((comment) => comment.id)],
       parentIds: comments.data.reduce((accumulator, item) => {
         if (item.parent_id === null) {

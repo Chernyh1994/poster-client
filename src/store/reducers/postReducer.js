@@ -11,15 +11,52 @@ import {
 } from '../constants/postConstants';
 
 const initialState = {
-  posts: {
-    byId: null,
-    allIds: null
-  },
+  posts: {},
+  myPosts: {},
   post: null,
   isLoading: false,
-  nextNumbPage: null,
-  lastPage: null
 };
+
+const addPostList = posts => {
+  return (
+    posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
+  )
+}
+
+const addPostIds = posts => {
+  return (
+    posts.data.map((post) => post.id)
+  )
+}
+
+const normalizedPosts = (state, action) => {
+  const { posts } = action.response.data;
+  return {
+    ...state,
+    posts: {
+      byId: addPostList(posts),
+      allIds: [...addPostIds(posts)],
+      nextNumbPage: posts.current_page + 1,
+      lastPage: posts.last_page
+    },
+    isLoading: false
+  };
+}
+
+const normalizedUserPosts = (state, action) => {
+  const { posts } = action.response.data;
+
+  return {
+    ...state,
+    myPosts: {
+      byId: addPostList(posts),
+      allIds: [...addPostIds(posts)],
+      nextNumbPage: posts.current_page + 1,
+      lastPage: posts.last_page
+    },
+    isLoading: false
+  };
+}
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,18 +68,9 @@ export const postReducer = (state = initialState, action) => {
         isLoading: true
       };
     case POSTS_SUCCESS:
+      return normalizedPosts(state, action);
     case MY_POSTS_SUCCESS:
-      const { posts } = action.response.data;
-      return {
-        ...state,
-        posts: {
-          byId: posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {}),
-          allIds: [...posts.data.map((post) => post.id)]
-        },
-        isLoading: false,
-        nextNumbPage: posts.current_page + 1,
-        lastPage: posts.last_page
-      };
+      return normalizedUserPosts(state, action);
     case POST_SUCCESS:
       const { post } = action.response.data;
       return {

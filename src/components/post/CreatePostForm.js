@@ -50,7 +50,7 @@ const CreatePostForm = () => {
       if (file) {
         formData.append('images', file, file.name);
       }
-      dispatch(createPost(formData, history));
+      dispatch(createPost(formData));
     }
   });
 

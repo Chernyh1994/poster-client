@@ -9,9 +9,7 @@ import PostCard from './PostCard';
 
 const Posts = () => {
   const dispatch = useDispatch();
-  const {
-    posts, isLoading, nextNumbPage, lastPage
-  } = useSelector((state) => state.postReducer);
+  const { posts, isLoading } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
     if (!posts.allIds) {
@@ -21,7 +19,7 @@ const Posts = () => {
 
   const handlePosts = () => {
     if (!isLoading) {
-      dispatch(getPosts(nextNumbPage));
+      dispatch(getPosts(posts.nextNumbPage));
     }
   };
 
@@ -30,7 +28,7 @@ const Posts = () => {
       <InfiniteScroll
         pageStart={0}
         loadMore={handlePosts}
-        hasMore={nextNumbPage <= lastPage }
+        hasMore={posts.nextNumbPage <= posts.lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
         { posts.allIds.map((post, index) => <PostCard key={index} post={posts.byId[post]}/>)}
