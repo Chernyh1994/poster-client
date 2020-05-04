@@ -23,7 +23,7 @@ const Comments = ({ postId }) => {
   };
 
   return (
-    comments.parentIds ?
+    comments.parentIds.length ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendlePosts}

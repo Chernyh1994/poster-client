@@ -19,7 +19,7 @@ export const createPost = (formData) => ({
     url: '/api/V1/post',
     method: 'post',
     data: formData
-  }
+  },
 });
 
 export const getPost = (id) => ({

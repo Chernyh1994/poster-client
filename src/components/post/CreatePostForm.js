@@ -17,12 +17,10 @@ import {
   Image
 } from '../styledComponent/Templates';
 import { createPost } from '../../store/actions/postAction';
+import { validatorPost } from '../../config/validatorForm';
 
 const validator = Yup.object({
-  content: Yup.string()
-    .min(1, 'content must be longer than 1 characters')
-    .max(2000, 'content should be shorter than 2000 characters')
-    .required('Required')
+  content: validatorPost.content
 });
 
 const CreatePostForm = () => {
@@ -44,13 +42,14 @@ const CreatePostForm = () => {
       content: ''
     },
     validationSchema: validator,
-    onSubmit: ({ content }) => {
+    onSubmit: async({ content }) => {
       const formData = new FormData();
       formData.append('content', content);
       if (file) {
         formData.append('images', file, file.name);
       }
-      dispatch(createPost(formData));
+      await dispatch(createPost(formData))
+      console.log('eee')
     }
   });
 

@@ -5,12 +5,36 @@ import {
 } from '../constants/commentConstants';
 
 const initialState = {
-  comments: {},
-  subComments: {},
+  comments: {
+    byId: {},
+    allIds: [],
+    parentIds: []
+  },
+  subComments: {
+    byId: {},
+    allIds: []
+  },
   settings: {}
 };
 
-function normalizedData(state, action) {
+const addCommentIds = comments => {
+  return (
+    comments.data.map((comment) => comment.id)
+  )
+}
+
+const addCommentParentIds = comments => {
+  return (
+    comments.data.reduce((accumulator, item) => {
+      if (item.parent_id === null) {
+        accumulator.push(item.id);
+      }
+      return accumulator;
+    }, [])  
+  )
+}
+
+const normalizedData = (state, action) => {
   const { comments } = action.response.data;
 
   const subCommentList = {};
@@ -31,18 +55,13 @@ function normalizedData(state, action) {
   return {
     ...state,
     comments: {
-      byId: commentsList,
-      allIds: [...comments.data.map((comment) => comment.id)],
-      parentIds: comments.data.reduce((accumulator, item) => {
-        if (item.parent_id === null) {
-          accumulator.push(item.id);
-        }
-        return accumulator;
-      }, [])
+      byId: {...state.comments.byId, ...commentsList},
+      allIds: [...state.comments.allIds, ...addCommentIds(comments)],
+      parentIds: [...state.comments.parentIds, ...addCommentParentIds(comments)],
     },
     subComments: {
-      byId: subCommentList,
-      allIds: subCommentIds
+      byId: {...state.subComments.byId, ...subCommentList},
+      allIds: [...state.subComments.allIds, ...subCommentIds],
     },
     settings: {
       isLoading: false,
@@ -57,6 +76,15 @@ export function commentReducer(state = initialState, action) {
     case COMMENTS:
       return {
         ...state,
+        comments: {
+          byId: {},
+          allIds: [],
+          parentIds: []
+        },
+        subComments: {
+          byId: {},
+          allIds: []
+        },
         settings: {
           isLoading: true
         }

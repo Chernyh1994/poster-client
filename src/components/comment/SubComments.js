@@ -18,7 +18,7 @@ const SubComments = ({ expanded, comment }) => {
   return (
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        { subComments ?
+        { subComments.allIds.length ?
           comment.comments.map((comment, index) => <CommentCard key={index} comment={subComments.byId[comment]}/>) :
           <EmptyContentCard/>
         }

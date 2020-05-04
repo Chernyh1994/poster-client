@@ -12,7 +12,7 @@ const Posts = () => {
   const { posts, isLoading } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!posts.allIds) {
+    if (!posts.allIds.length) {
       dispatch(getPosts(1));
     }
   }, [dispatch, posts]);
@@ -24,7 +24,7 @@ const Posts = () => {
   };
 
   return (
-    posts.allIds ?
+    posts.allIds.length ?
       <InfiniteScroll
         pageStart={0}
         loadMore={handlePosts}

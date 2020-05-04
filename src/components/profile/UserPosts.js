@@ -13,7 +13,7 @@ const UserPosts = () => {
   const { myPosts, isLoading } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!myPosts.allIds) {
+    if (!myPosts.allIds.length) {
       dispatch(getMyPosts(1));
     }
   }, [dispatch, myPosts]);
@@ -25,7 +25,7 @@ const UserPosts = () => {
   };
 
   return (
-    myPosts.allIds ?
+    myPosts.allIds.length ?
       <InfiniteScroll
         pageStart={0}
         loadMore={handleUserPosts}

@@ -11,8 +11,14 @@ import {
 } from '../constants/postConstants';
 
 const initialState = {
-  posts: {},
-  myPosts: {},
+  posts: {
+    byId: {},
+    allIds: []
+  },
+  myPosts: {
+    byId: {},
+    allIds: []
+  },
   post: null,
   isLoading: false,
 };
@@ -34,8 +40,8 @@ const normalizedPosts = (state, action) => {
   return {
     ...state,
     posts: {
-      byId: addPostList(posts),
-      allIds: [...addPostIds(posts)],
+      byId: {...state.posts.byId, ...addPostList(posts)},
+      allIds: [...state.posts.allIds, ...addPostIds(posts)],
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
@@ -49,8 +55,8 @@ const normalizedUserPosts = (state, action) => {
   return {
     ...state,
     myPosts: {
-      byId: addPostList(posts),
-      allIds: [...addPostIds(posts)],
+      byId: {...state.myPosts.byId, ...addPostList(posts)},
+      allIds: [...state.myPosts.allIds, ...addPostIds(posts)],
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },

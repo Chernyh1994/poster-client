@@ -14,3 +14,10 @@ export const validatorForm = {
     .oneOf([Yup.ref('password')], 'Passwords must match')
     .required('Required')
 };
+
+export const validatorPost = {
+  content: Yup.string()
+    .min(1, 'content must be longer than 1 characters')
+    .max(2000, 'content should be shorter than 2000 characters')
+    .required('Required')
+};
