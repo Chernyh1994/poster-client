@@ -6,6 +6,7 @@ export const SpinnerStyled = makeStyles((theme) => ({
     display: 'flex',
     '& > * + *': {
       marginLeft: theme.spacing(2)
-    }
+    },
+    justifyContent: 'center'
   }
 }));

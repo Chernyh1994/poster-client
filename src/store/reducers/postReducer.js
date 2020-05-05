@@ -1,4 +1,7 @@
 import {
+  CREATE_POST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_ERROR,
   POSTS,
   POSTS_SUCCESS,
   POSTS_ERROR,
@@ -66,12 +69,18 @@ const normalizedUserPosts = (state, action) => {
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_POST:
     case POSTS:
     case POST:
     case MY_POSTS:
       return {
         ...state,
         isLoading: true
+      };
+    case CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
       };
     case POSTS_SUCCESS:
       return normalizedPosts(state, action);
@@ -84,6 +93,7 @@ export const postReducer = (state = initialState, action) => {
         post,
         isLoading: false
       };
+    case CREATE_POST_ERROR:
     case POSTS_ERROR:
     case POST_ERROR:
     case MY_POSTS_ERROR:
@@ -91,7 +101,7 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         error,
-        isLoading: false
+        isLoading: false,
       };
     default: return state;
   }

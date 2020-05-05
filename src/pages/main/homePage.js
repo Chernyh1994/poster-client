@@ -12,13 +12,14 @@ import GuestPage from './guestPage';
 const HomePage = () => {
   const classes = StyledCard();
   const user = useSelector((state) => state.authReducer.user);
+  const { isLoading } = useSelector((state) => state.postReducer);
 
   const isAuthorized = !!user;
   return (
     isAuthorized ?
       <Card className={classes.root}>
         <FormTitle> Home </FormTitle>
-        <CreatePostForm/>
+        <CreatePostForm isLoading={isLoading} />
       </Card> :
       <GuestPage/>
   );

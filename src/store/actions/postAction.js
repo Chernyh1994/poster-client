@@ -20,6 +20,9 @@ export const createPost = (formData) => ({
     method: 'post',
     data: formData
   },
+  meta: {
+    asPromise: true,
+  },
 });
 
 export const getPost = (id) => ({

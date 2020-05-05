@@ -10,7 +10,10 @@ export const createComment = (content, parentId, postId) => ({
     url: `/api/V1/post/${postId}/comment`,
     method: 'post',
     data: { content, parent_id: parentId }
-  }
+  },
+  meta: {
+    asPromise: true,
+  },
 });
 
 export const getSubComments = (postId, commentId) => ({

@@ -27,8 +27,9 @@ const CreateCommentForm = ({ parentId, postId, handleClose }) => {
     },
     validationSchema: validator,
     onSubmit: ({ content }) => {
-      dispatch(createComment(content, parentId, postId));
-      handleClose();
+      dispatch(createComment(content, parentId, postId))
+      .then(successAction =>  handleClose())
+      .catch(errorOrAbortAction => console.log('error'));
     }
   });
 
