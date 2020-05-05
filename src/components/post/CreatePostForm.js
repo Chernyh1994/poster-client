@@ -18,7 +18,7 @@ import {
 } from '../styledComponent/Templates';
 import { createPost } from '../../store/actions/postAction';
 import { validatorPost } from '../../config/validatorForm';
-import Spinner from '../Spinner';  
+import Spinner from '../Spinner';
 
 const validator = Yup.object({
   content: validatorPost.content
@@ -48,35 +48,35 @@ const CreatePostForm = ({ isLoading }) => {
       if (file) {
         formData.append('images', file, file.name);
       }
-      
+
       dispatch(createPost(formData))
-        .then(successAction => history.push('/posts'))
-        .catch(errorOrAbortAction => console.log('error'));
+        .then((successAction) => history.push('/posts'))
+        .catch((errorOrAbortAction) => console.log('error'));
     }
   });
 
   return (
     <form onSubmit={post.handleSubmit}>
       {isLoading ?
-      <Spinner/> :
-      <div>
-        <InputWrap>
-          <TextField
-            fullWidth
-            label="What's happening?"
-            name="content"
-            {...post.getFieldProps('content')}
-            error={!!post.touched.content && !!post.errors.content }
-            helperText={post.touched.content && post.errors.content ? post.errors.content : null}
-          />
-        </InputWrap>
+        <Spinner/> :
+        <div>
+          <InputWrap>
+            <TextField
+              fullWidth
+              label="What's happening?"
+              name="content"
+              {...post.getFieldProps('content')}
+              error={!!post.touched.content && !!post.errors.content }
+              helperText={post.touched.content && post.errors.content ? post.errors.content : null}
+            />
+          </InputWrap>
 
-        <ImagesBlock>
-          <div>
-            <Image src={imagePreviewUrl}/>
-          </div>
-        </ImagesBlock>
-      </div>}
+          <ImagesBlock>
+            <div>
+              <Image src={imagePreviewUrl}/>
+            </div>
+          </ImagesBlock>
+        </div>}
 
       <ButtonGroup>
         <Button color="primary" component="label" startIcon={<ImageIcon fontSize="small" />} >

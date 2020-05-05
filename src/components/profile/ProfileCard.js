@@ -31,10 +31,10 @@ const ProfileCard = () => {
           </AvatarWrap>
           <UserInfoWrap>
             <Typography className={classes.userInfoTitle} color="textSecondary">
-            Name: {userProfile.name}
+              Name: {userProfile.name}
             </Typography>
             <Typography className={classes.userInfoTitle} color="textSecondary">
-            Email: {userProfile.email}
+              Email: {userProfile.email}
             </Typography>
             { userProfile.id === user.id ? <ProfileModal/> : null }
           </UserInfoWrap>

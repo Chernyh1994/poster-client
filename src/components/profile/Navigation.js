@@ -23,7 +23,7 @@ const Navigation = () => {
       <BottomNavigation value={value} onChange={handleChange}>
         <BottomNavigationAction
           component={Link}
-          to='/profile/posts'
+          to='/profile/:id/posts'
           label="Posts"
           value="post"
           icon={<ListIcon />}

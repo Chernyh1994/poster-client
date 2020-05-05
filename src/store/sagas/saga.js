@@ -5,8 +5,8 @@ import createSagaMiddleware from 'redux-saga';
 import instanceAxios from '../../utils/instanceAxios';
 
 const { requestsSagas, requestsMiddleware } = handleRequests({
-  driver: createDriver( instanceAxios ),
-  promisify: true,
+  driver: createDriver(instanceAxios),
+  promisify: true
 });
 
 export function* rootSaga() {

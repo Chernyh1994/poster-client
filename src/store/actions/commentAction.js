@@ -12,8 +12,8 @@ export const createComment = (content, parentId, postId) => ({
     data: { content, parent_id: parentId }
   },
   meta: {
-    asPromise: true,
-  },
+    asPromise: true
+  }
 });
 
 export const getSubComments = (postId, commentId) => ({

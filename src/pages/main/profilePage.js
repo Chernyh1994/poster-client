@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import Profile from '../../components/profile';
 import { getUserProfile } from '../../store/actions/userAction';
 
-
 const ProfilePage = ({ route, match }) => {
   const aurotId = match.params.id;
   const dispatch = useDispatch();

@@ -17,22 +17,18 @@ const initialState = {
   settings: {}
 };
 
-const addCommentIds = comments => {
-  return (
-    comments.data.map((comment) => comment.id)
-  )
-}
+const addCommentIds = (comments) => (
+  comments.data.map((comment) => comment.id)
+);
 
-const addCommentParentIds = comments => {
-  return (
-    comments.data.reduce((accumulator, item) => {
-      if (item.parent_id === null) {
-        accumulator.push(item.id);
-      }
-      return accumulator;
-    }, [])  
-  )
-}
+const addCommentParentIds = (comments) => (
+  comments.data.reduce((accumulator, item) => {
+    if (item.parent_id === null) {
+      accumulator.push(item.id);
+    }
+    return accumulator;
+  }, [])
+);
 
 const normalizedData = (state, action) => {
   const { comments } = action.response.data;
@@ -55,13 +51,13 @@ const normalizedData = (state, action) => {
   return {
     ...state,
     comments: {
-      byId: {...state.comments.byId, ...commentsList},
+      byId: { ...state.comments.byId, ...commentsList },
       allIds: [...state.comments.allIds, ...addCommentIds(comments)],
-      parentIds: [...state.comments.parentIds, ...addCommentParentIds(comments)],
+      parentIds: [...state.comments.parentIds, ...addCommentParentIds(comments)]
     },
     subComments: {
-      byId: {...state.subComments.byId, ...subCommentList},
-      allIds: [...state.subComments.allIds, ...subCommentIds],
+      byId: { ...state.subComments.byId, ...subCommentList },
+      allIds: [...state.subComments.allIds, ...subCommentIds]
     },
     settings: {
       isLoading: false,
@@ -69,7 +65,7 @@ const normalizedData = (state, action) => {
       lastPage: comments.last_page
     }
   };
-}
+};
 
 export function commentReducer(state = initialState, action) {
   switch (action.type) {

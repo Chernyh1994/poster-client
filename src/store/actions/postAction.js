@@ -21,8 +21,8 @@ export const createPost = (formData) => ({
     data: formData
   },
   meta: {
-    asPromise: true,
-  },
+    asPromise: true
+  }
 });
 
 export const getPost = (id) => ({

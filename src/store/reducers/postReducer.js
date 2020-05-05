@@ -23,34 +23,30 @@ const initialState = {
     allIds: []
   },
   post: null,
-  isLoading: false,
+  isLoading: false
 };
 
-const addPostList = posts => {
-  return (
-    posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
-  )
-}
+const addPostList = (posts) => (
+  posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
+);
 
-const addPostIds = posts => {
-  return (
-    posts.data.map((post) => post.id)
-  )
-}
+const addPostIds = (posts) => (
+  posts.data.map((post) => post.id)
+);
 
 const normalizedPosts = (state, action) => {
   const { posts } = action.response.data;
   return {
     ...state,
     posts: {
-      byId: {...state.posts.byId, ...addPostList(posts)},
+      byId: { ...state.posts.byId, ...addPostList(posts) },
       allIds: [...state.posts.allIds, ...addPostIds(posts)],
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
     isLoading: false
   };
-}
+};
 
 const normalizedUserPosts = (state, action) => {
   const { posts } = action.response.data;
@@ -58,14 +54,14 @@ const normalizedUserPosts = (state, action) => {
   return {
     ...state,
     myPosts: {
-      byId: {...state.myPosts.byId, ...addPostList(posts)},
+      byId: { ...state.myPosts.byId, ...addPostList(posts) },
       allIds: [...state.myPosts.allIds, ...addPostIds(posts)],
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
     isLoading: false
   };
-}
+};
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -80,7 +76,7 @@ export const postReducer = (state = initialState, action) => {
     case CREATE_POST_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoading: false
       };
     case POSTS_SUCCESS:
       return normalizedPosts(state, action);
@@ -101,7 +97,7 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         error,
-        isLoading: false,
+        isLoading: false
       };
     default: return state;
   }
