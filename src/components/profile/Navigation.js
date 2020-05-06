@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FolderIcon from '@material-ui/icons/Folder';
@@ -10,22 +10,16 @@ import { Link } from 'react-router-dom';
 
 import { StyledCard } from '../styledComponent/Card';
 
-const Navigation = () => {
+const Navigation = ({ handleChange, value }) => {
   const classes = StyledCard();
-  const [value, setValue] = useState('post');
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  console.log(value)
 
   return (
     <Card className={classes.root}>
       <BottomNavigation value={value} onChange={handleChange}>
         <BottomNavigationAction
-          component={Link}
-          to='/profile/:id/posts'
           label="Posts"
-          value="post"
+          value="posts"
           icon={<ListIcon />}
         />
         <BottomNavigationAction

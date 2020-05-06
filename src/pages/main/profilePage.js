@@ -12,8 +12,7 @@ const ProfilePage = ({ route, match }) => {
 
   useEffect(() => {
     dispatch(getUserProfile(aurotId));
-    // eslint-disable-next-line
-  }, [dispatch]);
+  }, [dispatch, aurotId]);
 
   return (
     <div>

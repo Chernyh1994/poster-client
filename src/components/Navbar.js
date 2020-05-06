@@ -9,7 +9,7 @@ import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer);
+  const isAuthorized = useSelector((state) => state.authReducer.user);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -19,14 +19,17 @@ const Navbar = () => {
     <CustomAppBar>
       <Toolbar>
         <HeaderTitle>
-            Twitter Test Project
+          Twitter Test Project
         </HeaderTitle>
-        {!user ?
+        <div>
+        {isAuthorized ?
+          <Button onClick={handleLogout} style={{ color: 'white' }} component={Link} to='/login'>Logout</Button>
+          :
           <div>
             <Button style={{ color: 'white' }} component={Link} to='/login'>Log in</Button>
-            <Button variant="outlined" style={{ color: 'white' }} component={Link} to='/register'>Sing up</Button>
-          </div> :
-          <Button onClick={handleLogout} style={{ color: 'white' }} component={Link} to='/login'>Logout</Button>}
+            <Button style={{ color: 'white' }} component={Link} to='/register'>Sing up</Button>
+          </div>}
+        </div>
       </Toolbar>
     </CustomAppBar>
   );

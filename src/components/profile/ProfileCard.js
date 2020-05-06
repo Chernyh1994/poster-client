@@ -12,14 +12,16 @@ import {
   NewAvatar
 } from '../styledComponent/ProfileStyled';
 import { startAvatar } from '../styledComponent/Templates';
+import LoadingCard from '../LoadingCard';
 
 const ProfileCard = () => {
   const user = useSelector((state) => state.authReducer.user);
   const userProfile = useSelector((state) => state.userReducer.userProfile);
   const classes = StyledCard();
+
   return (
     <Card className={classes.root}>
-      {userProfile ?
+      {userProfile && user ?
         <ProfileWrap>
           <AvatarWrap>
             <NewAvatar
@@ -36,9 +38,10 @@ const ProfileCard = () => {
             <Typography className={classes.userInfoTitle} color="textSecondary">
               Email: {userProfile.email}
             </Typography>
-            { userProfile.id === user.id ? <ProfileModal/> : null }
+            {userProfile.id === user.id ? <ProfileModal/> : null}
           </UserInfoWrap>
-        </ProfileWrap> : null}
+        </ProfileWrap> :
+        <LoadingCard/>}
     </Card>
   );
 };

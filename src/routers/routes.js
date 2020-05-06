@@ -12,7 +12,6 @@ import Header from '../pages/layouts';
 import PostsPage from '../pages/main/postsPage';
 import PostPage from '../pages/main/postPage';
 import ProfilePage from '../pages/main/profilePage';
-import UserPosts from '../components/profile/UserPosts';
 
 const Routes = () => {
   const user = useSelector((state) => state.authReducer.user);
@@ -38,13 +37,13 @@ const Routes = () => {
         },
         {
           path: '/profile/:id',
-          component: ProfilePage,
-          routes: [
-            {
-              path: '/profile/:id/posts',
-              component: UserPosts
-            }
-          ]
+          component: ProfilePage
+          // routes: [
+          //   {
+          //     path: '/profile',
+          //     component: 
+          //   }
+          // ]
         },
         {
           path: '/posts',

@@ -7,12 +7,12 @@ import {
   TemplateContent,
   FormCardHome
 } from '../../components/styledComponent/Templates';
-import LoadingCard from '../../components/LoadingCard';
+import Posts from '../../components/post/Posts';
 
 const GuestPage = () => (
   <TemplateHomeBlock>
     <TemplateContent>
-      <LoadingCard/>
+      <Posts/>
     </TemplateContent>
     <FormCardHome>
       <FormTitle> LOGIN </FormTitle>

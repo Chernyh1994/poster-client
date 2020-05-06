@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { StyledCard } from '../styledComponent/Card';
 import CommentModal from '../comment/CommentModal';
@@ -18,6 +19,7 @@ import {
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
+  const isAuthorized = useSelector((state) => state.authReducer.user);
 
   return (
     <Card className={classes.root} >
@@ -39,7 +41,7 @@ const PostCard = ({ post }) => {
 
       <CardActionArea
         component={Link}
-        to={`/post/${post.id}`}
+        to={isAuthorized ? `/post/${post.id}` : '/login'}
       >
         <CardContent>
           <Typography variant="body2" component="p">

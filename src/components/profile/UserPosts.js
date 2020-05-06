@@ -7,7 +7,6 @@ import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
 import PostCard from '../post/PostCard';
 
-
 const UserPosts = () => {
   const dispatch = useDispatch();
   const { myPosts, isLoading } = useSelector((state) => state.postReducer);
