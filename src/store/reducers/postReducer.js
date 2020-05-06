@@ -26,9 +26,20 @@ const initialState = {
   isLoading: false
 };
 
-const addPostList = (posts) => (
-  posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
-);
+const addPostList = (posts) => {
+  const postList = posts.data.reduce((accumulator, item) => {
+    let commentCount = null;
+    item.comments_count.forEach((comment) => {
+      commentCount = comment.aggregate;
+    });
+
+    item.comments_count = commentCount;
+    return { ...accumulator, [item.id]: item };
+  }, {});
+  return (postList
+  // posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
+  );
+};
 
 const addPostIds = (posts) => (
   posts.data.map((post) => post.id)
@@ -76,6 +87,14 @@ export const postReducer = (state = initialState, action) => {
     case CREATE_POST_SUCCESS:
       return {
         ...state,
+        posts: {
+          byId: {},
+          allIds: []
+        },
+        myPosts: {
+          byId: {},
+          allIds: []
+        },
         isLoading: false
       };
     case POSTS_SUCCESS:

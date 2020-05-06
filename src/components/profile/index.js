@@ -10,8 +10,6 @@ const Profile = () => {
     setValue(newValue);
   };
 
-  console.log(value)
-
   return (
     <div>
       <ProfileCard/>

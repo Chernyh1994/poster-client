@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -56,8 +58,8 @@ const PostCard = ({ post }) => {
         </CardContent>
       </CardActionArea>
 
-      <CardActions disableSpacing>
-        <CommentModal postId={post.id} />
+      <CardActions>
+        <CommentModal postId={post.id} commentCount={post.comments_count}/>
       </CardActions>
     </Card>
   );

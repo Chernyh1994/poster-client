@@ -1,6 +1,3 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable react/prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';

@@ -26,6 +26,7 @@
     "redux-saga-requests-react": "^0.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^5.0.1",
+    "typeface-roboto": "0.0.75",
     "yup": "^0.28.3"
   },
   "scripts": {

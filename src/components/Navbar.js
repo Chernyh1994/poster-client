@@ -22,13 +22,12 @@ const Navbar = () => {
           Twitter Test Project
         </HeaderTitle>
         <div>
-        {isAuthorized ?
-          <Button onClick={handleLogout} style={{ color: 'white' }} component={Link} to='/login'>Logout</Button>
-          :
-          <div>
-            <Button style={{ color: 'white' }} component={Link} to='/login'>Log in</Button>
-            <Button style={{ color: 'white' }} component={Link} to='/register'>Sing up</Button>
-          </div>}
+          {isAuthorized ?
+            <Button onClick={handleLogout} style={{ color: 'white' }} component={Link} to='/login'>Logout</Button> :
+            <div>
+              <Button style={{ color: 'white' }} component={Link} to='/login'>Log in</Button>
+              <Button style={{ color: 'white' }} component={Link} to='/register'>Sing up</Button>
+            </div>}
         </div>
       </Toolbar>
     </CustomAppBar>

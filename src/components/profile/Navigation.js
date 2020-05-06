@@ -12,7 +12,6 @@ import { StyledCard } from '../styledComponent/Card';
 
 const Navigation = ({ handleChange, value }) => {
   const classes = StyledCard();
-  console.log(value)
 
   return (
     <Card className={classes.root}>

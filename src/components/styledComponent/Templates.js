@@ -84,3 +84,15 @@ export const Image = styled.img`
 `;
 
 export const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
+
+export const WrapperButton = styled.div`
+    display: flex;
+`;
+
+export const ContentButton = styled.p`
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+`;
