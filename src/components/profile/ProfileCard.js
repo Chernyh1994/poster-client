@@ -26,8 +26,8 @@ const ProfileCard = () => {
           <AvatarWrap>
             <NewAvatar
               alt="avatar"
-              src={userProfile.avatar_path ?
-                `http://localhost:8000/storage/${userProfile.avatar_path}` :
+              src={userProfile.images ?
+                userProfile.images.path :
                 startAvatar}
             />
           </AvatarWrap>

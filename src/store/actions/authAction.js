@@ -38,6 +38,9 @@ export const userUpdate = (formData) => ({
     url: '/api/V1/user',
     method: 'post',
     data: formData
+  },
+  meta: {
+    asPromise: true
   }
 });
 

@@ -23,8 +23,8 @@ const CommentCard = ({ comment, postId }) => {
             component={Link}
             to={`/profile/${comment.author.id}`}
             aria-label="recipe"
-            src={comment.author.avatar_path ?
-              `http://localhost:8000/storage/${comment.author.avatar_path}` :
+            src={comment.author.images ?
+              comment.author.images.path:
               startAvatar }
             className={classes.avatar}/>
         }

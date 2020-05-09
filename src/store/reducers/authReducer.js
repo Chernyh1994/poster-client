@@ -22,10 +22,9 @@ export const authReducer = (state = initialState, action) => {
     case REGISTER_USER_SUCCESS:
     case USER_SUCCESS:
     case USER_UPDATE_SUCCESS:
-      const { token, user } = action.response.data;
+      const { user } = action.response.data;
       return {
         ...state,
-        token,
         user
       };
     case LOGIN_USER_ERROR:

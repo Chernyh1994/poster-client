@@ -34,7 +34,11 @@ const ProfileForm = ({ handleClose }) => {
   const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(startAvatar);
+  let userAvatar = startAvatar;
+  if(user.images) {
+    userAvatar = user.images.path;
+  }
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(userAvatar);
 
   const fileSelectedHandle = (event) => {
     const files = event.target.files[0];
@@ -58,8 +62,9 @@ const ProfileForm = ({ handleClose }) => {
       if (!!avatar) {
         formData.append('avatar', avatar, avatar.name);
       }
-      dispatch(userUpdate(formData));
-      handleClose();
+      dispatch(userUpdate(formData))
+        .then((successAction) =>  handleClose())
+        .catch((errorOrAbortAction) => console.log('error'));
     }
   });
 

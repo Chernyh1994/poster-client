@@ -31,9 +31,9 @@ const PostCard = ({ post }) => {
             component={Link}
             to={`/profile/${post.author.id}`}
             aria-label="recipe"
-            src={post.author.avatar_path ?
-              `http://localhost:8000/storage/${post.author.avatar_path}` :
-              startAvatar }
+            src={post.author.images ?
+              post.author.images.path :
+              startAvatar}
             className={classes.avatar}
           />
         }
@@ -52,7 +52,7 @@ const PostCard = ({ post }) => {
 
           {post.images.map((image, id) => (
             <ImagesBlock key={id}>
-              <Image src={`http://localhost:8000/storage/${image.path}`}/>
+              <Image src={image.path}/>
             </ImagesBlock>
           ))}
         </CardContent>
