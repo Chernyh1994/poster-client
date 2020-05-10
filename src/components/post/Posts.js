@@ -9,29 +9,29 @@ import PostCard from './PostCard';
 
 const Posts = () => {
   const dispatch = useDispatch();
-  const { posts, isLoading } = useSelector((state) => state.postReducer);
+  const { postsNormalize, isLoading } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!posts.allIds.length) {
+    if (!postsNormalize.result.length) {
       dispatch(getPosts(1));
     }
-  }, [dispatch, posts]);
+  }, [dispatch, postsNormalize]);
 
   const handlePosts = () => {
     if (!isLoading) {
-      dispatch(getPosts(posts.nextNumbPage));
+      dispatch(getPosts(postsNormalize.nextNumbPage));
     }
   };
 
   return (
-    posts.allIds.length ?
+    postsNormalize.result.length ?
       <InfiniteScroll
         pageStart={0}
         loadMore={handlePosts}
-        hasMore={posts.nextNumbPage <= posts.lastPage }
+        hasMore={postsNormalize.nextNumbPage <= postsNormalize.lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        { posts.allIds.map((post, index) => <PostCard key={index} post={posts.byId[post]}/>)}
+        { postsNormalize.result.map((post, index) => <PostCard key={index} post={postsNormalize.entities.posts[post]}/>)}
       </InfiniteScroll> :
       <EmptyContentCard/>
   );

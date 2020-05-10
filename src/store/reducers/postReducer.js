@@ -1,3 +1,4 @@
+import { normalize, schema } from 'normalizr';
 import {
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -14,44 +15,39 @@ import {
 } from '../constants/postConstants';
 
 const initialState = {
-  posts: {
-    byId: {},
-    allIds: []
+  postsNormalize: {
+    entities: {
+      posts: {}
+    },
+    result: []
   },
-  myPosts: {
-    byId: {},
-    allIds: []
+  myPostsNormalize: {
+    entities: {
+      posts: {}
+    },
+    result: []
   },
   post: null,
   isLoading: false
 };
 
-const addPostList = (posts) => {
-  const postList = posts.data.reduce((accumulator, item) => {
-    let commentCount = null;
-    item.comments_count.forEach((comment) => {
-      commentCount = comment.aggregate;
-    });
 
-    item.comments_count = commentCount;
-    return { ...accumulator, [item.id]: item };
-  }, {});
-  return (postList
-  // posts.data.reduce((accumulator, item) => ({ ...accumulator, [item.id]: item }), {})
+const normalizedPosts = (posts) => {
+  const post = new schema.Entity('posts');
+  const mySchema = [ post ];
+  const postsNormalize = normalize(posts.data, mySchema);
+  return (
+    postsNormalize
   );
 };
 
-const addPostIds = (posts) => (
-  posts.data.map((post) => post.id)
-);
-
-const normalizedPosts = (state, action) => {
+const addStatePosts = (state, action) => {
   const { posts } = action.response.data;
+
   return {
     ...state,
-    posts: {
-      byId: { ...state.posts.byId, ...addPostList(posts) },
-      allIds: [...state.posts.allIds, ...addPostIds(posts)],
+    postsNormalize: {
+      ...normalizedPosts(posts),
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
@@ -59,14 +55,13 @@ const normalizedPosts = (state, action) => {
   };
 };
 
-const normalizedUserPosts = (state, action) => {
+const addStateMyPosts = (state, action) => {
   const { posts } = action.response.data;
 
   return {
     ...state,
-    myPosts: {
-      byId: { ...state.myPosts.byId, ...addPostList(posts) },
-      allIds: [...state.myPosts.allIds, ...addPostIds(posts)],
+    myPostsNormalize: {
+      ...normalizedPosts(posts),
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
@@ -87,20 +82,24 @@ export const postReducer = (state = initialState, action) => {
     case CREATE_POST_SUCCESS:
       return {
         ...state,
-        posts: {
-          byId: {},
-          allIds: []
+        postsNormalize: {
+          entities: {
+            posts: {}
+          },
+          result: []
         },
-        myPosts: {
-          byId: {},
-          allIds: []
+        myPostsNormalize: {
+          entities: {
+            posts: {}
+          },
+          result: []
         },
         isLoading: false
       };
     case POSTS_SUCCESS:
-      return normalizedPosts(state, action);
+      return addStatePosts(state, action);
     case MY_POSTS_SUCCESS:
-      return normalizedUserPosts(state, action);
+      return addStateMyPosts(state, action);
     case POST_SUCCESS:
       const { post } = action.response.data;
       return {

@@ -1,3 +1,4 @@
+import { normalize, schema } from 'normalizr';
 import {
   COMMENTS,
   COMMENTS_SUCCESS,
@@ -17,48 +18,55 @@ const initialState = {
   settings: {}
 };
 
-const addCommentIds = (comments) => (
-  comments.data.map((comment) => comment.id)
-);
+const normalizedComments = (comments) => {
 
-const addCommentParentIds = (comments) => (
-  comments.data.reduce((accumulator, item) => {
-    if (item.parent_id === null) {
-      accumulator.push(item.id);
-    }
-    return accumulator;
-  }, [])
-);
+  const comment = new schema.Entity('comments');
+
+  // const mySchema = [ comment ];
+
+  const mySchema = { comments: [comment] };
+
+  const commentsNormalize = normalize(comments.data, mySchema);
+  return (
+    commentsNormalize
+  );
+};
+
+
+// const addCommentIds = (comments) => (
+//   comments.data.map((comment) => comment.id)
+// );
+
+// const addCommentParentIds = (comments) => (
+//   comments.data.reduce((accumulator, item) => {
+//     if (item.parent_id === null) {
+//       accumulator.push(item.id);
+//     }
+//     return accumulator;
+//   }, [])
+// );
 
 const normalizedData = (state, action) => {
   const { comments } = action.response.data;
 
-  const subCommentList = {};
-  const subCommentIds = [];
+  // const subCommentList = {};
+  // const subCommentIds = [];
 
-  const commentsList = comments.data.reduce((accumulator, item) => {
-    const commentIds = [];
-    item.comments.forEach((comment) => {
-      commentIds.push(comment.id);
-      subCommentIds.push(comment.id);
-      subCommentList[comment.id] = comment;
-    });
+  // const commentsList = comments.data.reduce((accumulator, item) => {
+  //   const commentIds = [];
+  //   item.comments.forEach((comment) => {
+  //     commentIds.push(comment.id);
+  //     subCommentIds.push(comment.id);
+  //     subCommentList[comment.id] = comment;
+  //   });
 
-    item.comments = commentIds;
-    return { ...accumulator, [item.id]: item };
-  }, {});
+  //   item.comments = commentIds;
+  //   return { ...accumulator, [item.id]: item };
+  // }, {});
 
   return {
     ...state,
-    comments: {
-      byId: { ...state.comments.byId, ...commentsList },
-      allIds: [...state.comments.allIds, ...addCommentIds(comments)],
-      parentIds: [...state.comments.parentIds, ...addCommentParentIds(comments)]
-    },
-    subComments: {
-      byId: { ...state.subComments.byId, ...subCommentList },
-      allIds: [...state.subComments.allIds, ...subCommentIds]
-    },
+    ...normalizedComments(comments),
     settings: {
       isLoading: false,
       nextNumbPage: comments.current_page + 1,
