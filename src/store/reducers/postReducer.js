@@ -35,7 +35,7 @@ const initialState = {
 const normalizedPosts = (posts) => {
   const post = new schema.Entity('posts');
   const mySchema = [ post ];
-  const postsNormalize = normalize(posts.data, mySchema);
+  const postsNormalize = normalize(posts, mySchema);
   return (
     postsNormalize
   );
@@ -47,7 +47,7 @@ const addStatePosts = (state, action) => {
   return {
     ...state,
     postsNormalize: {
-      ...normalizedPosts(posts),
+      ...normalizedPosts(posts.data),
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },
@@ -61,7 +61,7 @@ const addStateMyPosts = (state, action) => {
   return {
     ...state,
     myPostsNormalize: {
-      ...normalizedPosts(posts),
+      ...normalizedPosts(posts.data),
       nextNumbPage: posts.current_page + 1,
       lastPage: posts.last_page
     },

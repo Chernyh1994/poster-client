@@ -6,67 +6,46 @@ import {
 } from '../constants/commentConstants';
 
 const initialState = {
-  comments: {
-    byId: {},
-    allIds: [],
-    parentIds: []
-  },
-  subComments: {
-    byId: {},
-    allIds: []
+  commentsNormalize: {
+    entities: {
+      comments: {},
+      subComments: {}
+    },
+    result: [],
+    commentsIds: []
   },
   settings: {}
 };
 
 const normalizedComments = (comments) => {
-
-  const comment = new schema.Entity('comments');
-
-  // const mySchema = [ comment ];
-
-  const mySchema = { comments: [comment] };
-
-  const commentsNormalize = normalize(comments.data, mySchema);
+  const subComment = new schema.Entity('subComments')
+  const comment = new schema.Entity('comments', {
+    comments : [subComment]
+  })
+  const commentsNormalize = normalize(comments, [comment]);
   return (
     commentsNormalize
   );
 };
 
-
-// const addCommentIds = (comments) => (
-//   comments.data.map((comment) => comment.id)
-// );
-
-// const addCommentParentIds = (comments) => (
-//   comments.data.reduce((accumulator, item) => {
-//     if (item.parent_id === null) {
-//       accumulator.push(item.id);
-//     }
-//     return accumulator;
-//   }, [])
-// );
+const addCommentIds = (comments) => (
+  comments.reduce((accumulator, item) => {
+    if (item.parent_id === null) {
+      accumulator.push(item.id);
+    }
+    return accumulator;
+  }, [])
+);
 
 const normalizedData = (state, action) => {
   const { comments } = action.response.data;
 
-  // const subCommentList = {};
-  // const subCommentIds = [];
-
-  // const commentsList = comments.data.reduce((accumulator, item) => {
-  //   const commentIds = [];
-  //   item.comments.forEach((comment) => {
-  //     commentIds.push(comment.id);
-  //     subCommentIds.push(comment.id);
-  //     subCommentList[comment.id] = comment;
-  //   });
-
-  //   item.comments = commentIds;
-  //   return { ...accumulator, [item.id]: item };
-  // }, {});
-
   return {
     ...state,
-    ...normalizedComments(comments),
+    commentsNormalize: {
+      ...normalizedComments(comments.data),
+      commentsIds: [...addCommentIds(comments.data)]
+    },
     settings: {
       isLoading: false,
       nextNumbPage: comments.current_page + 1,
@@ -80,14 +59,12 @@ export function commentReducer(state = initialState, action) {
     case COMMENTS:
       return {
         ...state,
-        comments: {
-          byId: {},
-          allIds: [],
-          parentIds: []
-        },
-        subComments: {
-          byId: {},
-          allIds: []
+        commentsNormalize: {
+          entities: {
+            comments: {}
+          },
+          result: [],
+          commentsIds: []
         },
         settings: {
           isLoading: true

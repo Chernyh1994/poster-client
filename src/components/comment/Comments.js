@@ -10,7 +10,7 @@ import { getComments } from '../../store/actions/commentAction';
 
 const Comments = ({ postId }) => {
   const dispatch = useDispatch();
-  const { comments, settings } = useSelector((state) => state.commentReducer);
+  const { commentsNormalize, settings } = useSelector((state) => state.commentReducer);
 
   useEffect(() => {
     dispatch(getComments(postId));
@@ -23,14 +23,16 @@ const Comments = ({ postId }) => {
   };
 
   return (
-    comments.parentIds.length ?
+    commentsNormalize.commentsIds.length ?
       <InfiniteScroll
         pageStart={0}
         loadMore={hendlePosts}
         hasMore={settings.nextNumbPage <= settings.lastPage }
         loader={<div key={0}> <LoadingCard/> </div>}
       >
-        { comments.parentIds.map((comment, index) => <CommentCard key={index} comment={comments.byId[comment]} postId={postId}/>)}
+        { commentsNormalize.commentsIds.map((comment, index) => 
+          <CommentCard key={index} comment={commentsNormalize.entities.comments[comment]} postId={postId}/>
+        )}
       </InfiniteScroll> :
       <EmptyContentCard/>
   );

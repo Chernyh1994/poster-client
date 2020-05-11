@@ -9,7 +9,7 @@ import EmptyContentCard from '../EmptyContentCard';
 import CommentCard from './CommentCard';
 
 const SubComments = ({ expanded, comment }) => {
-  const { subComments, settings } = useSelector((state) => state.commentReducer);
+  const { commentsNormalize, settings } = useSelector((state) => state.commentReducer);
 
   if (settings.isLoading) {
     return <LodingCard/>;
@@ -18,8 +18,10 @@ const SubComments = ({ expanded, comment }) => {
   return (
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        { subComments.allIds.length ?
-          comment.comments.map((comment, index) => <CommentCard key={index} comment={subComments.byId[comment]}/>) :
+        { commentsNormalize.commentsIds.length ?
+          comment.comments.map((comment, index) =>
+           <CommentCard key={index} comment={commentsNormalize.entities.subComments[comment]}/>
+          ) :
           <EmptyContentCard/>
         }
       </CardContent>
