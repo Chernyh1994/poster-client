@@ -58,15 +58,7 @@ export const postReducer = (state = initialState, action) => {
         isLoading: true
       };
     case success(CREATE_POST):
-      return {
-        ...state,
-        posts: {
-          byId: {},
-          allIds: [],
-          myIds: []
-        },
-        isLoading: false
-      };
+      return initialState;
     case success(POSTS):
       return normalizedPosts(state, action);
     case success(MY_POSTS):

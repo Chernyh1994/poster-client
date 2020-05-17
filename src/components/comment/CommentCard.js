@@ -23,8 +23,8 @@ const CommentCard = ({ comment, postId }) => {
             component={Link}
             to={`/profile/${comment.author.id}`}
             aria-label="recipe"
-            src={comment.author.images ?
-              comment.author.images.path :
+            src={comment.author.avatar ?
+              comment.author.avatar.url :
               startAvatar }
             className={classes.avatar}/>
         }
@@ -41,8 +41,7 @@ const CommentCard = ({ comment, postId }) => {
       { !comment.parent_id ?
         <CardActions disableSpacing>
           <CommentActions postId={postId} parentId={comment.id} comment={comment} />
-        </CardActions> :
-        <div></div> }
+        </CardActions> : null }
     </Card>
   );
 };
