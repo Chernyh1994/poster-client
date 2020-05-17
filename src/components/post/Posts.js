@@ -12,10 +12,8 @@ const Posts = () => {
   const { posts, isLoading } = useSelector((state) => state.postReducer);
 
   useEffect(() => {
-    if (!posts.allIds.length) {
-      dispatch(getPosts(1));
-    }
-  }, [dispatch, posts]);
+    dispatch(getPosts(1));
+  }, [dispatch]);
 
   const handlePosts = () => {
     if (!isLoading) {

@@ -1,12 +1,9 @@
+import { success, error } from 'redux-saga-requests';
 import {
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
-  REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR,
-  USER_SUCCESS,
-  USER_ERROR,
-  USER_UPDATE_SUCCESS,
-  USER_UPDATE_ERROR,
+  LOGIN_USER,
+  REGISTER_USER,
+  USER,
+  USER_UPDATE,
   LOGOUT
 } from '../constants/authConstants';
 
@@ -18,23 +15,23 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_USER_SUCCESS:
-    case REGISTER_USER_SUCCESS:
-    case USER_SUCCESS:
-    case USER_UPDATE_SUCCESS:
+    case success(LOGIN_USER):
+    case success(REGISTER_USER):
+    case success(USER):
+    case success(USER_UPDATE):
       const { user } = action.response.data;
       return {
         ...state,
         user
       };
-    case LOGIN_USER_ERROR:
-    case REGISTER_USER_ERROR:
-    case USER_ERROR:
-    case USER_UPDATE_ERROR:
-      const { error } = action.error.message;
+    case error(LOGIN_USER):
+    case error(REGISTER_USER):
+    case error(USER):
+    case error(USER_UPDATE):
+      const message = action.error.message;
       return {
         ...state,
-        error
+        message
       };
     case LOGOUT:
       return initialState;

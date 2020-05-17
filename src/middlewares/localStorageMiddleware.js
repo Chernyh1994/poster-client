@@ -1,10 +1,10 @@
-import { LOGIN_USER_SUCCESS, REGISTER_USER_SUCCESS, LOGOUT } from '../store/constants/authConstants';
+import { success } from 'redux-saga-requests';
+import { LOGIN_USER, REGISTER_USER, LOGOUT } from '../store/constants/authConstants';
 
-// eslint-disable-next-line import/prefer-default-export
 export const localStorageMiddleware = () => (next) => (action) => {
   switch (action.type) {
-    case LOGIN_USER_SUCCESS:
-    case REGISTER_USER_SUCCESS:
+    case success(LOGIN_USER):
+    case success(REGISTER_USER):
       localStorage.setItem('token', action.response.data.token);
       return next(action);
     case LOGOUT:

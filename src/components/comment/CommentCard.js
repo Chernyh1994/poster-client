@@ -24,7 +24,7 @@ const CommentCard = ({ comment, postId }) => {
             to={`/profile/${comment.author.id}`}
             aria-label="recipe"
             src={comment.author.images ?
-              comment.author.images.path:
+              comment.author.images.path :
               startAvatar }
             className={classes.avatar}/>
         }

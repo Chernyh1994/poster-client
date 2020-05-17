@@ -11,7 +11,9 @@ import CreateCommentForm from './CreateCommentForm';
 import LoginForm from '../auth/LoginForm';
 import { WrapperButton, ContentButton } from '../styledComponent/Templates';
 
-const CommentModal = ({ postId, parentId, commentCount }) => {
+const CommentModal = ({
+  postId, parentId, commentCount, likesCount
+}) => {
   const [open, setOpen] = React.useState(false);
   const { user } = useSelector((state) => state.authReducer);
 
@@ -39,7 +41,7 @@ const CommentModal = ({ postId, parentId, commentCount }) => {
           <FavoriteIcon fontSize='small'/>
         </IconButton>
         <ContentButton>
-          1
+          {likesCount}
         </ContentButton>
       </WrapperButton>
 

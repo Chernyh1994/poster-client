@@ -6,10 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Iframe from 'react-iframe';
 
 import { StyledCard } from '../styledComponent/Card';
 import CommentModal from '../comment/CommentModal';
@@ -49,6 +48,15 @@ const PostCard = ({ post }) => {
           <Typography variant="body2" component="p">
             {post.content}
           </Typography>
+          {post.video ?
+            <Iframe url={post.video.url}
+              width="350px"
+              height="350px"
+              id="myId"
+              className="myClassname"
+              display="initial"
+              position="relative"
+            /> : null}
 
           {post.images.map((image, id) => (
             <ImagesBlock key={id}>
@@ -59,7 +67,7 @@ const PostCard = ({ post }) => {
       </CardActionArea>
 
       <CardActions>
-        <CommentModal postId={post.id} commentCount={post.comments_count}/>
+        <CommentModal postId={post.id} commentCount={post.comments_count} likesCount={post.likes_count}/>
       </CardActions>
     </Card>
   );

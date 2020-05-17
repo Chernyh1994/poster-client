@@ -35,7 +35,7 @@ const ProfileForm = ({ handleClose }) => {
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(null);
   let userAvatar = startAvatar;
-  if(user.images) {
+  if (user.images) {
     userAvatar = user.images.path;
   }
   const [imagePreviewUrl, setImagePreviewUrl] = useState(userAvatar);
@@ -63,7 +63,7 @@ const ProfileForm = ({ handleClose }) => {
         formData.append('avatar', avatar, avatar.name);
       }
       dispatch(userUpdate(formData))
-        .then((successAction) =>  handleClose())
+        .then((successAction) => handleClose())
         .catch((errorOrAbortAction) => console.log('error'));
     }
   });

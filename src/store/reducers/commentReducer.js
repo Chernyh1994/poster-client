@@ -1,8 +1,8 @@
+import { success, error } from 'redux-saga-requests';
 import {
-  COMMENTS,
-  COMMENTS_SUCCESS,
-  COMMENTS_ERROR
+  COMMENTS
 } from '../constants/commentConstants';
+import { addByIds } from '../../utils/normalizingStore';
 
 const initialState = {
   comments: {
@@ -16,10 +16,6 @@ const initialState = {
   },
   settings: {}
 };
-
-const addCommentIds = (comments) => (
-  comments.data.map((comment) => comment.id)
-);
 
 const addCommentParentIds = (comments) => (
   comments.data.reduce((accumulator, item) => {
@@ -52,7 +48,7 @@ const normalizedData = (state, action) => {
     ...state,
     comments: {
       byId: { ...state.comments.byId, ...commentsList },
-      allIds: [...state.comments.allIds, ...addCommentIds(comments)],
+      allIds: [...state.comments.allIds, ...addByIds(comments)],
       parentIds: [...state.comments.parentIds, ...addCommentParentIds(comments)]
     },
     subComments: {
@@ -85,14 +81,14 @@ export function commentReducer(state = initialState, action) {
           isLoading: true
         }
       };
-    case COMMENTS_SUCCESS:
+    case success(COMMENTS):
       return normalizedData(state, action);
-    case COMMENTS_ERROR:
-      const { error } = action.error.message;
+    case error(COMMENTS):
+      const message = action.error.message;
       return {
         ...state,
         settings: {
-          error,
+          message,
           isLoading: false
         }
       };

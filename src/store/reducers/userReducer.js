@@ -1,6 +1,6 @@
+import { success, error } from 'redux-saga-requests';
 import {
-  USER_PROFILE_SUCCESS,
-  USER_PROFILE_ERROR
+  USER_PROFILE
 } from '../constants/userConstants';
 
 const initialState = {
@@ -10,17 +10,17 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case USER_PROFILE_SUCCESS:
+    case success(USER_PROFILE):
       const { user } = action.response.data;
       return {
         ...state,
-        userProfile: user
+        userProfile: { ...state.userProfile, ...user }
       };
-    case USER_PROFILE_ERROR:
-      const { error } = action.error.message;
+    case error(USER_PROFILE):
+      const message = action.error.message;
       return {
         ...state,
-        error
+        message
       };
     default: return state;
   }
