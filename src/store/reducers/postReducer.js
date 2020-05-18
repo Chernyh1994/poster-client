@@ -8,43 +8,11 @@ import {
 import { addAllIds, addByIds } from '../../utils/normalizingStore';
 
 const initialState = {
-  posts: {
-    byId: {},
-    allIds: [],
-    myIds: []
-  },
+  byId: {},
+  allIds: [],
+  myIds: [],
   post: null,
   isLoading: false
-};
-
-const normalizedPosts = (state, action) => {
-  const { posts } = action.response.data;
-  return {
-    ...state,
-    posts: {
-      byId: { ...state.posts.byId, ...addByIds(posts) },
-      allIds: [...state.posts.allIds, ...addAllIds(posts)],
-      myIds: [],
-      nextNumbPage: posts.current_page + 1,
-      lastPage: posts.last_page
-    },
-    isLoading: false
-  };
-};
-
-const normalizedUserPosts = (state, action) => {
-  const { posts } = action.response.data;
-  return {
-    ...state,
-    posts: {
-      byId: { ...state.posts.byId, ...addByIds(posts) },
-      allIds: [],
-      myIds: [...state.posts.myIds, ...addAllIds(posts)],
-      nextNumbPage: posts.current_page + 1,
-      lastPage: posts.last_page
-    },
-    isLoading: false
-  };
 };
 
 export const postReducer = (state = initialState, action) => {
@@ -60,9 +28,31 @@ export const postReducer = (state = initialState, action) => {
     case success(CREATE_POST):
       return initialState;
     case success(POSTS):
-      return normalizedPosts(state, action);
+      const posts = action.response.data.posts;
+      return {
+        ...state,
+
+        byId: {...state.byId, ...addByIds(posts.data)},
+        allIds: [...state.allIds, ...addAllIds(posts.data)],
+        myIds: [...state.myIds],
+
+        isLoading: false,
+        nextNumbPage: posts.current_page + 1,
+        lastPage: posts.last_page
+      };
     case success(MY_POSTS):
-      return normalizedUserPosts(state, action);
+      const myPosts = action.response.data.posts;
+      return {
+        ...state,
+
+        byId: {...state.byId, ...addByIds(myPosts.data)},
+        allIds: [...state.allIds],
+        myIds: [...state.myIds, ...addAllIds(myPosts.data)],
+
+        isLoading: false,
+        nextNumbPage: myPosts.current_page + 1,
+        lastPage: myPosts.last_page
+      };
     case success(POST):
       const { post } = action.response.data;
       return {

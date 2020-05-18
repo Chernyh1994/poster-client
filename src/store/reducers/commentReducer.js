@@ -17,18 +17,19 @@ const normalizedData = (state, action) => {
     ...state,
     comments: {
       byId: { ...state.comments.byId, ...addByIds(comments) },
-      allIds: [...state.comments.allIds, ...addAllIds(comments)],
+      allIds: [ ...state.comments.allIds, ...addAllIds(comments) ],
     },
     isLoading: false,
-    nextNumbPage: comments.current_page + 1,
-    lastPage: comments.last_page
   };
 };
 
 export function commentReducer(state = initialState, action) {
   switch (action.type) {
     case COMMENTS:
-      return initialState;
+      return {
+        ...state,
+        isLoading: true
+      };
     case success(COMMENTS):
       return normalizedData(state, action);
     case error(COMMENTS):
