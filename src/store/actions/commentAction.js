@@ -1,6 +1,7 @@
 import {
   CREATE_COMMENT,
-  COMMENTS
+  COMMENTS,
+  CLEARE_COMMENTS
 } from '../constants/commentConstants';
 
 export const createComment = (content, parentId, postId) => ({
@@ -22,3 +23,7 @@ export const getComments = (postId, lastId) => ({
     method: 'get'
   }
 });
+
+export const getCleareComments = () => ({
+  type: CLEARE_COMMENTS
+})

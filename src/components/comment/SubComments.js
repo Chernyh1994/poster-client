@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,10 +17,10 @@ const SubComments = ({ expanded, comment }) => {
   return (
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        { comment.comments.length ?
-          comment.comments.map((comment, index) => <CommentCard key={index} comment={comment}/>) :
-          <EmptyContentCard/>
-        }
+        {comment.comments.length ?
+          comment.comments.map((comment, index) => <CommentCard key={index} comment={comment}/>) 
+          :
+          <EmptyContentCard/>}
       </CardContent>
     </Collapse>
   );

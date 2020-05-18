@@ -1,5 +1,3 @@
-/* eslint-disable no-extra-boolean-cast */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { userUpdate } from '../../store/actions/authAction';
-
+import { validatorForm } from '../../config/validatorForm';
 import {
   ProfileWrap,
   UserInfoWrap,
@@ -22,12 +20,8 @@ import {
 } from '../styledComponent/Templates';
 
 const validator = Yup.object({
-  name: Yup.string()
-    .min(4, 'User Name must be longer')
-    .required('Required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Required')
+  name: validatorForm.name,
+  email: validatorForm.email,
 });
 
 const ProfileForm = ({ handleClose }) => {
@@ -36,7 +30,7 @@ const ProfileForm = ({ handleClose }) => {
   const [avatar, setAvatar] = useState(null);
   let userAvatar = startAvatar;
   if (user.images) {
-    userAvatar = user.images.path;
+    userAvatar = user.avatar.path;
   }
   const [imagePreviewUrl, setImagePreviewUrl] = useState(userAvatar);
 

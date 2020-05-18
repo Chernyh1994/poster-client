@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -10,12 +10,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CreateCommentForm from './CreateCommentForm';
 import LoginForm from '../auth/LoginForm';
 import { WrapperButton, ContentButton } from '../styledComponent/Templates';
+import { getLikePost } from '../../store/actions/likeAction';
 
-const CommentModal = ({
-  postId, parentId, commentCount, likesCount
-}) => {
+const CommentModal = ({postId, parentId, commentCount, likesCount}) => {
   const [open, setOpen] = React.useState(false);
   const { user } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,6 +24,10 @@ const CommentModal = ({
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleLike = () => {
+    dispatch(getLikePost(postId))
+  }
 
   return (
     <WrapperButton>
@@ -37,7 +41,7 @@ const CommentModal = ({
       </WrapperButton>
 
       <WrapperButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" onClick={handleLike}>
           <FavoriteIcon fontSize='small'/>
         </IconButton>
         <ContentButton>

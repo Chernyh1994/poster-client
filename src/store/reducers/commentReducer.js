@@ -1,26 +1,12 @@
 import { success, error } from 'redux-saga-requests';
-import { COMMENTS } from '../constants/commentConstants';
+import { COMMENTS, CLEARE_COMMENTS } from '../constants/commentConstants';
 import { addAllIds, addByIds } from '../../utils/normalizingStore';
 
 const initialState = {
-  comments: {
-    byId: {},
-    allIds: []
-  },
+  byId: {},
+  allIds: [],
+  hasMore: 0,
   isLoading: false,
-};
-
-const normalizedData = (state, action) => {
-  const { comments } = action.response.data;
-
-  return {
-    ...state,
-    comments: {
-      byId: { ...state.comments.byId, ...addByIds(comments) },
-      allIds: [ ...state.comments.allIds, ...addAllIds(comments) ],
-    },
-    isLoading: false,
-  };
 };
 
 export function commentReducer(state = initialState, action) {
@@ -31,7 +17,14 @@ export function commentReducer(state = initialState, action) {
         isLoading: true
       };
     case success(COMMENTS):
-      return normalizedData(state, action);
+      const { comments } = action.response.data;
+      return {
+        ...state,
+        byId: {...state.byId, ...addByIds(comments)},
+        allIds: [...state.allIds, ...addAllIds(comments)],
+        hasMore: comments.length,
+        isLoading: false,
+      };
     case error(COMMENTS):
       const message = action.error.message;
       return {
@@ -39,6 +32,8 @@ export function commentReducer(state = initialState, action) {
         message,
         isLoading: false
       };
+    case CLEARE_COMMENTS:
+      return initialState;
     default: return state;
   }
 }

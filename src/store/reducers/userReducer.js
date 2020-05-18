@@ -11,7 +11,7 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case success(USER_PROFILE):
-      const { user } = action.response.data;
+      const user = action.response.data.user;
       return {
         ...state,
         userProfile: { ...state.userProfile, ...user }
