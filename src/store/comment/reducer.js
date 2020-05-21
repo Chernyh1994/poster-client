@@ -1,6 +1,6 @@
 import { success, error } from 'redux-saga-requests';
 import { COMMENTS, CLEARE_COMMENTS } from './constants';
-import { addAllIds, addByIds } from '../../utils/normalizingStore';
+import { keyAllIds, keyByIds } from '../../utils/normalizingStore';
 
 const initialState = {
   byId: {},
@@ -20,8 +20,8 @@ const commentReducer = (state = initialState, action) => {
       const { comments } = action.response.data;
       return {
         ...state,
-        byId: {...state.byId, ...addByIds(comments)},
-        allIds: [...state.allIds, ...addAllIds(comments)],
+        byId: {...state.byId, ...keyByIds(comments)},
+        allIds: [...state.allIds, ...keyAllIds(comments)],
         hasMore: comments.length,
         isLoading: false,
       };

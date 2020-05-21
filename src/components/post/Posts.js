@@ -20,9 +20,11 @@ const Posts = () => {
 
   useEffect(() => {
     if(!allIdsLength) {
-      dispatch(getPosts(1));
+      dispatch(getPosts('2020-03-19 21:27:16'));
     }
   }, [dispatch, allIdsLength]);
+
+  console.log(new Date)
 
   const handlePosts = () => {
     if (!isLoading) {

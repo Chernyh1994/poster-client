@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { updateUser } from '../../store/auth/actions';
+import { updateUser } from '../../store/currentUser/actions';
 import { validatorForm } from '../../config/validatorForm';
 import {
   ProfileWrap,

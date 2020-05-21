@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleRequests } from 'redux-saga-requests';
 
-import authReducer from './auth/reducer';
+import authReducer from './currentAuthUser/auth-reducer';
 import postReducer from './post/reducer';
 import commentReducer from './comment/reducer';
 

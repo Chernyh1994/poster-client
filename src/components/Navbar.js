@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../store/auth/actions';
+import { logoutUser } from '../store/currentUser/actions';
 import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
 
 const Navbar = () => {

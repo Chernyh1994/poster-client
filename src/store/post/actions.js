@@ -1,14 +1,13 @@
 import {
   POSTS,
   CREATE_POST,
-  POST,
-  MY_POSTS
+  CURRENT_USER_POSTS
 } from './constants';
 
-export const getPosts = (numbPage) => ({
+export const getPosts = (createdAt) => ({
   type: POSTS,
   request: {
-    url: `/api/V1/post?page=${numbPage}`,
+    url: `/api/V1/post/${createdAt}`,
     method: 'get'
   }
 });
@@ -25,16 +24,8 @@ export const createPost = (formData) => ({
   }
 });
 
-export const getPost = (id) => ({
-  type: POST,
-  request: {
-    url: `/api/V1/post/${id}`,
-    method: 'get'
-  }
-});
-
 export const getMyPosts = (numbPage) => ({
-  type: MY_POSTS,
+  type: CURRENT_USER_POSTS,
   request: {
     url: `/api/V1/user/posts?page=${numbPage}`,
     method: 'get'

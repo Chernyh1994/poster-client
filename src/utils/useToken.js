@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { profileUser } from '../store/auth/actions';
+import { profileUser } from '../store/currentUser/actions';
 import instanceAxios from './instanceAxios';
 
 // eslint-disable-next-line import/prefer-default-export

@@ -10,7 +10,6 @@ import {
 const initialState = {
   token: null,
   user: null,
-  error: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,24 +18,24 @@ const authReducer = (state = initialState, action) => {
     case success(REGISTER):
     case success(PROFILE):
     case success(UPDATE):
-      const { user } = action.response.data;
+      const user = action.response.data.user;
       return {
         ...state,
         user
       };
+    case LOGOUT:
+      return initialState;
     case error(LOGIN):
     case error(REGISTER):
     case error(PROFILE):
     case error(UPDATE):
-      const message = action.error.message;
+      const errorMessage = action.error.message;
       return {
         ...state,
-        message
+        errorMessage,
       };
-    case LOGOUT:
-      return initialState;
     default: 
-        return state;
+      return state;
   }
 };
 
