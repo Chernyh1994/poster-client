@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { InputWrap } from '../styledComponent/Templates';
-import { createComment } from '../../store/actions/commentAction';
+import { createComment } from '../../store/comment/actions';
 
 const validator = Yup.object({
   content: Yup.string()

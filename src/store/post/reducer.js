@@ -4,7 +4,7 @@ import {
   POSTS,
   POST,
   MY_POSTS
-} from '../constants/postConstants';
+} from './constants';
 import { addAllIds, addByIds } from '../../utils/normalizingStore';
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
   isLoading: false
 };
 
-export const postReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_POST:
     case POSTS:
@@ -70,6 +70,9 @@ export const postReducer = (state = initialState, action) => {
         message,
         isLoading: false
       };
-    default: return state;
+    default:
+       return state;
   }
 };
+
+export default postReducer;

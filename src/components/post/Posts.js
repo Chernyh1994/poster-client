@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import { getPosts } from '../../store/actions/postAction';
+import { getPosts } from '../../store/post/actions';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
 import PostCard from './PostCard';

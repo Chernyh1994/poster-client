@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -13,10 +12,11 @@ import {
   InputWrap,
   ButtonGroup,
   DownloadInput,
+  ImagesWraper,
   ImagesBlock,
   Image
 } from '../styledComponent/Templates';
-import { createPost } from '../../store/actions/postAction';
+import { createPost } from '../../store/post/actions';
 import { validatorPost } from '../../config/validatorForm';
 import Spinner from '../Spinner';
 
@@ -25,28 +25,32 @@ const validator = Yup.object({
 });
 
 const CreatePostForm = ({ isLoading }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [file, setFile] = useState(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
 
   const fileSelectedHandle = (event) => {
     const files = event.target.files[0];
     const objectURL = URL.createObjectURL(files);
-    setImagePreviewUrl(objectURL);
+    setImagePreviewUrl( [...imagePreviewUrl ,objectURL]);
     setFile(files);
+    console.log(files);
   };
 
   const post = useFormik({
     initialValues: {
       content: ''
     },
+
     validationSchema: validator,
     onSubmit: ({ content }) => {
       const formData = new FormData();
       formData.append('content', content);
+
       if (file) {
-        formData.append('images', file, file.name);
+        formData.append('media', file, file.name);
       }
 
       dispatch(createPost(formData))
@@ -54,6 +58,7 @@ const CreatePostForm = ({ isLoading }) => {
         .catch((errorOrAbortAction) => console.log('error'));
     }
   });
+  console.log(imagePreviewUrl);
 
   return (
     <form onSubmit={post.handleSubmit}>
@@ -71,11 +76,12 @@ const CreatePostForm = ({ isLoading }) => {
             />
           </InputWrap>
 
-          <ImagesBlock>
-            <div>
-              <Image src={imagePreviewUrl}/>
-            </div>
-          </ImagesBlock>
+          <ImagesWraper>
+            {imagePreviewUrl.map((image, index) => 
+              <ImagesBlock key={index}>
+                <Image src={image}/>
+              </ImagesBlock>)}
+          </ImagesWraper>
         </div>}
 
       <ButtonGroup>

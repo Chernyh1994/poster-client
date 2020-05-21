@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getPost } from '../../store/actions/postAction';
+import { getPost } from '../../store/post/actions';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
 import PostCard from './PostCard';

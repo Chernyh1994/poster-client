@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getUser } from '../store/actions/authAction';
+import { profileUser } from '../store/auth/actions';
 import instanceAxios from './instanceAxios';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -19,7 +19,7 @@ const useGetUser = (token) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (token) {
-      dispatch(getUser());
+      dispatch(profileUser());
     }
   }, [dispatch, token]);
 };

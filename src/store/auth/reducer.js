@@ -1,11 +1,11 @@
 import { success, error } from 'redux-saga-requests';
 import {
-  LOGIN_USER,
-  REGISTER_USER,
-  USER,
-  USER_UPDATE,
+  LOGIN,
+  REGISTER,
+  PROFILE,
+  UPDATE,
   LOGOUT
-} from '../constants/authConstants';
+} from './constants';
 
 const initialState = {
   token: null,
@@ -13,21 +13,21 @@ const initialState = {
   error: null
 };
 
-export const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case success(LOGIN_USER):
-    case success(REGISTER_USER):
-    case success(USER):
-    case success(USER_UPDATE):
+    case success(LOGIN):
+    case success(REGISTER):
+    case success(PROFILE):
+    case success(UPDATE):
       const { user } = action.response.data;
       return {
         ...state,
         user
       };
-    case error(LOGIN_USER):
-    case error(REGISTER_USER):
-    case error(USER):
-    case error(USER_UPDATE):
+    case error(LOGIN):
+    case error(REGISTER):
+    case error(PROFILE):
+    case error(UPDATE):
       const message = action.error.message;
       return {
         ...state,
@@ -35,6 +35,9 @@ export const authReducer = (state = initialState, action) => {
       };
     case LOGOUT:
       return initialState;
-    default: return state;
+    default: 
+        return state;
   }
 };
+
+export default authReducer;

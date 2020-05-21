@@ -69,6 +69,11 @@ export const TemplateContent = styled.div`
     width: fill-available;
     padding: 0;
 `;
+export const ImagesWraper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
 
 export const ImagesBlock = styled.div`
     width: 40%;

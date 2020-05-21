@@ -1,8 +1,10 @@
 import {
   CREATE_COMMENT,
   COMMENTS,
-  CLEARE_COMMENTS
-} from '../constants/commentConstants';
+  CLEARE_COMMENTS,
+  LIKE,
+  UNLIKE
+} from './constants';
 
 export const createComment = (content, parentId, postId) => ({
   type: CREATE_COMMENT,
@@ -26,4 +28,20 @@ export const getComments = (postId, lastId) => ({
 
 export const getCleareComments = () => ({
   type: CLEARE_COMMENTS
-})
+});
+
+export const setLike = (commentId) => ({
+  type: LIKE,
+  request: {
+    url: `api/V1/comment/${commentId}/like`,
+    method: 'get'
+  }
+});
+
+export const setUnlike = (commentId) => ({
+  type: UNLIKE,
+  request: {
+    url: `api/V1/comment/${commentId}/unlike`,
+    method: 'get'
+  }
+});

@@ -1,2 +1,0 @@
-export const LIKE_POST = 'LIKE/LIKE_POST';
-export const LIKE_COMMENT = 'LIKE/LIKE_COMMENT';

@@ -1,5 +1,5 @@
 import { success, error } from 'redux-saga-requests';
-import { COMMENTS, CLEARE_COMMENTS } from '../constants/commentConstants';
+import { COMMENTS, CLEARE_COMMENTS } from './constants';
 import { addAllIds, addByIds } from '../../utils/normalizingStore';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false,
 };
 
-export function commentReducer(state = initialState, action) {
+const commentReducer = (state = initialState, action) => {
   switch (action.type) {
     case COMMENTS:
       return {
@@ -34,6 +34,9 @@ export function commentReducer(state = initialState, action) {
       };
     case CLEARE_COMMENTS:
       return initialState;
-    default: return state;
+    default: 
+      return state;
   }
-}
+};
+
+export default commentReducer;

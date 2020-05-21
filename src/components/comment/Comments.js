@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import CommentCard from './CommentCard';
 import LoadingCard from '../LoadingCard';
 import EmptyContentCard from '../EmptyContentCard';
-import { getComments, getCleareComments } from '../../store/actions/commentAction';
+import { getComments, getCleareComments } from '../../store/comment/actions';
 
 const Comments = ({ postId }) => {
 

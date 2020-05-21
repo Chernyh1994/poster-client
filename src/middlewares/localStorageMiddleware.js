@@ -1,10 +1,10 @@
 import { success } from 'redux-saga-requests';
-import { LOGIN_USER, REGISTER_USER, LOGOUT } from '../store/constants/authConstants';
+import { LOGIN, REGISTER, LOGOUT } from '../store/auth/constants';
 
 export const localStorageMiddleware = () => (next) => (action) => {
   switch (action.type) {
-    case success(LOGIN_USER):
-    case success(REGISTER_USER):
+    case success(LOGIN):
+    case success(REGISTER):
       localStorage.setItem('token', action.response.data.token);
       return next(action);
     case LOGOUT:

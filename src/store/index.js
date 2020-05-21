@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import { reducers } from './reducers';
+import  combineReducers from './combine-reducers.js';
 import { localStorageMiddleware } from '../middlewares/localStorageMiddleware';
 import { handleErrorMiddleware } from '../middlewares/handleErrorMiddleware';
-import { rootSaga, sagaMiddleware, requestsMiddle } from './sagas/saga';
+import { rootSaga, sagaMiddleware, requestsMiddle } from './root-saga';
 
 const initStore = () => {
   const composeEnhancers =
@@ -14,7 +14,7 @@ const initStore = () => {
   const middlewares = applyMiddleware(sagaMiddleware, ...requestsMiddle, localStorageMiddleware, handleErrorMiddleware);
 
   const store = createStore(
-    reducers,
+    combineReducers,
     composeEnhancers(middlewares),
   );
 

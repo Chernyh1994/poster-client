@@ -4,7 +4,7 @@ import { renderRoutes } from 'react-router-config';
 import { useDispatch } from 'react-redux';
 
 import Profile from '../../components/profile';
-import { getUserProfile } from '../../store/actions/userAction';
+import { getUserProfile } from '../../store/usersProfile/actions';
 
 const ProfilePage = ({ route, match }) => {
   const aurotId = match.params.id;

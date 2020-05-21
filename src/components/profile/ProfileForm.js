@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { userUpdate } from '../../store/actions/authAction';
+import { updateUser } from '../../store/auth/actions';
 import { validatorForm } from '../../config/validatorForm';
 import {
   ProfileWrap,
@@ -56,7 +56,7 @@ const ProfileForm = ({ handleClose }) => {
       if (!!avatar) {
         formData.append('avatar', avatar, avatar.name);
       }
-      dispatch(userUpdate(formData))
+      dispatch(updateUser(formData))
         .then((successAction) => handleClose())
         .catch((errorOrAbortAction) => console.log('error'));
     }

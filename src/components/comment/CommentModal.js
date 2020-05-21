@@ -10,7 +10,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CreateCommentForm from './CreateCommentForm';
 import LoginForm from '../auth/LoginForm';
 import { WrapperButton, ContentButton } from '../styledComponent/Templates';
-import { getLikePost } from '../../store/actions/likeAction';
 
 const CommentModal = ({postId, parentId, commentCount, likesCount}) => {
   const [open, setOpen] = React.useState(false);
@@ -26,7 +25,6 @@ const CommentModal = ({postId, parentId, commentCount, likesCount}) => {
   };
 
   const handleLike = () => {
-    dispatch(getLikePost(postId))
   }
 
   return (
