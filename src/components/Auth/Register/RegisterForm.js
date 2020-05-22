@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
 import { registerUser } from '../../../store/currentAuthUser/actions';
-import { InputWrap } from '../../styledComponent/Templates';
+import { InputWrap } from '../../UI/StyledComponent/Templates';
 import { validatorForm } from '../../../config/validatorForm';
 
 const validator = Yup.object({

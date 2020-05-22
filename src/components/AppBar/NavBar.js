@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../store/currentAuthUser/actions';
-import { CustomAppBar, HeaderTitle } from '../styledComponent/Templates';
+import { CustomAppBar, HeaderTitle } from '../UI/StyledComponent/Templates';
 
 const NavBar = () => {
   const dispatch = useDispatch();

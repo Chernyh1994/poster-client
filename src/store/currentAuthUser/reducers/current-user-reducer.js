@@ -5,7 +5,7 @@ import { keyAllIds } from '../../../utils/normalizingStore';
 
 const initialState = {
   postIds: [],
-  likeIds: [],
+  likeIds: []
 };
 
 const currentUserReducer = (state = initialState, action) => {
@@ -14,15 +14,15 @@ const currentUserReducer = (state = initialState, action) => {
       const currentUserPosts = action.response.data.posts;
       return {
         ...state,
-        postsIds: [...state.postsIds, ...keyAllIds(currentUserPosts)],
+        postsIds: [...state.postsIds, ...keyAllIds(currentUserPosts)]
       };
     case error(CURRENT_USER_POSTS):
       const errorMessage = action.error.message;
       return {
         ...state,
-        errorMessage,
+        errorMessage
       };
-    default: 
+    default:
       return state;
   }
 };

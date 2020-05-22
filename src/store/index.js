@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import  combineReducers from './combine-reducers.js';
+import combineReducers from './combine-reducers.js';
 import { localStorageMiddleware } from '../middlewares/localStorageMiddleware';
 import { handleErrorMiddleware } from '../middlewares/handleErrorMiddleware';
 import { rootSaga, sagaMiddleware, requestsMiddle } from './root-saga';

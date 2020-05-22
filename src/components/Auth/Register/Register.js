@@ -4,7 +4,7 @@ import {
   FormTemplate,
   FormCard,
   FormTitle
-} from '../../styledComponent/Templates';
+} from '../../UI/StyledComponent/Templates';
 import RegisterForm from './RegisterForm';
 
 const Register = () => (

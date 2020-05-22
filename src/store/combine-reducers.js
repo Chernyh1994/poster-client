@@ -11,5 +11,5 @@ export default combineReducers({
   requests: requestsReducer,
   currentAuthUser,
   posts: postReducer,
-  comments: commentReducer,
+  comments: commentReducer
 });

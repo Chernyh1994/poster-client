@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   token: null,
-  user: null,
+  user: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -33,9 +33,9 @@ const authReducer = (state = initialState, action) => {
       const errorMessage = action.error.message;
       return {
         ...state,
-        errorMessage,
+        errorMessage
       };
-    default: 
+    default:
       return state;
   }
 };

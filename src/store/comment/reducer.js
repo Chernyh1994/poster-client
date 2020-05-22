@@ -6,7 +6,7 @@ const initialState = {
   byId: {},
   allIds: [],
   hasMore: 0,
-  isLoading: false,
+  isLoading: false
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -22,10 +22,10 @@ const commentReducer = (state = initialState, action) => {
       const { comments } = action.response.data;
       return {
         ...state,
-        byId: {...state.byId, ...keyByIds(comments)},
+        byId: { ...state.byId, ...keyByIds(comments) },
         allIds: [...state.allIds, ...keyAllIds(comments)],
         hasMore: comments.length,
-        isLoading: false,
+        isLoading: false
       };
     case error(COMMENTS):
       const message = action.error.message;
@@ -34,7 +34,7 @@ const commentReducer = (state = initialState, action) => {
         message,
         isLoading: false
       };
-    default: 
+    default:
       return state;
   }
 };

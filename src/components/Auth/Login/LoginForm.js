@@ -10,7 +10,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { InputWrap } from '../../styledComponent/Templates';
+import { InputWrap } from '../../UI/StyledComponent/Templates';
 import { loginUser } from '../../../store/currentAuthUser/actions';
 import { validatorForm } from '../../../config/validatorForm';
 

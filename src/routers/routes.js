@@ -4,21 +4,20 @@ import { BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import HomePage from '../pages/main/homePage';
+import AppBar from '../components/AppBar/AppBar.js';
 import Login from '../components/Auth/Login/Login.js';
 import Register from '../components/Auth/Register/Register.js';
-import Error404 from '../pages/error';
-import Header from '../pages/layouts';
-import PostsPage from '../pages/main/postsPage';
-import PostPage from '../pages/main/postPage';
+import CreatePost from '../components/Post/CreatePost/CreatePost.js';
+import Posts from '../components/Post/PostList/Posts.js';
+import Post from '../components/Post/AboutPost/Post.js';
+import Error404 from '../components/Error/Error404';
 import ProfilePage from '../pages/main/profilePage';
 
 const Routes = () => {
-  const user = useSelector((state) => state.currentAuthUser.auth.user);
-  const isAuthorized = !!user;
+  const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
   const routes = [
     {
-      component: Header,
+      component: AppBar,
       routes: [
         {
           path: '/register',
@@ -33,7 +32,7 @@ const Routes = () => {
         {
           path: '/',
           exact: true,
-          component: HomePage
+          component: CreatePost
         },
         {
           path: '/profile/:id',
@@ -48,11 +47,11 @@ const Routes = () => {
         {
           path: '/posts',
           exact: true,
-          render: () => (isAuthorized ? <PostsPage/> : <Redirect to="/login"/>)
+          render: () => (isAuthorized ? <Posts/> : <Redirect to="/login"/>)
         },
         {
           path: '/post/:id',
-          component: PostPage
+          component: Post
         },
         {
           component: Error404
