@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getUser } from '../store/actions/authAction';
+import { profileUser } from '../store/currentAuthUser/actions';
 import instanceAxios from './instanceAxios';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useToken = () => {
   const localStorageToken = localStorage.getItem('token');
-  const token = useSelector((state) => state.authReducer.token);
+  const token = useSelector((state) => state.currentAuthUser.auth.token);
   useGetUser(localStorageToken);
   if (token) {
     instanceAxios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -19,7 +19,7 @@ const useGetUser = (token) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (token) {
-      dispatch(getUser());
+      dispatch(profileUser());
     }
   }, [dispatch, token]);
 };

@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { renderRoutes } from 'react-router-config';
 import { useDispatch } from 'react-redux';
 
-import Profile from '../../components/profile';
-import { getUserProfile } from '../../store/actions/userAction';
+import PersonalArea from '../../components/CurrentUser/PersonalArea';
+import { getUserProfile } from '../../store/usersProfile/actions';
 
 const ProfilePage = ({ route, match }) => {
   const aurotId = match.params.id;
@@ -16,7 +15,7 @@ const ProfilePage = ({ route, match }) => {
 
   return (
     <div>
-      <Profile/>
+      <PersonalArea/>
       {renderRoutes(route.routes)}
     </div>
   );
