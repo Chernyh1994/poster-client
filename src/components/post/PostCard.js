@@ -20,7 +20,7 @@ import {
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
-  const isAuthorized = useSelector((state) => state.authReducer.user);
+  const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
 
   return (
     <Card className={classes.root} >

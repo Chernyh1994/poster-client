@@ -4,12 +4,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../store/currentUser/actions';
+import { logoutUser } from '../store/currentAuthUser/actions';
 import { CustomAppBar, HeaderTitle } from './styledComponent/Templates';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const isAuthorized = useSelector((state) => state.authReducer.user);
+  const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
 
   const handleLogout = () => {
     dispatch(logoutUser());

@@ -16,6 +16,8 @@ const commentReducer = (state = initialState, action) => {
         ...state,
         isLoading: true
       };
+    case CLEARE_COMMENTS:
+      return initialState;
     case success(COMMENTS):
       const { comments } = action.response.data;
       return {
@@ -32,8 +34,6 @@ const commentReducer = (state = initialState, action) => {
         message,
         isLoading: false
       };
-    case CLEARE_COMMENTS:
-      return initialState;
     default: 
       return state;
   }

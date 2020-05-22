@@ -14,7 +14,7 @@ import { DrawerStyled } from './styledComponent/DrawerStyled';
 
 const Menu = () => {
   const classes = DrawerStyled();
-  const user = useSelector((state) => state.authReducer.user);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
 
   return (
     <Drawer

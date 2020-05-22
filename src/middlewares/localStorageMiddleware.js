@@ -1,5 +1,5 @@
 import { success } from 'redux-saga-requests';
-import { LOGIN, REGISTER, LOGOUT } from '../store/currentUser/constants';
+import { LOGIN, REGISTER, LOGOUT } from '../store/currentAuthUser/constants';
 
 export const localStorageMiddleware = () => (next) => (action) => {
   switch (action.type) {

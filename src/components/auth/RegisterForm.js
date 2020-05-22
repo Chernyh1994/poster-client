@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { registerUser } from '../../store/currentUser/actions';
+import { registerUser } from '../../store/currentAuthUser/actions';
 import { InputWrap } from '../styledComponent/Templates';
 import { validatorForm } from '../../config/validatorForm';
 

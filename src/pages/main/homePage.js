@@ -11,8 +11,8 @@ import GuestPage from './guestPage';
 
 const HomePage = () => {
   const classes = StyledCard();
-  const user = useSelector((state) => state.authReducer.user);
-  const { isLoading } = useSelector((state) => state.postReducer);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
+  const { isLoading } = useSelector((state) => state.posts);
 
   const isAuthorized = !!user;
   return (

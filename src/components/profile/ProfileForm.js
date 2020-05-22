@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { updateUser } from '../../store/currentUser/actions';
+import { updateUser } from '../../store/currentAuthUser/actions';
 import { validatorForm } from '../../config/validatorForm';
 import {
   ProfileWrap,
@@ -25,7 +25,7 @@ const validator = Yup.object({
 });
 
 const ProfileForm = ({ handleClose }) => {
-  const { user } = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(null);
   let userAvatar = startAvatar;

@@ -11,7 +11,7 @@ import { TemplateContent } from '../../components/styledComponent/Templates';
 // eslint-disable-next-line react/prop-types
 const Header = ({ route }) => {
   const classes = HeaderStyled();
-  const { user } = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
 
   return (
     <div>

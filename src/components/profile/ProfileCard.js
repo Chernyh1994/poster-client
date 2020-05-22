@@ -15,7 +15,7 @@ import { startAvatar } from '../styledComponent/Templates';
 import LoadingCard from '../LoadingCard';
 
 const ProfileCard = () => {
-  const user = useSelector((state) => state.authReducer.user);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
   const userProfile = useSelector((state) => state.userReducer.userProfile);
   const classes = StyledCard();
 

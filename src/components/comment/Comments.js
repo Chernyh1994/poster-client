@@ -15,7 +15,7 @@ const Comments = ({ postId }) => {
     allIds,
     isLoading,
     hasMore
-  } = useSelector((state) => state.commentReducer);
+  } = useSelector((state) => state.comments);
   const allIdsLength = allIds.length;
   
   useEffect(() => {

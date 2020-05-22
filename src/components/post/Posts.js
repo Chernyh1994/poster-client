@@ -15,7 +15,7 @@ const Posts = () => {
     isLoading,
     nextNumbPage,
     lastPage
-  } = useSelector((state) => state.postReducer);
+  } = useSelector((state) => state.posts);
   const allIdsLength = allIds.length;
 
   useEffect(() => {

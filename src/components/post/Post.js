@@ -7,7 +7,7 @@ import PostCard from './PostCard';
 import Comments from '../comment/Comments';
 
 const Post = ({ postId }) => {
-  const { post, isLoading } = useSelector((state) => state.postReducer);
+  const { post, isLoading } = useSelector((state) => state.posts);
 
   if (isLoading) {
     return <LoadingCard/>;

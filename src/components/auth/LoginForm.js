@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { InputWrap } from '../styledComponent/Templates';
-import { loginUser } from '../../store/curentUser/actions';
+import { loginUser } from '../../store/currentAuthUser/actions';
 import { validatorForm } from '../../config/validatorForm';
 
 const validator = Yup.object({

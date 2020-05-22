@@ -14,7 +14,7 @@ import PostPage from '../pages/main/postPage';
 import ProfilePage from '../pages/main/profilePage';
 
 const Routes = () => {
-  const user = useSelector((state) => state.authReducer.user);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
   const isAuthorized = !!user;
   const routes = [
     {

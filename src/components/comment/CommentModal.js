@@ -13,7 +13,7 @@ import { WrapperButton, ContentButton } from '../styledComponent/Templates';
 
 const CommentModal = ({postId, parentId, commentCount, likesCount}) => {
   const [open, setOpen] = React.useState(false);
-  const { user } = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {

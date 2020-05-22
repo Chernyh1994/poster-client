@@ -1,11 +1,12 @@
 import { success, error } from 'redux-saga-requests';
+
 import {
   LOGIN,
   REGISTER,
   PROFILE,
   UPDATE,
   LOGOUT
-} from './constants';
+} from '../constants';
 
 const initialState = {
   token: null,
