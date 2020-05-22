@@ -12,7 +12,7 @@ import {
   NewAvatar
 } from '../styledComponent/ProfileStyled';
 import { startAvatar } from '../styledComponent/Templates';
-import LoadingCard from '../LoadingCard';
+import LoadingCard from '../UI/LoadingCard';
 
 const ProfileCard = () => {
   const user = useSelector((state) => state.currentAuthUser.auth.user);

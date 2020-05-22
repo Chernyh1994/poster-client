@@ -10,7 +10,7 @@ import ListIcon from '@material-ui/icons/List';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { DrawerStyled } from './styledComponent/DrawerStyled';
+import { DrawerStyled } from '../styledComponent/DrawerStyled';
 
 const Menu = () => {
   const classes = DrawerStyled();

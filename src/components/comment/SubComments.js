@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 
-import LodingCard from '../LoadingCard';
-import EmptyContentCard from '../EmptyContentCard';
+import LodingCard from '../UI/LoadingCard';
+import EmptyContentCard from '../UI/EmptyContentCard';
 import CommentCard from './CommentCard';
 
 const SubComments = ({ expanded, comment }) => {

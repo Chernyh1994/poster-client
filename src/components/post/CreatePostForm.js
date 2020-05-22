@@ -18,7 +18,7 @@ import {
 } from '../styledComponent/Templates';
 import { createPost } from '../../store/post/actions';
 import { validatorPost } from '../../config/validatorForm';
-import Spinner from '../Spinner';
+import Spinner from '../UI/Spinner';
 
 const validator = Yup.object({
   content: validatorPost.content

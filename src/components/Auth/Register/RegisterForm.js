@@ -12,9 +12,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { registerUser } from '../../store/currentAuthUser/actions';
-import { InputWrap } from '../styledComponent/Templates';
-import { validatorForm } from '../../config/validatorForm';
+import { registerUser } from '../../../store/currentAuthUser/actions';
+import { InputWrap } from '../../styledComponent/Templates';
+import { validatorForm } from '../../../config/validatorForm';
 
 const validator = Yup.object({
   name: validatorForm.name,
@@ -112,7 +112,6 @@ const RegisterForm = () => {
           variant="outlined"
           {...register.getFieldProps('repeatPassword')}
           error={!!register.touched.repeatPassword && !!register.errors.repeatPassword }
-          // eslint-disable-next-line max-len
           helperText={register.touched.repeatPassword && register.errors.repeatPassword ? register.errors.repeatPassword : null}
           InputProps={{
             endAdornment: (

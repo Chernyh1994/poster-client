@@ -4,8 +4,8 @@ import {
   FormTemplate,
   FormCard,
   FormTitle
-} from '../../components/styledComponent/Templates';
-import RegisterForm from '../../components/Auth/Register/RegisterForm';
+} from '../../styledComponent/Templates';
+import RegisterForm from './RegisterForm';
 
 const Register = () => (
   <FormTemplate>

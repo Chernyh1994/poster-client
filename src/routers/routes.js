@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import HomePage from '../pages/main/homePage';
-import Login from '../pages/auth/login';
-import Register from '../pages/auth/register';
+import Login from '../components/Auth/Login/Login.js';
+import Register from '../components/Auth/Register/Register.js';
 import Error404 from '../pages/error';
 import Header from '../pages/layouts';
 import PostsPage from '../pages/main/postsPage';

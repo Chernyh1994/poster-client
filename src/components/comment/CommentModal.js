@@ -8,7 +8,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import CreateCommentForm from './CreateCommentForm';
-import LoginForm from '../auth/LoginForm';
+import LoginForm from '../Auth/Login/LoginForm';
 import { WrapperButton, ContentButton } from '../styledComponent/Templates';
 
 const CommentModal = ({postId, parentId, commentCount, likesCount}) => {

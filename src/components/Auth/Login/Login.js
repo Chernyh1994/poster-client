@@ -4,14 +4,14 @@ import {
   FormTemplate,
   FormCard,
   FormTitle
-} from '../../components/styledComponent/Templates';
-import LoginForm from '../../components/Auth/Login/LoginForm';
+} from '../../styledComponent/Templates';
+import LoginForm from './LoginForm';
 
 const Login = () => (
   <FormTemplate>
     <FormCard>
       <FormTitle>
-          LOGIN
+        LOGIN
       </FormTitle>
       <LoginForm/>
     </FormCard>

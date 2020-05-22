@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import { getMyPosts } from '../../store/post/actions';
-import LoadingCard from '../LoadingCard';
-import EmptyContentCard from '../EmptyContentCard';
+import LoadingCard from '../UI/LoadingCard';
+import EmptyContentCard from '../UI/EmptyContentCard';
 import PostCard from '../post/PostCard';
 
 const UserPosts = () => {
