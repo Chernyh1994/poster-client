@@ -70,8 +70,9 @@ export const TemplateContent = styled.div`
 `;
 export const ImagesWraper = styled.div`
     display: flex;
+    align-items: flex-start
+    align-content: stretch;
     justify-content: space-between;
-    align-items: center;
 `;
 
 export const ImagesBlock = styled.div`

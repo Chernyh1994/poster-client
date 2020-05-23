@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { renderRoutes } from 'react-router-config';
 import { useDispatch } from 'react-redux';
 
-import PersonalArea from '../../components/CurrentUser/PersonalArea';
+import PersonalArea from '../CurrentUser/PersonalArea';
 import { getUserProfile } from '../../store/usersProfile/actions';
 
-const ProfilePage = ({ route, match }) => {
+const ProfileUsers = ({ route, match }) => {
   const aurotId = match.params.id;
   const dispatch = useDispatch();
 
@@ -21,4 +21,4 @@ const ProfilePage = ({ route, match }) => {
   );
 };
 
-export default ProfilePage;
+export default ProfileUsers;

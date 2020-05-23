@@ -18,10 +18,10 @@ export const createComment = (content, parentId, postId) => ({
   }
 });
 
-export const getComments = (postId, lastId) => ({
+export const getComments = (postId, createdAt) => ({
   type: COMMENTS,
   request: {
-    url: `/api/V1/post/${postId}/comment/${lastId}`,
+    url: `/api/V1/post/${postId}/comment/${createdAt}`,
     method: 'get'
   }
 });

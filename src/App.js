@@ -4,7 +4,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Pages from './pages';
+import Routes from './routers/Routes';
 import initStore from './store';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     <StylesProvider injectFirst>
       <Provider store={store}>
         <ToastContainer />
-        <Pages/>
+        <Routes/>
       </Provider>
     </StylesProvider>);
 };

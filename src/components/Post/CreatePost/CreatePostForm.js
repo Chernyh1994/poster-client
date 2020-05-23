@@ -25,45 +25,49 @@ const validator = Yup.object({
 });
 
 const CreatePostForm = ({ isLoading }) => {
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState([]);
   const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
 
   const fileSelectedHandle = (event) => {
+
     const files = event.target.files[0];
     const objectURL = URL.createObjectURL(files);
+
     setImagePreviewUrl([...imagePreviewUrl, objectURL]);
-    setFile(files);
-    console.log(files);
+    setFile([...file, files]);
   };
 
   const post = useFormik({
+
     initialValues: {
       content: ''
     },
 
     validationSchema: validator,
     onSubmit: ({ content }) => {
+      
       const formData = new FormData();
       formData.append('content', content);
 
       if (file) {
-        formData.append('media', file, file.name);
+        formData.append('images', file, file.name);
       }
 
       dispatch(createPost(formData))
-        .then((successAction) => history.push('/posts'))
+        .then((successAction) => history.push(`/post/${successAction.response.data.post.id}`))
         .catch((errorOrAbortAction) => console.log('error'));
     }
   });
-  console.log(imagePreviewUrl);
 
   return (
     <form onSubmit={post.handleSubmit}>
       {isLoading ?
-        <Spinner/> :
+        <Spinner/> 
+        :
         <div>
           <InputWrap>
             <TextField

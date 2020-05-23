@@ -10,10 +10,13 @@ import Register from '../components/Auth/Register/Register.js';
 import CreatePost from '../components/Post/CreatePost/CreatePost.js';
 import Posts from '../components/Post/PostList/Posts.js';
 import Post from '../components/Post/AboutPost/Post.js';
-import Error404 from '../components/Error/Error404';
-import ProfilePage from '../pages/main/profilePage';
+import Error404 from '../components/Error/Error404.js';
+import ProfileUsers from '../components/ProfileUsers/ProfileUsers.js';
+import { useToken } from '../utils/useToken';
 
 const Routes = () => {
+  useToken();
+
   const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
   const routes = [
     {
@@ -36,7 +39,7 @@ const Routes = () => {
         },
         {
           path: '/profile/:id',
-          component: ProfilePage
+          component: ProfileUsers
           // routes: [
           //   {
           //     path: '/profile',

@@ -19,8 +19,9 @@ const Post = (props) => {
     emptyPost ?
       <div>
         <PostCard post={byId[postId]}/>
-        <Comments postId={postId} comments={byId[postId].comments}/>
-      </div> :
+        <Comments postId={postId}/>
+      </div> 
+      :
       <EmptyContentCard/>
   );
 };

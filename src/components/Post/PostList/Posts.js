@@ -14,6 +14,7 @@ const Posts = () => {
 
   const { byId, allIds, isLoading } = useSelector((state) => state.posts);
   const allIdsLength = allIds.length;
+  const lastAllIds = allIds[allIds.length-1];
 
   useEffect(() => {
     if (!allIdsLength) {
@@ -23,7 +24,8 @@ const Posts = () => {
 
   const handlePosts = () => {
     if (!isLoading) {
-      dispatch(getPosts());
+      const lastPost = byId[lastAllIds].created_at;
+      dispatch(getPosts(lastPost));
     }
   };
 

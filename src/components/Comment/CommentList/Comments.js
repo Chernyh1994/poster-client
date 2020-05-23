@@ -6,8 +6,9 @@ import CommentCard from '../CommentCard';
 import LoadingCard from '../../UI/LoadingCard';
 import EmptyContentCard from '../../UI/EmptyContentCard';
 import { getComments, getCleareComments } from '../../../store/comment/actions';
+import { isoDate } from '../../../utils/converDate';
 
-const Comments = ({ postId, comments }) => {
+const Comments = ({ postId }) => {
   
   const dispatch = useDispatch();
   const {
@@ -15,23 +16,26 @@ const Comments = ({ postId, comments }) => {
     allIds,
     isLoading,
   } = useSelector((state) => state.comments);
+
   const allIdsLength = allIds.length;
+  const lastAllIds = allIds[allIds.length-1];
 
   useEffect(() => {
     if (!allIdsLength) {
-      dispatch(getComments(postId));
+      dispatch(getComments(postId, isoDate));
     }
     return () => dispatch(getCleareComments());
   }, [dispatch, postId]);
 
   const handlePosts = () => {
     if (!isLoading) {
-      dispatch(getComments(postId, allIds[allIdsLength - 1]));
+      const lastComment = byId[lastAllIds].created_at;
+      dispatch(getComments(postId, lastComment));
     }
   };
 
   return (
-    allIds.length ?
+    !!allIdsLength ?
       <InfiniteScroll
         pageStart={0}
         loadMore={handlePosts}
