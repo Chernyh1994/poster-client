@@ -23,9 +23,10 @@ const CommentCard = ({ comment, postId }) => {
             component={Link}
             to={`/profile/${comment.author.id}`}
             aria-label="recipe"
-            src={comment.author.avatar ?
-              comment.author.avatar.path :
-              startAvatar }
+            src={comment.author.profile  ?
+              comment.author.profile.avatar_path 
+              :
+              startAvatar}
             className={classes.avatar}/>
         }
         title={comment.author.name}

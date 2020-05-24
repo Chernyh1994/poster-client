@@ -5,5 +5,8 @@ export const getUserProfile = (aurotId) => ({
   request: {
     url: `/api/V1/user/${aurotId}`,
     method: 'get'
+  },
+  meta: {
+    asPromise: true
   }
 });

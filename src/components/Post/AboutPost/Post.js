@@ -6,7 +6,7 @@ import EmptyContentCard from '../../UI/EmptyContentCard';
 import PostCard from '../PostCard';
 import Comments from '../../Comment/CommentList/Comments';
 
-const Post = (props) => {
+const Post = ({props}) => {
   const postId = props.match.params.id;
   const { byId, isLoading } = useSelector((state) => state.posts);
   const emptyPost = Object.keys(byId).length;

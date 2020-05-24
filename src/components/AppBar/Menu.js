@@ -38,7 +38,7 @@ const Menu = () => {
         <ListItem
           button
           component={Link}
-          to={`/profile/${user.id}`}
+          to={`/${user.name}`}
         >
           <ListItemIcon><AccountCircleIcon/></ListItemIcon>
           <ListItemText primary={'Profile'} />

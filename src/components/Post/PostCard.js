@@ -30,8 +30,8 @@ const PostCard = ({ post }) => {
             component={Link}
             to={`/profile/${post.author.id}`}
             aria-label="recipe"
-            src={post.author.avatar ?
-              post.author.avatar.path :
+            src={post.author.profile ?
+              post.author.profile.avatar_path  :
               startAvatar}
             className={classes.avatar}
           />

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import ProfileForm from './ProfileForm';
 
 const ProfileModal = () => {
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

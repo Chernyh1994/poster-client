@@ -42,10 +42,12 @@ const postReducer = (state = initialState, action) => {
       };
     case success(CURRENT_USER_POSTS):
       const currentUserPosts = action.response.data.posts;
+      const UserhasMore = action.response.data.has_more;
       return {
         ...state,
-        byId: { ...state.byId, ...keyByIds(currentUserPosts.data) },
-        isLoading: false
+        byId: { ...state.byId, ...keyByIds(currentUserPosts) },
+        isLoading: false,
+        hasMore: UserhasMore
       };
     case error(CREATE_POST):
     case error(POSTS):

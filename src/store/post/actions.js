@@ -26,10 +26,10 @@ export const createPost = (formData) => ({
   }
 });
 
-export const getMyPosts = (numbPage) => ({
+export const getMyPosts = (createdAt) => ({
   type: CURRENT_USER_POSTS,
   request: {
-    url: `/api/V1/user/posts?page=${numbPage}`,
+    url: `/api/V1/currentuser/posts/${createdAt}`,
     method: 'get'
   }
 });

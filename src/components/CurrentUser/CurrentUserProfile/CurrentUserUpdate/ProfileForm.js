@@ -5,60 +5,57 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { updateUser } from '../../store/currentAuthUser/actions';
-import { validatorForm } from '../../config/validatorForm';
+import { updateUser } from '../../../../store/currentAuthUser/actions';
+import { validatorForm } from '../../../../config/validatorForm';
 import {
   ProfileWrap,
   UserInfoWrap,
   AvatarWrap,
   NewAvatar
-} from '../UI/StyledComponent/ProfileStyled';
+} from '../../../UI/StyledComponent/ProfileStyled';
 import {
   DownloadInput,
   InputWrap,
-} from '../UI/StyledComponent/Templates';
-import { startAvatar } from '../UI/StyledComponent/Image';
+} from '../../../UI/StyledComponent/Templates';
+import { startAvatar } from '../../../UI/StyledComponent/Image';
 
 const validator = Yup.object({
   name: validatorForm.name,
   email: validatorForm.email
 });
 
-const ProfileForm = ({ handleClose }) => {
+const ProfileForm = () => {
+
   const user = useSelector((state) => state.currentAuthUser.auth.user);
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(null);
-  let userAvatar = startAvatar;
-  if (user.images) {
-    userAvatar = user.avatar.path;
-  }
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(userAvatar);
 
   const fileSelectedHandle = (event) => {
-    const files = event.target.files[0];
-    const objectURL = URL.createObjectURL(files);
-
-    setImagePreviewUrl(objectURL);
-    setAvatar(files);
+    const file = event.target.files[0];
+    setAvatar(file);
   };
 
   const userProfile = useFormik({
+
     initialValues: {
       name: user.name,
       email: user.email
     },
+
     validationSchema: validator,
     onSubmit: (parameter) => {
       const formData = new FormData();
       formData.append('name', parameter.name);
       formData.append('email', parameter.email);
       formData.append('_method', 'put');
+
       if (avatar) {
         formData.append('avatar', avatar, avatar.name);
       }
+
       dispatch(updateUser(formData))
-        .then((successAction) => handleClose())
-        .catch((errorOrAbortAction) => console.log('error'));
+        .then((successAction) => window.location.reload())
+        .catch((errorOrAbortAction) => console.log(errorOrAbortAction));
     }
   });
 
@@ -68,7 +65,13 @@ const ProfileForm = ({ handleClose }) => {
 
         <AvatarWrap>
           <Button color="primary" component="label">
-            <NewAvatar alt="avatar" src={imagePreviewUrl}/>
+            <NewAvatar alt="avatar" 
+              src={avatar ? URL.createObjectURL(avatar)
+              :
+              user.profile.avatar_path ? user.profile.avatar_path 
+              : 
+              startAvatar}
+            />
             <DownloadInput
               name="avatar"
               type="file"

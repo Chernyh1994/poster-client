@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 
-import ProfileCard from './ProfileCard';
-import Navigation from './Navigation';
-import UserPosts from './UserPosts';
+import CurrentUserProfile from './CurrentUserProfile/CurrentUserProfile';
+import Navigation from './CurrentUserInfo/Navigation';
+import EmptyContentCard from '../UI/EmptyContentCard';
 
-const PersonalArea = () => {
-  const [value, setValue] = useState('posts');
-  const handleChange = (evant, newValue) => {
-    setValue(newValue);
-  };
+const PersonalArea = ({ route }) => {
+  const user = useSelector((state) => state.currentAuthUser.auth.user);
 
   return (
+    user ?
     <div>
-      <ProfileCard/>
-      <Navigation handleChange={handleChange} value={value} />
-      {value === 'posts' ? <UserPosts/> : null}
+      <CurrentUserProfile/>
+      <Navigation userName={user.name}/>
+      {renderRoutes(route.routes)}
     </div>
+    :
+    <EmptyContentCard/>
   );
 };
 

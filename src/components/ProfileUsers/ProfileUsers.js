@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { renderRoutes } from 'react-router-config';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import PersonalArea from '../CurrentUser/PersonalArea';
+import ProfileCard from '../UI/Profile/ProfileCard';
 import { getUserProfile } from '../../store/usersProfile/actions';
 
-const ProfileUsers = ({ route, match }) => {
-  const aurotId = match.params.id;
+const ProfileUsers = ({props}) => {
+
   const dispatch = useDispatch();
+  const userId = props.match.params.id;
+  const [userProfile, setUserProfile] = useState(false)
 
   useEffect(() => {
-    dispatch(getUserProfile(aurotId));
-  }, [dispatch, aurotId]);
+    dispatch(getUserProfile(userId))
+      .then((successAction) => setUserProfile(successAction.response.data.user))
+      .catch((errorOrAbortAction) => console.log(errorOrAbortAction));
+  }, [dispatch, userId]);
 
   return (
-    <div>
-      <PersonalArea/>
-      {renderRoutes(route.routes)}
-    </div>
+    <ProfileCard userProfile={userProfile} currentUser={false}/>
   );
 };
 

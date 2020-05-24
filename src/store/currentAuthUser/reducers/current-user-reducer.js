@@ -14,7 +14,7 @@ const currentUserReducer = (state = initialState, action) => {
       const currentUserPosts = action.response.data.posts;
       return {
         ...state,
-        postsIds: [...state.postsIds, ...keyAllIds(currentUserPosts)]
+        postIds: [...state.postIds, ...keyAllIds(currentUserPosts)]
       };
     case error(CURRENT_USER_POSTS):
       const errorMessage = action.error.message;

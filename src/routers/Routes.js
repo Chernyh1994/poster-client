@@ -4,19 +4,21 @@ import { BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
+import { useToken } from '../utils/useToken';
 import AppBar from '../components/AppBar/AppBar.js';
 import Login from '../components/Auth/Login/Login.js';
 import Register from '../components/Auth/Register/Register.js';
 import CreatePost from '../components/Post/CreatePost/CreatePost.js';
 import Posts from '../components/Post/PostList/Posts.js';
 import Post from '../components/Post/AboutPost/Post.js';
-import Error404 from '../components/Error/Error404.js';
 import ProfileUsers from '../components/ProfileUsers/ProfileUsers.js';
-import { useToken } from '../utils/useToken';
+import PersonalArea from '../components/CurrentUser/PersonalArea';
+import CurrentUserPosts from '../components/CurrentUser/CurrentUserInfo/CurrentUserPosts/CurrentUserPosts';
+import Error404 from '../components/Error/Error404.js';
 
 const Routes = () => {
-  useToken();
 
+  useToken();
   const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
   const routes = [
     {
@@ -35,17 +37,7 @@ const Routes = () => {
         {
           path: '/',
           exact: true,
-          component: CreatePost
-        },
-        {
-          path: '/profile/:id',
-          component: ProfileUsers
-          // routes: [
-          //   {
-          //     path: '/profile',
-          //     component:
-          //   }
-          // ]
+          render: () => (isAuthorized ? <CreatePost/> : <Redirect to="/login"/>)
         },
         {
           path: '/posts',
@@ -54,7 +46,21 @@ const Routes = () => {
         },
         {
           path: '/post/:id',
-          component: Post
+          render: (props) => (isAuthorized ? <Post props={props}/> : <Redirect to="/login"/>)
+        },
+        {
+          path: '/:currentUserName',
+          component: PersonalArea,
+          routes: [
+            {
+              path: '/:currentUserName/posts',
+              render: (props) => (isAuthorized ? <CurrentUserPosts/> : <Redirect to="/login"/>)
+            }
+          ]
+        },
+        {
+          path: '/profile/:id',
+          render: (props) => (isAuthorized ? <ProfileUsers props={props}/> : <Redirect to="/login"/>)
         },
         {
           component: Error404

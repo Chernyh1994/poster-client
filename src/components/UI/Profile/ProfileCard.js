@@ -1,33 +1,31 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
 
-import { StyledCard } from '../UI/StyledComponent/Card';
-import ProfileModal from './ProfileModal';
+import ProfileModal from '../../CurrentUser/CurrentUserProfile/CurrentUserUpdate/ProfileModal';
+import LoadingCard from '../LoadingCard';
+import { StyledCard } from '../StyledComponent/Card';
 import {
   ProfileWrap,
   UserInfoWrap,
   AvatarWrap,
   NewAvatar
-} from '../UI/StyledComponent/ProfileStyled';
-import { startAvatar } from '../UI/StyledComponent/Image';
-import LoadingCard from '../UI/LoadingCard';
+} from '../StyledComponent/ProfileStyled';
+import { startAvatar } from '../StyledComponent/Image';
 
-const ProfileCard = () => {
-  const user = useSelector((state) => state.currentAuthUser.auth.user);
-  const userProfile = useSelector((state) => state.userReducer.userProfile);
+const ProfileCard = ({ userProfile, currentUser }) => {
   const classes = StyledCard();
 
   return (
     <Card className={classes.root}>
-      {userProfile && user ?
+        {userProfile ?
         <ProfileWrap>
           <AvatarWrap>
             <NewAvatar
               alt="avatar"
-              src={userProfile.avatar ?
-                userProfile.avatar.path :
+              src={userProfile.profile ?
+                userProfile.profile.avatar_path 
+                :
                 startAvatar}
             />
           </AvatarWrap>
@@ -38,9 +36,10 @@ const ProfileCard = () => {
             <Typography className={classes.userInfoTitle} color="textSecondary">
               Email: {userProfile.email}
             </Typography>
-            {userProfile.id === user.id ? <ProfileModal/> : null}
+            {currentUser ? <ProfileModal/> : <div></div>}
           </UserInfoWrap>
-        </ProfileWrap> :
+        </ProfileWrap> 
+        :
         <LoadingCard/>}
     </Card>
   );
