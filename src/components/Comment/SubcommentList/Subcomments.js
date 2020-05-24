@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 
-import LodingCard from '../UI/LoadingCard';
-import EmptyContentCard from '../UI/EmptyContentCard';
-import CommentCard from './CommentCard';
+import LodingCard from '../../UI/LoadingCard';
+import EmptyContentCard from '../../UI/EmptyContentCard';
+import CommentCard from '../CommentCard';
 
-const SubComments = ({ expanded, comment }) => {
+const Subcomments = ({ expanded, subcomments }) => {
+
   const { isLoading } = useSelector((state) => state.comments);
 
   if (isLoading) {
@@ -16,13 +17,14 @@ const SubComments = ({ expanded, comment }) => {
 
   return (
     <Collapse in={expanded} timeout="auto" unmountOnExit>
-      {/* <CardContent>
-        {comment.comments.length ?
-          comment.comments.map((comment, index) => <CommentCard key={index} comment={comment}/>) :
+      <CardContent>
+        {subcomments.length ?
+          subcomments.map((subcomment, index) => <CommentCard key={index} comment={subcomment}/>) 
+          :
           <EmptyContentCard/>}
-      </CardContent> */}
+      </CardContent>
     </Collapse>
   );
 };
 
-export default SubComments;
+export default Subcomments;

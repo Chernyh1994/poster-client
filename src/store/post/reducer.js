@@ -9,7 +9,8 @@ import { keyAllIds, keyByIds } from '../../utils/normalizingStore';
 const initialState = {
   byId: {},
   allIds: [],
-  isLoading: false
+  isLoading: false,
+  hasMore: false
 };
 
 const postReducer = (state = initialState, action) => {
@@ -31,11 +32,13 @@ const postReducer = (state = initialState, action) => {
       };
     case success(POSTS):
       const posts = action.response.data.posts;
+      const hasMore = action.response.data.has_more;
       return {
         ...state,
         byId: { ...state.byId, ...keyByIds(posts) },
         allIds: [...state.allIds, ...keyAllIds(posts)],
-        isLoading: false
+        isLoading: false,
+        hasMore: hasMore
       };
     case success(CURRENT_USER_POSTS):
       const currentUserPosts = action.response.data.posts;

@@ -16,8 +16,8 @@ import {
 import {
   DownloadInput,
   InputWrap,
-  startAvatar
 } from '../UI/StyledComponent/Templates';
+import { startAvatar } from '../UI/StyledComponent/Image';
 
 const validator = Yup.object({
   name: validatorForm.name,

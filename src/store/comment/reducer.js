@@ -5,7 +5,8 @@ import { keyAllIds, keyByIds } from '../../utils/normalizingStore';
 const initialState = {
   byId: {},
   allIds: [],
-  isLoading: false
+  isLoading: false,
+  hasMore: false
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -17,11 +18,13 @@ const commentReducer = (state = initialState, action) => {
       };
     case success(COMMENTS):
       const comments = action.response.data.comments;
+      const hasMore = action.response.data.has_more;
       return {
         ...state,
         byId: { ...state.byId, ...keyByIds(comments) },
         allIds: [...state.allIds, ...keyAllIds(comments)],
-        isLoading: false
+        isLoading: false,
+        hasMore: hasMore
       };
     case error(COMMENTS):
       const message = action.error.message;

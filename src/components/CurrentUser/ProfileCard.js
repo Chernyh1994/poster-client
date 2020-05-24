@@ -11,7 +11,7 @@ import {
   AvatarWrap,
   NewAvatar
 } from '../UI/StyledComponent/ProfileStyled';
-import { startAvatar } from '../UI/StyledComponent/Templates';
+import { startAvatar } from '../UI/StyledComponent/Image';
 import LoadingCard from '../UI/LoadingCard';
 
 const ProfileCard = () => {

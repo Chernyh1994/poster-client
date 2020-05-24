@@ -12,10 +12,11 @@ import Iframe from 'react-iframe';
 import { StyledCard } from '../UI/StyledComponent/Card';
 import PostAction from './PostAction';
 import {
+  ImagesWraper,
   ImagesBlock,
   Image,
   startAvatar
-} from '../UI/StyledComponent/Templates';
+} from '../UI/StyledComponent/Image';
 
 const PostCard = ({ post }) => {
   const classes = StyledCard();
@@ -44,6 +45,7 @@ const PostCard = ({ post }) => {
         to={isAuthorized ? `/post/${post.id}` : '/login'}
       >
         <CardContent>
+
           <Typography variant="body2" component="p">
             {post.content}
           </Typography>
@@ -57,11 +59,13 @@ const PostCard = ({ post }) => {
               position="relative"
             /> : null}
 
-          {post.images.map((image, id) => (
-            <ImagesBlock key={id}>
-              <Image src={image.path}/>
-            </ImagesBlock>
-          ))}
+          <ImagesWraper>
+            {post.images.map((image, id) => (
+              <ImagesBlock key={id}>
+                <Image src={image.path}/>
+              </ImagesBlock>
+            ))}
+          </ImagesWraper>
 
         </CardContent>
       </CardActionArea>

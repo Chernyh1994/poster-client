@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import ImageIcon from '@material-ui/icons/Image';
+import ClearIcon from '@material-ui/icons/Clear';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -12,10 +14,13 @@ import {
   InputWrap,
   ButtonGroup,
   DownloadInput,
+} from '../../UI/StyledComponent/Templates';
+import {
   ImagesWraper,
   ImagesBlock,
   Image
-} from '../../UI/StyledComponent/Templates';
+} from '../../UI/StyledComponent/Image';
+import { deleteButton } from '../../UI/StyledComponent/Button';
 import { createPost } from '../../../store/post/actions';
 import { validatorPost } from '../../../config/validatorForm';
 import Spinner from '../../UI/Spinner';
@@ -26,19 +31,17 @@ const validator = Yup.object({
 
 const CreatePostForm = ({ isLoading }) => {
 
+  const classes = deleteButton();
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const [file, setFile] = useState([]);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
+  const [images, setImage] = useState([]);
 
   const fileSelectedHandle = (event) => {
 
-    const files = event.target.files[0];
-    const objectURL = URL.createObjectURL(files);
+    const file = event.target.files[0];
+    file.id = new Date();
 
-    setImagePreviewUrl([...imagePreviewUrl, objectURL]);
-    setFile([...file, files]);
+    setImage([...images, file]);
   };
 
   const post = useFormik({
@@ -53,8 +56,8 @@ const CreatePostForm = ({ isLoading }) => {
       const formData = new FormData();
       formData.append('content', content);
 
-      if (file) {
-        formData.append('images', file, file.name);
+      if (images) {
+        images.map((image) => formData.append('images[]', image));
       }
 
       dispatch(createPost(formData))
@@ -62,6 +65,10 @@ const CreatePostForm = ({ isLoading }) => {
         .catch((errorOrAbortAction) => console.log('error'));
     }
   });
+
+  const deleteImage = (image) => { 
+    setImage(images.filter(item => item.id!==image.id));
+  }
 
   return (
     <form onSubmit={post.handleSubmit}>
@@ -81,8 +88,12 @@ const CreatePostForm = ({ isLoading }) => {
           </InputWrap>
 
           <ImagesWraper>
-            {imagePreviewUrl.map((image, index) => <ImagesBlock key={index}>
-              <Image src={image}/>
+            {images.map((image, index) => 
+            <ImagesBlock key={index}>
+              <IconButton className={classes.deleteButton} onClick={() => deleteImage(image)} color="secondary" aria-label="delete">
+                <ClearIcon fontSize="small"/>
+              </IconButton>
+              <Image src={URL.createObjectURL(image)}/>
             </ImagesBlock>)}
           </ImagesWraper>
         </div>}

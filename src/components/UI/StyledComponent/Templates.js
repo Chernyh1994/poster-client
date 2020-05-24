@@ -68,27 +68,6 @@ export const TemplateContent = styled.div`
     width: -webkit-fill-available;  
     width: fill-available;
 `;
-export const ImagesWraper = styled.div`
-    display: flex;
-    align-items: flex-start
-    align-content: stretch;
-    justify-content: space-between;
-`;
-
-export const ImagesBlock = styled.div`
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const Image = styled.img`
-    width: 100%;
-    border-radius: 30px;
-    padding: 20px;
-`;
-
-export const startAvatar = 'https://www.mattmovingsystems.com/root/images/profile_user.gif';
 
 export const WrapperButton = styled.div`
     display: flex;

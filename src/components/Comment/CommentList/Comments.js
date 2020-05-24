@@ -15,10 +15,9 @@ const Comments = ({ postId }) => {
     byId,
     allIds,
     isLoading,
+    hasMore
   } = useSelector((state) => state.comments);
-
   const allIdsLength = allIds.length;
-  const lastAllIds = allIds[allIds.length-1];
 
   useEffect(() => {
     if (!allIdsLength) {
@@ -29,17 +28,18 @@ const Comments = ({ postId }) => {
 
   const handlePosts = () => {
     if (!isLoading) {
+      const lastAllIds = allIds[allIds.length-1];
       const lastComment = byId[lastAllIds].created_at;
       dispatch(getComments(postId, lastComment));
     }
   };
 
   return (
-    !!allIdsLength ?
+    allIdsLength ?
       <InfiniteScroll
         pageStart={0}
         loadMore={handlePosts}
-        hasMore={false}
+        hasMore={hasMore}
         loader={<div key={0}> <LoadingCard/> </div>}
       >
         {allIds.map((comment, index) => {
@@ -49,7 +49,8 @@ const Comments = ({ postId }) => {
             );
           }
         })}
-      </InfiniteScroll> :
+      </InfiniteScroll> 
+      :
       <EmptyContentCard/>
   );
 };

@@ -5,10 +5,16 @@ import clsx from 'clsx';
 import CardActions from '@material-ui/core/CardActions';
 
 import { StyledCommentCard } from '../UI/StyledComponent/Card';
-import SubComments from './SubComments.js';
+import Subcomments from './SubcommentList/Subcomments.js';
 import CreateCommentModal from '../UI/CreateComment/CreateCommentModal';
 
-const CommentActions = ({ postId, parentId, comment }) => {
+const CommentActions = ({ 
+  postId, 
+  parentId, 
+  subcomments,
+  commentCount 
+}) => {
+
   const classes = StyledCommentCard();
   const [expanded, setExpanded] = useState(false);
 
@@ -19,7 +25,11 @@ const CommentActions = ({ postId, parentId, comment }) => {
   return (
     <div>
       <CardActions disableSpacing>
-        <CreateCommentModal parentId={parentId} postId={postId} />
+        <CreateCommentModal 
+          parentId={parentId} 
+          postId={postId}
+          commentCount={commentCount} 
+        />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -31,7 +41,7 @@ const CommentActions = ({ postId, parentId, comment }) => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <SubComments expanded={expanded} comment={comment}/>
+      <Subcomments expanded={expanded} subcomments={subcomments}/>
     </div>
   );
 };

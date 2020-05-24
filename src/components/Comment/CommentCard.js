@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 
 import CommentActions from './CommentActions';
 import { StyledCommentCard } from '../UI/StyledComponent/Card';
-import { startAvatar } from '../UI/StyledComponent/Templates';
+import { startAvatar } from '../UI/StyledComponent/Image';
 
 const CommentCard = ({ comment, postId }) => {
+  
   const classes = StyledCommentCard();
 
   return (
@@ -37,10 +38,15 @@ const CommentCard = ({ comment, postId }) => {
         </Typography>
 
       </CardContent>
-      { !comment.parent_id ?
+      {!comment.parent_id ?
         <CardActions disableSpacing>
-          <CommentActions postId={postId} parentId={comment.id} comment={comment} />
-        </CardActions> : null }
+          <CommentActions 
+            postId={postId} 
+            parentId={comment.id} 
+            subcomments={comment.subcomments} 
+            commentCount={comment.subcomments_count} 
+          />
+        </CardActions> : null}
     </Card>
   );
 };
