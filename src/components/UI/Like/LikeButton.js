@@ -11,16 +11,17 @@ const LikeButton = ({ post, commentId, likesCount }) => {
   const dispatch = useDispatch();
   const currentUserLike = !!post.likes.length;
 
-  const [newLike, setNewLike] = useState(currentUserLike);
+  const [userLike, setUserLike] = useState(currentUserLike);
+  const [userUnlike, setUserUnlike] = useState(false);
 
   const handleLike = () => {
-    if(!newLike) {
-      dispatch(setLike(post.id))
-        .then((successAction) => setNewLike(true))
+    if(userLike) {
+      dispatch(setUnlike(post.id))
+        .then((successAction) => setUserLike(false), setUserUnlike(true))
         .catch((errorOrAbortAction) => console.log(errorOrAbortAction));
     } else {
-      dispatch(setUnlike(post.id))
-        .then((successAction) => setNewLike(false))
+      dispatch(setLike(post.id))
+        .then((successAction) => setUserLike(true), setUserUnlike(false))
         .catch((errorOrAbortAction) => console.log(errorOrAbortAction));
     }
   }
@@ -28,10 +29,10 @@ const LikeButton = ({ post, commentId, likesCount }) => {
   return (
     <WrapperButton>
       <IconButton aria-label="share" onClick={handleLike} >
-        <FavoriteIcon fontSize='small' color={ newLike ? "secondary" : "disabled"}/>
+        <FavoriteIcon fontSize='small' color={ userLike ? "secondary" : "disabled"}/>
       </IconButton>
       <ContentButton>
-        {newLike ? ++likesCount : likesCount }
+        {currentUserLike ? (userUnlike ? --likesCount :  likesCount ) : (userLike ? ++likesCount : likesCount)}
       </ContentButton>
     </WrapperButton>
   )
