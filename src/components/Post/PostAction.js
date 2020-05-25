@@ -5,14 +5,14 @@ import CreateCommentModal from '../UI/CreateComment/CreateCommentModal';
 import LikeButton from '../UI/Like/LikeButton';
 import { WrapperButton } from '../UI/StyledComponent/Templates';
 
-const PostAction = ({ postId, commentCount, likesCount }) => (
+const PostAction = ({ post, commentCount, likesCount }) => (
   <CardActions>
     <WrapperButton>
       <CreateCommentModal
-        postId={postId}
+        postId={post.id}
         commentCount={commentCount}
       />
-      <LikeButton likesCount={likesCount} postId={postId}/>
+      <LikeButton likesCount={likesCount} post={post}/>
     </WrapperButton>
   </CardActions>
 );

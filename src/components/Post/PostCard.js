@@ -70,7 +70,7 @@ const PostCard = ({ post }) => {
         </CardContent>
       </CardActionArea>
       <PostAction
-        postId={post.id}
+        post={post}
         commentCount={post.comments_count}
         likesCount={post.likes_count}
       />
