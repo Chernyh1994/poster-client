@@ -12,7 +12,7 @@ const PostAction = ({ postId, commentCount, likesCount }) => (
         postId={postId}
         commentCount={commentCount}
       />
-      <LikeButton likesCount={likesCount}/>
+      <LikeButton likesCount={likesCount} postId={postId}/>
     </WrapperButton>
   </CardActions>
 );

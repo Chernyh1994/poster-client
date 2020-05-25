@@ -39,6 +39,9 @@ export const setLike = (postId) => ({
   request: {
     url: `api/V1/post/${postId}/like`,
     method: 'get'
+  },
+  meta: {
+    asPromise: true
   }
 });
 
@@ -47,5 +50,8 @@ export const setUnlike = (postId) => ({
   request: {
     url: `api/V1/post/${postId}/unlike`,
     method: 'get'
+  },
+  meta: {
+    asPromise: true
   }
 });
