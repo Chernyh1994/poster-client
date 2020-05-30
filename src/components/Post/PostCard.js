@@ -31,7 +31,7 @@ const PostCard = ({ post }) => {
             to={`/profile/${post.author.id}`}
             aria-label="recipe"
             src={post.author.profile ?
-              post.author.profile.avatar_path  :
+              post.author.profile.avatar_path :
               startAvatar}
             className={classes.avatar}
           />

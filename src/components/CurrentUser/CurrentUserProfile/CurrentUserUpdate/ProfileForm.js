@@ -15,7 +15,7 @@ import {
 } from '../../../UI/StyledComponent/ProfileStyled';
 import {
   DownloadInput,
-  InputWrap,
+  InputWrap
 } from '../../../UI/StyledComponent/Templates';
 import { startAvatar } from '../../../UI/StyledComponent/Image';
 
@@ -25,7 +25,6 @@ const validator = Yup.object({
 });
 
 const ProfileForm = () => {
-
   const user = useSelector((state) => state.currentAuthUser.auth.user);
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(null);
@@ -65,12 +64,10 @@ const ProfileForm = () => {
 
         <AvatarWrap>
           <Button color="primary" component="label">
-            <NewAvatar alt="avatar" 
-              src={avatar ? URL.createObjectURL(avatar)
-              :
-              user.profile.avatar_path ? user.profile.avatar_path 
-              : 
-              startAvatar}
+            <NewAvatar alt="avatar"
+              src={avatar ? URL.createObjectURL(avatar) :
+                user.profile.avatar_path ? user.profile.avatar_path :
+                  startAvatar}
             />
             <DownloadInput
               name="avatar"

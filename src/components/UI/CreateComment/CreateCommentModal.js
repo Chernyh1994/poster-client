@@ -14,7 +14,6 @@ const CreateCommentModal = (
     parentId,
     commentCount
   }) => {
-    
   const [open, setOpen] = React.useState(false);
   const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
 

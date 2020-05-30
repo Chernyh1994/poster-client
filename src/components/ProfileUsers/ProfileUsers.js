@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux';
 import ProfileCard from '../UI/Profile/ProfileCard';
 import { getUserProfile } from '../../store/usersProfile/actions';
 
-const ProfileUsers = ({props}) => {
-
+const ProfileUsers = ({ props }) => {
   const dispatch = useDispatch();
   const userId = props.match.params.id;
-  const [userProfile, setUserProfile] = useState(false)
+  const [userProfile, setUserProfile] = useState(false);
 
   useEffect(() => {
     dispatch(getUserProfile(userId))

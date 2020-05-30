@@ -11,13 +11,12 @@ const PersonalArea = ({ route }) => {
 
   return (
     user ?
-    <div>
-      <CurrentUserProfile/>
-      <Navigation userName={user.name}/>
-      {renderRoutes(route.routes)}
-    </div>
-    :
-    <EmptyContentCard/>
+      <div>
+        <CurrentUserProfile/>
+        <Navigation userName={user.name}/>
+        {renderRoutes(route.routes)}
+      </div> :
+      <EmptyContentCard/>
   );
 };
 

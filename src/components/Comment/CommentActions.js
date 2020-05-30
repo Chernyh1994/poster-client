@@ -8,13 +8,12 @@ import { StyledCommentCard } from '../UI/StyledComponent/Card';
 import Subcomments from './SubcommentList/Subcomments.js';
 import CreateCommentModal from '../UI/CreateComment/CreateCommentModal';
 
-const CommentActions = ({ 
-  postId, 
-  parentId, 
+const CommentActions = ({
+  postId,
+  parentId,
   subcomments,
-  commentCount 
+  commentCount
 }) => {
-
   const classes = StyledCommentCard();
   const [expanded, setExpanded] = useState(false);
 
@@ -25,10 +24,10 @@ const CommentActions = ({
   return (
     <div>
       <CardActions disableSpacing>
-        <CreateCommentModal 
-          parentId={parentId} 
+        <CreateCommentModal
+          parentId={parentId}
           postId={postId}
-          commentCount={commentCount} 
+          commentCount={commentCount}
         />
         <IconButton
           className={clsx(classes.expand, {

@@ -16,8 +16,9 @@ import PersonalArea from '../components/CurrentUser/PersonalArea';
 import CurrentUserPosts from '../components/CurrentUser/CurrentUserInfo/CurrentUserPosts/CurrentUserPosts';
 import Error404 from '../components/Error/Error404.js';
 
-const Routes = () => {
+import ReactAce from '../components/ReactAce';
 
+const Routes = () => {
   useToken();
   const isAuthorized = useSelector((state) => state.currentAuthUser.auth.user);
   const routes = [
@@ -47,6 +48,10 @@ const Routes = () => {
         {
           path: '/post/:id',
           render: (props) => (isAuthorized ? <Post props={props}/> : <Redirect to="/login"/>)
+        },
+        {
+          path: '/ReactAce',
+          component: ReactAce
         },
         {
           path: '/:currentUserName',

@@ -10,12 +10,11 @@ import { TemplateContent } from '../../../UI/StyledComponent/Templates';
 import { isoDate } from '../../../../utils/converDate';
 
 const CurrentUserPosts = () => {
-  
   const dispatch = useDispatch();
-  const { 
-    byId, 
-    isLoading, 
-    hasMore 
+  const {
+    byId,
+    isLoading,
+    hasMore
   } = useSelector((state) => state.posts);
   const { postIds } = useSelector((state) => state.currentAuthUser.currentUser);
   const allIdsLength = postIds.length;
@@ -28,7 +27,7 @@ const CurrentUserPosts = () => {
 
   const handlePosts = () => {
     if (!isLoading) {
-      const lastAllIds = postIds[postIds.length-1];
+      const lastAllIds = postIds[postIds.length - 1];
       const lastPost = byId[lastAllIds].created_at;
       dispatch(getMyPosts(lastPost));
     }

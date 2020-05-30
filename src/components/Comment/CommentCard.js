@@ -12,7 +12,6 @@ import { StyledCommentCard } from '../UI/StyledComponent/Card';
 import { startAvatar } from '../UI/StyledComponent/Image';
 
 const CommentCard = ({ comment, postId }) => {
-  
   const classes = StyledCommentCard();
 
   return (
@@ -23,9 +22,8 @@ const CommentCard = ({ comment, postId }) => {
             component={Link}
             to={`/profile/${comment.author.id}`}
             aria-label="recipe"
-            src={comment.author.profile  ?
-              comment.author.profile.avatar_path 
-              :
+            src={comment.author.profile ?
+              comment.author.profile.avatar_path :
               startAvatar}
             className={classes.avatar}/>
         }
@@ -41,11 +39,11 @@ const CommentCard = ({ comment, postId }) => {
       </CardContent>
       {!comment.parent_id ?
         <CardActions disableSpacing>
-          <CommentActions 
-            postId={postId} 
-            parentId={comment.id} 
-            subcomments={comment.subcomments} 
-            commentCount={comment.subcomments_count} 
+          <CommentActions
+            postId={postId}
+            parentId={comment.id}
+            subcomments={comment.subcomments}
+            commentCount={comment.subcomments_count}
           />
         </CardActions> : null}
     </Card>
