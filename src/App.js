@@ -1,13 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { StylesProvider } from '@material-ui/core/styles';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+import Routes from './routers/Routes';
+import initStore from './store';
+
+const App = () => {
+  const store = initStore();
+
   return (
-    <div className="App">
-
-    </div>
-  );
-}
+    <StylesProvider injectFirst>
+      <Provider store={store}>
+        <ToastContainer />
+        <Routes/>
+      </Provider>
+    </StylesProvider>);
+};
 
 export default App;

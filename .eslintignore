@@ -1,0 +1,5 @@
+node_modules/*
+public
+**/serviceWorker.js
+**/setupTest.js
+**/App.test.js
