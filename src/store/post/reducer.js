@@ -38,7 +38,7 @@ const postReducer = (state = initialState, action) => {
         byId: { ...state.byId, ...keyByIds(posts) },
         allIds: [...state.allIds, ...keyAllIds(posts)],
         isLoading: false,
-        hasMore
+        hasMore: hasMore
       };
     case success(CURRENT_USER_POSTS):
       const currentUserPosts = action.response.data.posts;

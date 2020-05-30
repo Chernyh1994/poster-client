@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileCard from '../../UI/Profile/ProfileCard';
 
 const CurrentUserProfile = () => {
+
   const user = useSelector((state) => state.currentAuthUser.auth.user);
 
   return (

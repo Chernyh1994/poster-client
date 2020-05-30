@@ -9,6 +9,7 @@ import { getComments, getCleareComments } from '../../../store/comment/actions';
 import { isoDate } from '../../../utils/converDate';
 
 const Comments = ({ postId }) => {
+  
   const dispatch = useDispatch();
   const {
     byId,
@@ -27,7 +28,7 @@ const Comments = ({ postId }) => {
 
   const handlePosts = () => {
     if (!isLoading) {
-      const lastAllIds = allIds[allIds.length - 1];
+      const lastAllIds = allIds[allIds.length-1];
       const lastComment = byId[lastAllIds].created_at;
       dispatch(getComments(postId, lastComment));
     }
@@ -48,7 +49,8 @@ const Comments = ({ postId }) => {
             );
           }
         })}
-      </InfiniteScroll> :
+      </InfiniteScroll> 
+      :
       <EmptyContentCard/>
   );
 };

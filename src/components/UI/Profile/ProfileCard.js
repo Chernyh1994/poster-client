@@ -18,13 +18,14 @@ const ProfileCard = ({ userProfile, currentUser }) => {
 
   return (
     <Card className={classes.root}>
-      {userProfile ?
+        {userProfile ?
         <ProfileWrap>
           <AvatarWrap>
             <NewAvatar
               alt="avatar"
               src={userProfile.profile ?
-                userProfile.profile.avatar_path :
+                userProfile.profile.avatar_path 
+                :
                 startAvatar}
             />
           </AvatarWrap>
@@ -37,7 +38,8 @@ const ProfileCard = ({ userProfile, currentUser }) => {
             </Typography>
             {currentUser ? <ProfileModal/> : <div></div>}
           </UserInfoWrap>
-        </ProfileWrap> :
+        </ProfileWrap> 
+        :
         <LoadingCard/>}
     </Card>
   );

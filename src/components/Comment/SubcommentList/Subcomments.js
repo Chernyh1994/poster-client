@@ -8,6 +8,7 @@ import EmptyContentCard from '../../UI/EmptyContentCard';
 import CommentCard from '../CommentCard';
 
 const Subcomments = ({ expanded, subcomments }) => {
+
   const { isLoading } = useSelector((state) => state.comments);
 
   if (isLoading) {
@@ -18,7 +19,8 @@ const Subcomments = ({ expanded, subcomments }) => {
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
         {subcomments.length ?
-          subcomments.map((subcomment, index) => <CommentCard key={index} comment={subcomment}/>) :
+          subcomments.map((subcomment, index) => <CommentCard key={index} comment={subcomment}/>) 
+          :
           <EmptyContentCard/>}
       </CardContent>
     </Collapse>

@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import {
   InputWrap,
   ButtonGroup,
-  DownloadInput
+  DownloadInput,
 } from '../../UI/StyledComponent/Templates';
 import {
   ImagesWraper,
@@ -30,12 +30,14 @@ const validator = Yup.object({
 });
 
 const CreatePostForm = ({ isLoading }) => {
+
   const classes = deleteButton();
   const dispatch = useDispatch();
   const history = useHistory();
   const [images, setImage] = useState([]);
 
   const fileSelectedHandle = (event) => {
+
     const file = event.target.files[0];
     file.id = new Date();
 
@@ -50,6 +52,7 @@ const CreatePostForm = ({ isLoading }) => {
 
     validationSchema: validator,
     onSubmit: ({ content }) => {
+      
       const formData = new FormData();
       formData.append('content', content);
 
@@ -63,14 +66,15 @@ const CreatePostForm = ({ isLoading }) => {
     }
   });
 
-  const deleteImage = (image) => {
-    setImage(images.filter((item) => item.id !== image.id));
-  };
+  const deleteImage = (image) => { 
+    setImage(images.filter(item => item.id!==image.id));
+  }
 
   return (
     <form onSubmit={post.handleSubmit}>
       {isLoading ?
-        <Spinner/> :
+        <Spinner/> 
+        :
         <div>
           <InputWrap>
             <TextField
@@ -84,7 +88,8 @@ const CreatePostForm = ({ isLoading }) => {
           </InputWrap>
 
           <ImagesWraper>
-            {images.map((image, index) => <ImagesBlock key={index}>
+            {images.map((image, index) => 
+            <ImagesBlock key={index}>
               <IconButton className={classes.deleteButton} onClick={() => deleteImage(image)} color="secondary" aria-label="delete">
                 <ClearIcon fontSize="small"/>
               </IconButton>

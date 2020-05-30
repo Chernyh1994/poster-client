@@ -24,7 +24,7 @@ const commentReducer = (state = initialState, action) => {
         byId: { ...state.byId, ...keyByIds(comments) },
         allIds: [...state.allIds, ...keyAllIds(comments)],
         isLoading: false,
-        hasMore
+        hasMore: hasMore
       };
     case error(COMMENTS):
       const message = action.error.message;
